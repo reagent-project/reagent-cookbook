@@ -1,6 +1,6 @@
 # Problem
 
-You want to use [DataTables](http://www.datatables.net/) to display data in your[reagent](https://github.com/holmsand/reagent) webapp.
+You want to use [DataTables](http://www.datatables.net/) to display data in your [reagent](https://github.com/holmsand/reagent) webapp.
 
 
 # Solution
@@ -124,8 +124,9 @@ $(document).ready(function() {
 Let's convert this to clojurescript.
 
 ```clojure
-(fn []
-	(.DataTable (js/$ "#example")))
+(.ready (js/$ js/document) (fn []
+                               (.DataTable (js/$ "#example"))
+                               ))
 ```
 
 ### Create a table with id "#example"
@@ -156,9 +157,9 @@ Basically, this function applies the `.DataTable()` method on whichever html ele
 	  
    ])
 
-(fn []
-	(.DataTable (js/$ "#example")))
-
+(.ready (js/$ js/document) (fn []
+                               (.DataTable (js/$ "#example"))
+                               ))
 ```
 
 ### Using react/reagent component lifecycle
