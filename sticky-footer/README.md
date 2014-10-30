@@ -4,7 +4,7 @@ You want to add a sticky footer using [Garden](https://github.com/noprompt/garde
 
 *(Note: Garden is a library that let's you write css in clojure)*
 
-## Solution
+# Solution
 
 Our solution will be based on this this [CSS-TRICKS page](http://css-tricks.com/snippets/css/sticky-footer/).
 
@@ -144,4 +144,4 @@ $ lein repl
 user=> (run!)
 ```
 
-Open a browser and go to *localhost:8080*. You should see your reagent application with DataTables!
+Open a browser and go to *localhost:8080*. You should see your reagent application!
