@@ -8,6 +8,8 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 
 [DataTables](https://github.com/gadfly361/reagent-cookbook/tree/master/data-tables)
 
+[draggable element](https://github.com/gadfly361/reagent-cookbook/tree/master/draggable)
+
 [Sticky Footer](https://github.com/gadfly361/reagent-cookbook/tree/master/sticky-footer)
 
 This repo is a work in progress; more recipes coming soon! Also, well-documented contributions are welcomed!

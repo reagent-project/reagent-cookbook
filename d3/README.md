@@ -199,7 +199,7 @@ However, if we use the above code, it will fail. This is because it will be call
 ...
 ```
 
-Next, let'd add our code to a *did-mount* component.
+Next, let's add our code to a *did-mount* function.
 
 ```clojure
 (ns d3.views.home-page)
@@ -292,7 +292,7 @@ Ok, finally, let's create our `home-page` component.
 ;; ATTENTION /\
 ```
 
-## Usage
+# Usage
 
 To view our app, we need to perform the following steps:
 

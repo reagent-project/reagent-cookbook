@@ -1,29 +1,20 @@
 # Problem
 
-You want to use [DataTables](http://www.datatables.net/) to display data in your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to add a [draggable](http://jqueryui.com/draggable/) element in your [reagent](https://github.com/holmsand/reagent) webapp.
 
 # Solution
 
 ## Create a reagent project
 
+We are going to follow this [example](http://jqueryui.com/draggable/).
+
 Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
 
 *(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
-```
-$ lein new reagent-seed data-tables
-```
+## Add jQuery ui files to index.html
 
-## Add DataTables files to index.html
-
-cd into your newly created project.
-
-Getting started with DataTables is as simple as including two files in `resoucres/index.html`, the CSS styling and the DataTables script itself. These two files are available on the DataTables CDN:
-
-* //cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css
-* //cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js
-
-We want to make sure to add the CSS cdn and the DataTables cdn *after* jQuery.  Our `resources/index.html` file should look something like this:
+Add the draggable jQuery ui files to your `resources/index.html` file.
 
 ```html
 <!DOCTYPE html>
@@ -41,19 +32,19 @@ We want to make sure to add the CSS cdn and the DataTables cdn *after* jQuery.  
     <script src="http://fb.me/react-0.11.1.js"></script>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- ATTENTION \/ -->
+    <!-- jQuery Draggable -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!-- ATTENTION /\ -->
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- Font Awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-<!-- ATTENTION \/ -->
-	<!-- DataTables -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css">
-    <script src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
-<!-- ATENTION /\ -->
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/screen.css">
     <!-- Clojurescript -->
@@ -96,12 +87,12 @@ We can see that there are two views:
 * about_page.cljs
 * home_page.cljs
 
-## Adding DataTables to home-page component
+## Adding draggable element to home-page component
 
-I think we should add DataTables to the home page, but first, let's take a look at what is already there.
+I think we should add a draggable element to the home page, but first, let's take a look at what is already there.
 
 ```clojure
-(ns data-tables.views.home-page)
+(ns draggable.views.home-page)
 
 (defn home-page []
   [:div
@@ -110,62 +101,47 @@ I think we should add DataTables to the home page, but first, let's take a look 
    ])
 ```
 
-### Converting javascript function to clojurescript
+To add a draggable element, we need the following:
 
-Ok, the DataTables [zero configuration](http://www.datatables.net/examples/basic_init/zero_configuration.html) guide says to include the following javascript:
+* parent div with a unique id and a class of "ui-widget-content".
+* nested element inside div to be dragged
+
+```clojure
+(ns draggable.views.home-page)
+
+(defn home-page []
+  [:div
+   [:h2 "Home Page"]
+   [:div "Woot! You are starting a reagent application."]
+
+;; ATTENTION \/
+   [:div#draggable.ui-widget-content [:p "Drag me around"]]
+;; ATTENTION /\
+
+   ])
+```
+
+## Converting javascript function to clojurescript
+
+This is the javascript we want to include:
 
 ```javascript
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
+  $(function() {
+    $( "#draggable" ).draggable();
+  });
 ```
 
 Let's convert this to clojurescript.
 
 ```clojure
-(.ready (js/$ js/document) (fn []
-                               (.DataTable (js/$ "#example"))
-                               ))
-```
-
-### Create a table with id "#example"
-
-Basically, this function applies the `.DataTable()` method on whichever html element has an id of `"#example"`.  Let's create a table with an id of "#example" in the `home-page` reagent component.
-
-```clojure
-(ns data-tables.views.home-page)
-
-(defn home-page []
-  [:div
-   [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
-
-;; ATTENTION \/
-   [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
-    [:thead
-     [:tr [:th "Name"]
-      [:th "Age"]]]
-    [:tbody
-     [:tr [:td "Matthew"]
-      [:td "26"]]
-     [:tr [:td "Anna"]
-      [:td "14"]]
-     [:tr [:td "Michelle"]
-      [:td "42"]]
-     [:tr [:td "Frank"]
-      [:td "37"]]]]
-;; ATTENTION /\
-
-   ])
-
-(.ready (js/$ js/document) (fn []
-                               (.DataTable (js/$ "#example"))
-                               ))
+(js/$ (fn []
+        (.draggable (js/$ "#draggable"))
+	))
 ```
 
 ### Using react/reagent component lifecycle
 
-However, if we use the `.DataTable()` method as shown, it will fail.  This is because `.DataTable()` will look for an element with the `"#example"` id before reagent has rendered the home-page component.  What we need to do is tap into the react/reagent component lifecycle.  First, let's change `home-page` to `home-render`.
+However, if we use the above code, it will fail. This is because when we change views and come back to this view, the code won't get re-run to make the element draggable.  What we need to do is tap into the react/reagent component lifecycle. First, let's change `home-page` to `home-render`.
 
 ```clojure
 ...
@@ -173,42 +149,30 @@ However, if we use the `.DataTable()` method as shown, it will fail.  This is be
 ...
 ```
 
-Next, let'd add our `.DataTable()` method to a *did-mount* component.
+Next, let's add our code to a *did-mount* component.
 
 ```clojure
-(ns data-tables.views.home-page)
+(ns draggable.views.home-page)
 
-(defn home-render []
+(defn home-redner []
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-   [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
-    [:thead
-     [:tr [:th "Name"]
-      [:th "Age"]]]
-    [:tbody
-     [:tr [:td "Matthew"]
-      [:td "26"]]
-     [:tr [:td "Anna"]
-      [:td "14"]]
-     [:tr [:td "Michelle"]
-      [:td "42"]]
-     [:tr [:td "Frank"]
-      [:td "37"]]]]
-    ]])
+   [:div#draggable.ui-widget-content [:p "Drag me around"]]
+   ])
 
 ;; ATTENTION \/
 (defn home-did-mount []
-  (.ready (js/$ js/document) (fn []
-                               (.DataTable (js/$ "#example"))
-                               )))
+  (js/$ (fn []
+          (.draggable (js/$ "#draggable"))
+          )))
 ;; ATTENTION /\
 ```
 
 To make the `home-page` component, which will use both the `home-render` and `home-did-mount` functions, we have to add *reagent* to our namespace.
 
 ```clojure
-(ns data-tables.views.home-page
+(ns draggable.views.home-page
   (:require [reagent.core :as reagent]))
 ...
 ```
@@ -216,41 +180,54 @@ To make the `home-page` component, which will use both the `home-render` and `ho
 Ok, finally, let's create our `home-page` component.
 
 ```clojure
-(ns data-tables.views.home-page
+(ns draggable.views.home-page
   (:require [reagent.core :as reagent]))
 
 (defn home-render []
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-   [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
-    [:thead
-     [:tr [:th "Name"]
-      [:th "Age"]]]
-    [:tbody
-     [:tr [:td "Matthew"]
-      [:td "26"]]
-     [:tr [:td "Anna"]
-      [:td "14"]]
-     [:tr [:td "Michelle"]
-      [:td "42"]]
-     [:tr [:td "Frank"]
-      [:td "37"]]]]
+
+   [:div#draggable.ui-widget-content [:p "Drag me around"]]
+
    ])
 
 (defn home-did-mount []
-  (.ready (js/$ js/document) (fn []
-                               (.DataTable (js/$ "#example"))
-                               )))
+  (js/$ (fn []
+          (.draggable (js/$ "#draggable"))
+          )))
 
 ;; ATTENTION \/
 (defn home-page []
   (reagent/create-class {:render home-render
                          :component-did-mount home-did-mount}))
-;; ATTENTION /\
+;;ATTENTION /\
 ```
 
-This is all it takes to add DataTables.
+## Add CSS
+
+The css we want to add looks like this:
+
+```css
+#draggable { width: 150px; height: 150px; padding: 0.5em; }
+```
+
+However, we want to write this in clojure using Garden instead.  We can do this by going to the `src/sticky_footer/css/screen.clj` file and updating it as follows:
+
+```clojure
+(defstyles screen
+  ;; Coloring Title
+  [:div#title {:font-size (em 3)
+               :color (rgb 123 45 6)}]
+
+;; ATTENTION \/
+  ;; draggable element
+  [:#draggable {:width "150px"
+                :height "150px"
+                :padding (em 0.5)}]
+;; ATTENTION /\
+  )
+```
 
 # Usage
 

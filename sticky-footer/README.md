@@ -122,7 +122,7 @@ However, we want to write this in clojure using Garden instead.  We can do this 
   )
 ```
 
-## Usage
+# Usage
 
 To view our app, we need to perform the following steps:
 
