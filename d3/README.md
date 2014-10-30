@@ -181,6 +181,7 @@ Let's convert this to clojurescript.
                           :key "my-red-line"
                           :color "red"
                           }]))
+        (call chart))))
 ```
 
 ### Using react/reagent component lifecycle
