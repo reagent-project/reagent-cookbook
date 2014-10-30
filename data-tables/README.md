@@ -48,9 +48,11 @@ We want to make sure to add the CSS cdn and the DataTables cdn *after* jQuery.  
     <!-- Font Awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<!-- ATTENTION \/ -->
 	<!-- DataTables -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+<!-- ATENTION /\ -->
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/screen.css">
@@ -137,7 +139,8 @@ Basically, this function applies the `.DataTable()` method on whichever html ele
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-   
+
+;; ATTENTION \/
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
     [:thead
      [:tr [:th "Name"]
@@ -151,7 +154,8 @@ Basically, this function applies the `.DataTable()` method on whichever html ele
       [:td "42"]]
      [:tr [:td "Frank"]
       [:td "37"]]]]
-	  
+;; ATTENTION /\
+
    ])
 
 (.ready (js/$ js/document) (fn []
@@ -178,7 +182,6 @@ Next, let'd add our `.DataTable()` method to a *did-mount* component.
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-   
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
     [:thead
      [:tr [:th "Name"]
@@ -192,13 +195,14 @@ Next, let'd add our `.DataTable()` method to a *did-mount* component.
       [:td "42"]]
      [:tr [:td "Frank"]
       [:td "37"]]]]
-	  
     ]])
 
+;; ATTENTION \/
 (defn home-did-mount []
   (.ready (js/$ js/document) (fn []
                                (.DataTable (js/$ "#example"))
                                )))
+;; ATTENTION /\
 ```
 
 To make the `home-page` component, which will use both the `home-render` and `home-did-mount` functions, we have to add *reagent* to our namespace.
@@ -219,7 +223,6 @@ Ok, finally, let's create our `home-page` component.
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-   
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
     [:thead
      [:tr [:th "Name"]
@@ -233,7 +236,6 @@ Ok, finally, let's create our `home-page` component.
       [:td "42"]]
      [:tr [:td "Frank"]
       [:td "37"]]]]
-	  
    ])
 
 (defn home-did-mount []
@@ -241,9 +243,11 @@ Ok, finally, let's create our `home-page` component.
                                (.DataTable (js/$ "#example"))
                                )))
 
+;; ATTENTION \/
 (defn home-page []
   (reagent/create-class {:render home-render
                          :component-did-mount home-did-mount}))
+;; ATTENTION /\
 ```
 
 This is all it takes to add DataTables.

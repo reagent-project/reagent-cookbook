@@ -60,12 +60,14 @@ In our `resources/index.html` file, we need to add a parent div to our app and a
   </head>
   <body class="container">
 
+<!-- ATTENTION \/ -->
     <div class="page-wrap">
       <div id="app"> Loading... </div>
     </div>
     <footer class="site-footer">
       I'm the Sticky Footer.
     </footer>
+<!-- ATTENTION /\ -->
 ...
 ```
 
@@ -105,6 +107,7 @@ However, we want to write this in clojure using Garden instead.  We can do this 
   [:div#title {:font-size (em 3)
                :color (rgb 123 45 6)}]
 
+;; ATTENTION \/
   ;; Sticky Footer
   [:* {:margin "0"}]
   [:html :body {:height "100%"}]
@@ -115,6 +118,7 @@ However, we want to write this in clojure using Garden instead.  We can do this 
                      :display "block"}]
   [:.site-footer :.page-wrap:after {:height "100px"}]
   [:.site-footer {:background "orange"}]
+;; ATTENTION /\
   )
 ```
 

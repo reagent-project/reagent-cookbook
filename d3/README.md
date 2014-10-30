@@ -43,10 +43,12 @@ Add d3 to your `resources/index.html` file.
     <!-- Font Awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<!-- ATTENTION \/ -->
     <!-- d3 -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.css" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.js"></script>
+<!-- ATTENTION /\ -->
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/screen.css">
@@ -113,8 +115,10 @@ To add d3, we need to add a parent div with an inner svg element.
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-   
+
+;; ATTENTION \/
    [:div#d3-node [:svg ]]
+;; ATTENTION /\
    
    ])
 ```
@@ -204,11 +208,10 @@ Next, let'd add our code to a *did-mount* component.
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-
    [:div#d3-node [:svg ]]
-
    ])
 
+;; ATTENTION \/
 (defn home-did-mount []
   (.addGraph js/nv (fn []
                      (let [chart (.. js/nv -models lineChart
@@ -233,6 +236,7 @@ Next, let'd add our code to a *did-mount* component.
                                                :color "red"
                                                }]))
                              (call chart)))))))
+;; ATTENTION /\
 ```
 
 To make the `home-page` component, which will use both the `home-render` and `home-did-mount` functions, we have to add *reagent* to our namespace.
@@ -253,9 +257,7 @@ Ok, finally, let's create our `home-page` component.
   [:div
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
-
    [:div#d3-node [:svg ]]
-
    ])
 
 (defn home-did-mount []
@@ -283,9 +285,11 @@ Ok, finally, let's create our `home-page` component.
                                                }]))
                              (call chart)))))))
 
+;; ATTENTION \/
 (defn home-page []
   (reagent/create-class {:render home-render
                          :component-did-mount home-did-mount}))
+;; ATTENTION /\
 ```
 
 ## Usage
