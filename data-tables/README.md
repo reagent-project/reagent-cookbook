@@ -2,12 +2,11 @@
 
 You want to use [DataTables](http://www.datatables.net/) to display data in your [reagent](https://github.com/holmsand/reagent) webapp.
 
-
 # Solution
 
 ## Create a reagent project
 
-Since this is a jQuery plugin that selects an element by its id, it is important to test our solution on a webapp  with multiple routes/views.  The reagent-seed template comes with two views, so let's use that to start off.
+Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
 
 *(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
@@ -109,8 +108,6 @@ I think we should add DataTables to the home page, but first, let's take a look 
    ])
 ```
 
-This is a reagnet component!
-
 ### Converting javascript function to clojurescript
 
 Ok, the DataTables [zero configuration](http://www.datatables.net/examples/basic_init/zero_configuration.html) guide says to include the following javascript:
@@ -164,7 +161,7 @@ Basically, this function applies the `.DataTable()` method on whichever html ele
 
 ### Using react/reagent component lifecycle
 
-However, if we use the `.DataTable()` method as shown, it will fail.  This is because `.DataTable()` will look for an element with the `"#example"` id before reagent has rendered the home-page component.  What we need to do, is tap into the react/reagent component lifecycle.  First, let's change `home-page` to `home-render`.
+However, if we use the `.DataTable()` method as shown, it will fail.  This is because `.DataTable()` will look for an element with the `"#example"` id before reagent has rendered the home-page component.  What we need to do is tap into the react/reagent component lifecycle.  First, let's change `home-page` to `home-render`.
 
 ```clojure
 ...
@@ -251,7 +248,7 @@ Ok, finally, let's create our `home-page` component.
 
 This is all it takes to add DataTables.
 
-## Start your Reagent App
+## Usage
 
 To view our app, we need to perform the following steps:
 
@@ -277,4 +274,4 @@ $ lein repl
 user=> (run!)
 ```
 
-Open a browser and go to *localhost:8080*. You should see your reagent application with DataTables!
+Open a browser and go to *localhost:8080*. You should see your reagent application!

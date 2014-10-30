@@ -4,6 +4,8 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 
 ## Recipes
 
+[d3](https://github.com/gadfly361/reagent-cookbook/tree/master/d3)
+
 [DataTables](https://github.com/gadfly361/reagent-cookbook/tree/master/data-tables)
 
 [Sticky Footer](https://github.com/gadfly361/reagent-cookbook/tree/master/sticky-footer)

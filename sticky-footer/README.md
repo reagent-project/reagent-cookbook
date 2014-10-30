@@ -10,7 +10,7 @@ Our solution will be based on this this [CSS-TRICKS page](http://css-tricks.com/
 
 ## Create a reagent project
 
-Let's start off using the reagent-seed template since it comes with garden.
+Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template since it comes with garden.
 
 *(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
@@ -48,7 +48,7 @@ src/example/
 
 ## Add Footer to index.html
 
-In our `rescources/index.html` file, we need to add a parent div to our app and a footer.
+In our `resources/index.html` file, we need to add a parent div to our app and a footer.
 
 ```html
 <!DOCTYPE html>
@@ -69,7 +69,7 @@ In our `rescources/index.html` file, we need to add a parent div to our app and 
 ...
 ```
 
-## Adding CSS
+## Add CSS
 
 The css we want to add looks like this:
 
@@ -118,7 +118,7 @@ However, we want to write this in clojure using Garden instead.  We can do this 
   )
 ```
 
-## Start your Reagent App
+## Usage
 
 To view our app, we need to perform the following steps:
 
