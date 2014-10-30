@@ -29,7 +29,7 @@
 
       (.. js/d3 (select "#d3-node svg")
           (datum #js [#js {:values (clj->js my-data)
-                           :key "Text Data"
+                           :key "my-red-line"
                            :color "red"
                            } ])
           (call chart)))))

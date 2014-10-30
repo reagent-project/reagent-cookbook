@@ -142,14 +142,17 @@ nv.addGraph(function() {
       .axisLabel('y-axis')
       .tickFormat(d3.format('.02f'));
 
-  var myData = [{"x" 1 "y" 5} {"x" 2 "y" 3} {"x" 3 "y" 4} {"x" 4 "y" 1} {"x" 5 "y" 2}])
+  var myData = [
+	{
+		values: [{x: 1, y: 5}, {x: 2, y: 3}, {x: 3, y: 4}, {x: 4, y: 1}, {x: 5, y: 2}],
+		key: "my-red-line",
+		color: "red"
+	}];
 
-  d3.select('#d3-nodet svg') //Select the <svg> element you want to render the chart in.
+  d3.select('#d3-node svg') //Select the <svg> element you want to render the chart in.
       .datum(myData)         //Populate the <svg> element with chart data...
       .call(chart);          //Finally, render the chart!
 
-  //Update the chart when window resizes.
-  nv.utils.windowResize(function() { chart.update() });
   return chart;
 });
 ```
@@ -175,7 +178,7 @@ Let's convert this to clojurescript.
 
     (.. js/d3 (select "#d3-node svg")
         (datum #js [#js {:values (clj->js my-data)
-                         :key "Text Data"
+                         :key "my-red-line"
                          :color "red"
                          } ])
         (call chart))))
@@ -224,7 +227,7 @@ Next, let'd add our code to a *did-mount* component.
 
       (.. js/d3 (select "#d3-node svg")
           (datum #js [#js {:values (clj->js my-data)
-                           :key "Text Data"
+                           :key "my-red-line"
                            :color "red"
                            } ])
           (call chart)))))
@@ -272,7 +275,7 @@ Ok, finally, let's create our `home-page` component.
 
       (.. js/d3 (select "#d3-node svg")
           (datum #js [#js {:values (clj->js my-data)
-                           :key "Text Data"
+                           :key "my-red-line"
                            :color "red"
                            } ])
           (call chart)))))
