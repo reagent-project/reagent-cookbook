@@ -28,10 +28,10 @@
     (let [my-data [{:x 1 :y 5} {:x 2 :y 3} {:x 3 :y 4} {:x 4 :y 1} {:x 5 :y 2}]]
 
       (.. js/d3 (select "#d3-node svg")
-          (datum #js [#js {:values (clj->js my-data)
-                           :key "my-red-line"
-                           :color "red"
-                           } ])
+          (datum (clj->js [{:values my-data
+                            :key "my-red-line"
+                            :color "red"
+                            }]))
           (call chart)))))
 
 (defn home-page []
