@@ -189,7 +189,7 @@ To make the `home-page` component, which will use both the `home-render` and `ho
 
 Ok, finally, let's create our `home-page` component.
 
-```
+```clojure
 (ns leaflet.views.home-page
   (:require [reagent.core :as reagent]))
 
