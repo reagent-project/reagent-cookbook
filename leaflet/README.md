@@ -243,6 +243,8 @@ However, we want to write this in clojure using Garden instead.  We can do this 
 
 To view our app, we need to perform the following steps:
 
+Navigate to `src/leaflet/views/home_page.clj` and replace the FIXME with your [mapID](https://www.mapbox.com/help/define-map-id/).
+
 Create a css file.
 
 ```
