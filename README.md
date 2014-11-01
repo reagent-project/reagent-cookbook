@@ -8,7 +8,10 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 
 [DataTables](https://github.com/gadfly361/reagent-cookbook/tree/master/data-tables)
 
-[draggable element](https://github.com/gadfly361/reagent-cookbook/tree/master/draggable)
+jQuery UI
+
+* [draggable element](https://github.com/gadfly361/reagent-cookbook/tree/master/draggable)
+* [droppable element](https://github.com/gadfly361/reagent-cookbook/tree/master/droppable)
 
 [Leaflet](https://github.com/gadfly361/reagent-cookbook/tree/master/leaflet)
 
