@@ -4,9 +4,9 @@ You want to use [d3](http://d3js.org/) to display data in your [reagent](https:/
 
 # Solution
 
-## Create a reagent project
-
 We are going to create a line chart and loosely follow this [example](http://nvd3.org/examples/line.html).
+
+## Create a reagent project
 
 Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
 

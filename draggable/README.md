@@ -12,6 +12,10 @@ Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-see
 
 *(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
+```
+$ lein new reagent-seed draggable
+```
+
 ## Add jQuery ui files to index.html
 
 Add the draggable jQuery ui files to your `resources/index.html` file.

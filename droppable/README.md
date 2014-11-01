@@ -12,6 +12,10 @@ Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-see
 
 *(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
+```
+$ lein new reagent-seed droppable
+```
+
 ## Add jQuery ui files to index.html
 
 Add the draggable jQuery ui files to your `resources/index.html` file.
@@ -269,7 +273,7 @@ As you can see, there are two helper functions `put!` and `get-state`. Let's ref
 ...
 ```
 
-We can initialize the number of drops to be zero, but putting a key value pair into our app-state atom.
+We can initialize the number of drops to be zero by putting a key value pair into our app-state atom.
 
 ```clojure
 (ns droppable.views.home-page

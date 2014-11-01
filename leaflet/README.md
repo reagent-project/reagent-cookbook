@@ -4,13 +4,17 @@ You want to add [leaflet](http://leafletjs.com/) to your [reagent](https://githu
 
 # Solution
 
-## Create a reagent project
-
 We are going to follow the first part of this [example](http://leafletjs.com/examples/quick-start.html).
+
+## Create a reagent project
 
 Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
 
 *(Note: this recipe was made when reagent-seed was version 0.1.5)*
+
+```
+$ lein new reagent-seed leaflet
+```
 
 ## Add leaflet files to index.html
 
