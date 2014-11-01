@@ -4,9 +4,9 @@ You want to add a [draggable](http://jqueryui.com/draggable/) element in your [r
 
 # Solution
 
-## Create a reagent project
-
 We are going to follow this [example](http://jqueryui.com/draggable/).
+
+## Create a reagent project
 
 Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
 
@@ -21,7 +21,7 @@ Add the draggable jQuery ui files to your `resources/index.html` file.
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta content="utf-8" http-equiv="encoding">  
+    <meta content="utf-8" http-equiv="encoding">
     <title>data-tables</title>
   </head>
   <body class="container">
@@ -149,7 +149,7 @@ However, if we use the above code, it will fail. This is because when we change 
 ...
 ```
 
-Next, let's add our code to a *did-mount* component.
+Next, let's add our code to a *did-mount* function.
 
 ```clojure
 (ns draggable.views.home-page)
