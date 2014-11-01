@@ -180,7 +180,6 @@ Next, let's add our code to a *did-mount* function.
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
 
-   [:div "The total number of drops has been: " [:span#total-drops (get-state :drops) ]]
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]
    [:div#droppable.ui-widget-header [:p "Drop here"]]
    ])
@@ -218,7 +217,6 @@ Next, let's create our `home-page` component.
    [:h2 "Home Page"]
    [:div "Woot! You are starting a reagent application."]
 
-   [:div "The total number of drops has been: " [:span#total-drops (get-state :drops) ]]
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]
    [:div#droppable.ui-widget-header [:p "Drop here"]]
    ])
@@ -311,7 +309,7 @@ Next, we can get the number of `:drops` by using the `get-state` function.
 
 Finally, each time the draggable element is placed on the droppable area, we can increment `:drops`.
 
-```
+```clojure
 (ns droppable.views.home-page
   (:require [reagent.core :as reagent]
             [droppable.session :as session :refer [put! get-state]]))
