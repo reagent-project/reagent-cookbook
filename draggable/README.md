@@ -110,13 +110,14 @@ To add a draggable element, we need the following:
 * parent div with a unique id and a class of "ui-widget-content".
 * nested element inside div to be dragged
 
+Also, let's remove some of the boilerplate from the reagent-seed template.
+
 ```clojure
 (ns draggable.views.home-page)
 
 (defn home-page []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
 ;; ATTENTION \/
    [:div#draggable.ui-widget-content [:p "Drag me around"]]
@@ -161,7 +162,6 @@ Next, let's add our code to a *did-mount* function.
 (defn home-redner []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
    [:div#draggable.ui-widget-content [:p "Drag me around"]]
    ])
 
@@ -190,7 +190,6 @@ Ok, finally, let's create our `home-page` component.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
    [:div#draggable.ui-widget-content [:p "Drag me around"]]
 

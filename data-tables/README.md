@@ -130,7 +130,7 @@ Let's convert this to clojurescript.
 
 ### Create a table with id "#example"
 
-Basically, this function applies the `.DataTable()` method on whichever html element has an id of `"#example"`.  Let's create a table with an id of "#example" in the `home-page` reagent component.
+Basically, this function applies the `.DataTable()` method on whichever html element has an id of `"#example"`.  Let's create a table with an id of "#example" in the `home-page` reagent component. Also, let's remove some of the boilerplate from the reagent-seed template.
 
 ```clojure
 (ns data-tables.views.home-page)
@@ -138,7 +138,6 @@ Basically, this function applies the `.DataTable()` method on whichever html ele
 (defn home-page []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
 ;; ATTENTION \/
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
@@ -181,7 +180,6 @@ Next, let'd add our `.DataTable()` method to a *did-mount* component.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
     [:thead
      [:tr [:th "Name"]
@@ -222,7 +220,6 @@ Ok, finally, let's create our `home-page` component.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
     [:thead
      [:tr [:th "Name"]

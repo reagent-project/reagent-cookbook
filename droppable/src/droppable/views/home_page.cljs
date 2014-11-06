@@ -7,7 +7,6 @@
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
    [:div "The total number of drops has been: " [:span#total-drops (get-state :drops) ]]
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]

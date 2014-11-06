@@ -106,7 +106,7 @@ I think we should add d3 to the home page, but first, let's take a look at what 
    ])
 ```
 
-To add d3, we need to add a parent div with an inner svg element.
+To add d3, we need to add a parent div with an inner svg element. Also, let's remove some of the boilerplate from the reagent-seed template.
 
 ```clojure
 (ns d3.views.home-page)
@@ -114,7 +114,6 @@ To add d3, we need to add a parent div with an inner svg element.
 (defn home-page []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
 ;; ATTENTION \/
    [:div#d3-node [:svg ]]
@@ -207,7 +206,6 @@ Next, let's add our code to a *did-mount* function.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
    [:div#d3-node [:svg ]]
    ])
 
@@ -256,7 +254,6 @@ Ok, finally, let's create our `home-page` component.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
    [:div#d3-node [:svg ]]
    ])
 

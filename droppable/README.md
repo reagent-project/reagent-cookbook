@@ -115,13 +115,14 @@ To add a droppable element, we need the following:
     * parent div with a unique id and a class of ui-widget-header
 	* nested element inside div
 
+Also, let's remove some of the boilerplate from the reagent-seed template.
+
 ```clojure
 (ns droppable.views.home-page)
 
 (defn home-page []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
 ;; ATTENTION \/
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]
@@ -182,7 +183,6 @@ Next, let's add our code to a *did-mount* function.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]
    [:div#droppable.ui-widget-header [:p "Drop here"]]
@@ -219,7 +219,6 @@ Next, let's create our `home-page` component.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]
    [:div#droppable.ui-widget-header [:p "Drop here"]]
@@ -299,7 +298,6 @@ Next, we can get the number of `:drops` by using the `get-state` function.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
 ;; ATTENTION \/
    [:div "The total number of drops has been: " [:span#total-drops (get-state :drops) ]]
@@ -323,7 +321,6 @@ Finally, each time the draggable element is placed on the droppable area, we can
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
    [:div "The total number of drops has been: " [:span#total-drops (get-state :drops) ]]
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]

@@ -4,7 +4,6 @@
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
 
    [:div#draggable.ui-widget-content [:p "Drag me around"]]
 
