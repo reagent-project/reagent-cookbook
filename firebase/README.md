@@ -121,7 +121,8 @@ To add firebase, we need to add a [reference](https://www.firebase.com/docs/web/
 
 Create a function `input-field` that takes two arguments: a value and a firebase reference. The goal here is to create an input field and to update firebase whenever the input is changed.
 
-```(ns firebase.views.home-page)
+```clojure
+(ns firebase.views.home-page)
 
 ;; ATTENTION \/
 (defn input-field [value fb]
@@ -184,7 +185,7 @@ Next, we want to complete the circle. If a value is sent to firebase (or if a va
 ...
 ```
 
-Finally, we want to use out `input-field`, which will call the `on-change` function whenever there is a change in the text input field.
+We want to use our `input-field` function, which will call the `on-change` function whenever there is a change in the text input field.
 
 ```clojure
 (ns firebase.views.home-page
