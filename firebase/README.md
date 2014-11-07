@@ -117,7 +117,7 @@ To add firebase, we need to add a [reference](https://www.firebase.com/docs/web/
      ]))
 ```
 
-## Create an input field
+## Create an input-field function
 
 Create a function `input-field` that takes two arguments: a value and a firebase reference. The goal here is to create an input field and to update firebase whenever the input is changed.
 
@@ -165,7 +165,9 @@ Let's start building our `on-change` function. The first thing we want to do is 
      ]))
 ```
 
-Next, we want to complete the circle. If a value is sent to firebase (or if a value is changed in firerbase), we want to hear about it back in our webapp.  We can do this by asking firebase to send us a *snapshot* of the *value* *on* a change via the `.on` function.  With that *snapshot* we can find the value we want and place it in our local state, which is in the `app-state` atom of our *firebase.session* namespace.
+## Listen to Firebase and place changes in local sate
+
+Next, we want to complete the circle. If a value is sent to firebase (or if a value is changed in firerbase), we want to hear about it back in our webapp.  We can do this by asking firebase to send us a *snapshot* of the *value* *on* a change via the `.on` function.  With that *snapshot* we can find the value we want and place it in our local state.  This is done using the `session/put!` function which associates a key-value pair in the `session/app-state` atom (which is where our local state is stored).
 
 ```clojure
 (ns firebase.views.home-page
@@ -185,7 +187,9 @@ Next, we want to complete the circle. If a value is sent to firebase (or if a va
 ...
 ```
 
-We want to use our `input-field` function, which will call the `on-change` function whenever there is a change in the text input field.
+## Use the input-field function
+
+Finally, we want to use our `input-field` function, which will call the `on-change` function whenever there is a change in the text input field.
 
 ```clojure
 (ns firebase.views.home-page
