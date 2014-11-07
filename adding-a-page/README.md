@@ -145,7 +145,7 @@ Wonderful, but how does that help us?  If you look at `src/adding_a_page/core.cl
 (defn page-render []
   [:div
    [common/header]
-   [(get-state :current-page)]])
+   [(get-state :current-page)]])  ;; ATTENTION
 
 (defn page-component [] 
   (reagent/create-class {:component-will-mount routes/app-routes
