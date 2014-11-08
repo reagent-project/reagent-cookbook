@@ -10,6 +10,8 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 
 [adding a page](https://github.com/gadfly361/reagent-cookbook/tree/master/adding-a-page)
 
+[adding a page from markdown](https://github.com/gadfly361/reagent-cookbook/tree/master/page-from-markdown)
+
 ### Connecting to a database
 
 [Firebase](https://github.com/gadfly361/reagent-cookbook/tree/master/firebase)
