@@ -69,7 +69,7 @@ This is some more text. Also, here are some bullets:
 
 ## Create macro to parse markdown file and turn it into a string
 
-I may not be in the majority, but I don't mind mixing `.clj` files with `.cljs` files in the same directory if they are all working toward the same thing. For example, we want to create a macro in a `.clj` file to be used by our `.cljs` files, so to me, it makes sense to keep all of these files in the same parent directory.  Let's create the following folder and file: `src/page_from_markdown/macros/util.clj`.
+I may not be in the majority, but I don't mind mixing `.clj` files with `.cljs` files in the same directory if they are all working toward the same thing. For example, we want to create a macro in a `.clj` file to be used by our `.cljs` files, so to me, it makes sense to keep all of these files in the same parent directory.  Let's create the following folder and file: `src/page_from_markdown/util/macros.clj`.
 
 ```clojure
 (ns page-from-markdown.util.macros
@@ -87,7 +87,7 @@ I may not be in the majority, but I don't mind mixing `.clj` files with `.cljs` 
 
 ## Create function to render html from a string
 
-Next, we need to make the `elem/dangerous` clojurescript funtion.  Let's create a new file `src/page_from_markdown/macros/elem.cljs`.
+Next, we need to make the `elem/dangerous` clojurescript funtion.  Let's create a new file `src/page_from_markdown/util/elem.cljs`.
 
 ```clojure
 (ns page-from-markdown.util.elem)
