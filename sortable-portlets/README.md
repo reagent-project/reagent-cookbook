@@ -180,7 +180,7 @@ Let's convert this to clojurescript.
             (addClass "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
             (find ".portlet-header")
             (addClass "ui-widget-header ui-corner-all")
-            (prepend "<span class='ui-icon ui-iconminusthick portlet-toggle'"))
+            (prepend "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>"))
 
         (.click (js/$ ".portlet-toggle") (fn []
                                            (this-as this 
@@ -221,7 +221,7 @@ Next, let's add our code to a *did-mount* function.
               (addClass "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
               (find ".portlet-header")
               (addClass "ui-widget-header ui-corner-all")
-              (prepend "<span class='ui-icon ui-iconminusthick portlet-toggle'"))
+              (prepend "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>"))
 
           (.click (js/$ ".portlet-toggle") (fn []
                                              (this-as this 
@@ -284,7 +284,7 @@ Ok, finally, let's create our `home-page` component.
               (addClass "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
               (find ".portlet-header")
               (addClass "ui-widget-header ui-corner-all")
-              (prepend "<span class='ui-icon ui-iconminusthick portlet-toggle'"))
+              (prepend "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>"))
 
           (.click (js/$ ".portlet-toggle") (fn []
                                              (this-as this 

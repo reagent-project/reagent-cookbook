@@ -33,16 +33,20 @@
           (.sortable (js/$ ".column") (clj->js {:connectWith ".column"
                                                 :handle ".portlet-header"
                                                 :cancel ".portlet-toggle"
-                                                :placeholder "portlet-placeholder ui-corner-all"}))))
+                                                :placeholder "portlet-placeholder ui-corner-all"}))
 
-  (.prepend (.addClass (.find (.addClass (js/$ ".portlet") "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all") ".portlet-header") "ui-widget-header ui-corner-all") "<span class='ui-icon ui-iconminusthick portlet-toggle'")
+          (.. (js/$ ".portlet")
+              (addClass "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+              (find ".portlet-header")
+              (addClass "ui-widget-header ui-corner-all")
+              (prepend "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>"))
 
-  (.click (js/$ ".portlet-toggle") (fn []
-                                     (this-as this 
-                                              (let [icon (js/$ this)]
-                                                (.toggleClass icon "ui-icon-minusthick ui-icon-plusthick")
-                                                (.toggle (.find (.closest icon ".portlet") ".portlet-content"))
-                                                )))))
+          (.click (js/$ ".portlet-toggle") (fn []
+                                             (this-as this 
+                                                      (let [icon (js/$ this)]
+                                                        (.toggleClass icon "ui-icon-minusthick ui-icon-plusthick")
+                                                        (.toggle (.find (.closest icon ".portlet") ".portlet-content"))
+                                                        )))))))
 
 (defn home-page []
   (reagent/create-class {:render home-render
