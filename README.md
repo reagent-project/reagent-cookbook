@@ -26,6 +26,7 @@ jQuery UI
 
 * [draggable element](https://github.com/gadfly361/reagent-cookbook/tree/master/draggable)
 * [droppable element](https://github.com/gadfly361/reagent-cookbook/tree/master/droppable)
+* [sortable portlets](https://github.com/gadfly361/reagent-cookbook/tree/master/sortable-portlets)
 
 [Leaflet](https://github.com/gadfly361/reagent-cookbook/tree/master/leaflet)
 
