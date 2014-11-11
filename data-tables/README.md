@@ -1,6 +1,6 @@
 # Problem
 
-You want to use [DataTables](http://www.datatables.net/) to display data in your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to use [DataTables](http://www.datatables.net/) to display data in your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 

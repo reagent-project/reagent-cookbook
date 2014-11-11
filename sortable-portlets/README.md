@@ -1,6 +1,6 @@
 # Problem
 
-You want to add [sortable portlets](http://jqueryui.com/sortable/#portlets) to your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to add [sortable portlets](http://jqueryui.com/sortable/#portlets) to your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
@@ -26,7 +26,7 @@ Add the jQuery ui files to your `resources/index.html` file.
   <head>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">
-    <title>data-tables</title>
+    <title>sortable-portlets</title>
   </head>
   <body class="container">
 

@@ -1,10 +1,10 @@
 # Problem
 
-You want to add [leaflet](http://leafletjs.com/) to your [reagent](https://github.com/reagent-project/reagent) webapp.
+You want to use [morris](http://morrisjs.github.io/morris.js/) charts to display data in your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
-We are going to follow the first part of this [example](http://leafletjs.com/examples/quick-start.html).
+We are going to create a line chart and loosely follow this [example](http://jsbin.com/ukaxod/144/embed?html,js,output).
 
 ## Create a reagent project
 
@@ -13,12 +13,12 @@ Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-see
 *(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
 ```
-$ lein new reagent-seed leaflet
+$ lein new reagent-seed morris
 ```
 
-## Add leaflet files to index.html
+## Add morris files to index.html
 
-Add the leaflet files to your `resources/index.html` file.
+Add morris to your `resources/index.html` file.
 
 ```html
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ Add the leaflet files to your `resources/index.html` file.
   <head>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">  
-    <title>leaflet</title>
+    <title>data-tables</title>
   </head>
   <body class="container">
 
@@ -36,19 +36,19 @@ Add the leaflet files to your `resources/index.html` file.
     <script src="http://fb.me/react-0.11.1.js"></script>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<!-- ATTENTION \/ -->
-    <!-- Leaflet -->
-     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<!-- ATTENTION /\ -->
-
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- Font Awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- ATTENTION \/ -->
+    <!-- Morris.js -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+<!-- ATTENTION /\ -->
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/screen.css">
     <!-- Clojurescript -->
@@ -91,12 +91,12 @@ We can see that there are two views:
 * about_page.cljs
 * home_page.cljs
 
-## Adding leaflet to home-page component
+## Adding morris to home-page component
 
-I think we should add leaflet to the home page, but first, let's take a look at what is already there.
+I think we should add morris to the home page, but first, let's take a look at what is already there.
 
 ```clojure
-(ns leaflet.views.home-page)
+(ns morris.views.home-page)
 
 (defn home-page []
   [:div
@@ -105,50 +105,49 @@ I think we should add leaflet to the home page, but first, let's take a look at 
    ])
 ```
 
-To add a leaflet, we need to add a div with a unique id. Also, let's remove some of the boilerplate from the reagent-seed template.
+To add morris, we need to add a parent div with a unique id. Also, let's remove some of the boilerplate from the reagent-seed template.
 
 ```clojure
-(ns leaflet.views.home-page)
+(ns morris.views.home-page)
 
 (defn home-page []
   [:div
    [:h2 "Home Page"]
 
 ;; ATTENTION \/
-   [:div#map ]
+   [:div#donut-example ]
 ;; ATTENTION /\
-
+   
    ])
 ```
 
-## Converting javascript function to clojurescript
+## Converting javascript to clojurescript
 
-To center a map around London, this is the javascript we want to include:
+This is the javascript we want to include:
 
 ```javascript
-var map = L.map('map').setView([51.505, -0.09], 13);
-
-L.tileLayer('http://{s}.tiles.mapbox.com/v3/MapID/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; [...]',
-    maxZoom: 18
-}).addTo(map);
+Morris.Donut({
+  element: 'donut-example',
+  data: [
+    {label: "Download Sales", value: 12},
+    {label: "In-Store Sales", value: 30},
+    {label: "Mail-Order Sales", value: 20}
+  ]
+});
 ```
 
 Let's convert this to clojurescript.
 
 ```clojure
-(let [map (.setView (.map js/L "map") #js [51.505 -0.09] 13)]
-
-  ;; NEED TO REPLACE FIXME with your mapID!
-  (.addTo (.tileLayer js/L "http://{s}.tiles.mapbox.com/v3/FIXME/{z}/{x}/{y}.png"
-                      (clj->js {:attribution "Map data &copy; [...]"
-                                :maxZoom 18}))
-          map))
+(.Donut js/Morris (clj->js {:element "donut-example"
+                            :data [{:label "Download Sales" :value 12}
+                                   {:label "In-Store Sales" :value 30}
+                                   {:label "Mail-Order Sales" :value 20}]}))
 ```
 
 ### Using react/reagent component lifecycle
 
-However, if we use the above code, it will fail. This is because when we change views and come back to this view, the code won't get re-run to make the leaflet.  What we need to do is tap into the react/reagent component lifecycle. First, let's change `home-page` to `home-render`.
+However, if we use the above code, it will fail. This is because it will be called *before* the home-page component is rendered.  What we need to do is tap into the react/reagent component lifecycle.  First, let's change `home-page` to `home-render`.
 
 ```clojure
 ...
@@ -156,35 +155,30 @@ However, if we use the above code, it will fail. This is because when we change 
 ...
 ```
 
-Next, let's add our code to a *did-mount* component.
-
-*(Note:  You need to sign up with [Mapbox](https://www.mapbox.com/), get a [mapID](https://www.mapbox.com/help/define-map-id/) and replace the FIXME below with your mapID)*
+Next, let's add our code to a *did-mount* function.
 
 ```clojure
-(ns leaflet.views.home-page)
+(ns morris.views.home-page)
 
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div#map ]
+   [:div#donut-example ]
    ])
 
 ;; ATTENTION \/
 (defn home-did-mount []
-  (let [map (.setView (.map js/L "map") #js [51.505 -0.09] 13)]
-    
-    ;;; NEED TO REPLACE FIXME with your mapID!
-    (.addTo (.tileLayer js/L "http://{s}.tiles.mapbox.com/v3/FIXME/{z}/{x}/{y}.png"
-                        (clj->js {:attribution "Map data &copy; [...]"
-                                  :maxZoom 18}))
-            map)))
+  (.Donut js/Morris (clj->js {:element "donut-example"
+                              :data [{:label "Download Sales" :value 12}
+                                     {:label "In-Store Sales" :value 30}
+                                     {:label "Mail-Order Sales" :value 20}]})))
 ;; ATTENTION /\
 ```
 
 To make the `home-page` component, which will use both the `home-render` and `home-did-mount` functions, we have to add *reagent* to our namespace.
 
 ```clojure
-(ns leaflet.views.home-page
+(ns morris.views.home-page
   (:require [reagent.core :as reagent]))
 ...
 ```
@@ -192,23 +186,20 @@ To make the `home-page` component, which will use both the `home-render` and `ho
 Ok, finally, let's create our `home-page` component.
 
 ```clojure
-(ns leaflet.views.home-page
+(ns morris.views.home-page
   (:require [reagent.core :as reagent]))
 
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   [:div#map ]
+   [:div#donut-example ]
    ])
 
 (defn home-did-mount []
-  (let [map (.setView (.map js/L "map") #js [51.505 -0.09] 13)]
-    
-    ;;; NEED TO REPLACE FIXME with your mapID!
-    (.addTo (.tileLayer js/L "http://{s}.tiles.mapbox.com/v3/FIXME/{z}/{x}/{y}.png"
-                        (clj->js {:attribution "Map data &copy; [...]"
-                                  :maxZoom 18}))
-            map)))
+  (.Donut js/Morris (clj->js {:element "donut-example"
+                              :data [{:label "Download Sales" :value 12}
+                                     {:label "In-Store Sales" :value 30}
+                                     {:label "Mail-Order Sales" :value 20}]})))
 
 ;; ATTENTION \/
 (defn home-page []
@@ -217,34 +208,9 @@ Ok, finally, let's create our `home-page` component.
 ;; ATTENTION /\
 ```
 
-## Add CSS
-
-The css we want to add looks like this:
-
-```css
-#map { height: 180px; }
-```
-
-However, we want to write this in clojure using Garden instead.  We can do this by going to the `src/leaflet/css/screen.clj` file and updating it as follows:
-
-```clojure
-(defstyles screen
-  ;; Coloring Title
-  [:div#title {:font-size (em 3)
-               :color (rgb 123 45 6)}]
-
-;; ATTENTION \/
-  ;; Leafleat
-  [:#map {:height "180px"}]
-;; ATTENTION /\
-  )
-```
-
 # Usage
 
 To view our app, we need to perform the following steps:
-
-Navigate to `src/leaflet/views/home_page.clj` and replace the FIXME with your [mapID](https://www.mapbox.com/help/define-map-id/).
 
 Create a css file.
 

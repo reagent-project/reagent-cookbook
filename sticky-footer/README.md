@@ -1,6 +1,6 @@
 # Problem
 
-You want to add a sticky footer using [Garden](https://github.com/noprompt/garden) to your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to add a sticky footer using [Garden](https://github.com/noprompt/garden) to your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 *(Note: Garden is a library that let's you write css in clojure)*
 

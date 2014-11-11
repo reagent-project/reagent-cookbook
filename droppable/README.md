@@ -1,6 +1,6 @@
 # Problem
 
-You want to add a [droppable](http://jqueryui.com/droppable/) element in your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to add a [droppable](http://jqueryui.com/droppable/) element in your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
@@ -26,7 +26,7 @@ Add the draggable jQuery ui files to your `resources/index.html` file.
   <head>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">
-    <title>data-tables</title>
+    <title>droppable</title>
   </head>
   <body class="container">
 

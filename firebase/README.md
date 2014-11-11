@@ -1,6 +1,6 @@
 # Problem
 
-You want to connect to [firebase](https://www.firebase.com/) in your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to connect to [firebase](https://www.firebase.com/) in your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
@@ -26,7 +26,7 @@ Add firebase to your `resources/index.html` file.
   <head>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">  
-    <title>data-tables</title>
+    <title>firebase</title>
   </head>
   <body class="container">
 

@@ -18,7 +18,10 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 
 ### Adding external javascript libraries
 
-[d3](https://github.com/gadfly361/reagent-cookbook/tree/master/d3)
+Charting
+
+* [d3](https://github.com/gadfly361/reagent-cookbook/tree/master/d3)
+* [morris](https://github.com/gadfly361/reagent-cookbook/tree/master/morris)
 
 [DataTables](https://github.com/gadfly361/reagent-cookbook/tree/master/data-tables)
 

@@ -1,6 +1,6 @@
 # Problem
 
-You want to use [d3](http://d3js.org/) to display data in your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to use [d3](http://d3js.org/) to display data in your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
@@ -26,7 +26,7 @@ Add d3 to your `resources/index.html` file.
   <head>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">  
-    <title>data-tables</title>
+    <title>d3</title>
   </head>
   <body class="container">
 
@@ -122,7 +122,7 @@ To add d3, we need to add a parent div with an inner svg element. Also, let's re
    ])
 ```
 
-## Converting javascript function to clojurescript
+## Converting javascript to clojurescript
 
 This is the javascript we want to include:
 

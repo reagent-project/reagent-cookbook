@@ -1,6 +1,6 @@
 # Problem
 
-You want to add a new page from *markdown* to your [reagent](https://github.com/holmsand/reagent) webapp.
+You want to add a new page from *markdown* to your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
