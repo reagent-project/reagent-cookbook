@@ -117,6 +117,7 @@ To add a bootstrap-datepicker, we need to create a text input with unique id. Al
    [:input#example1 {:type "text" :placeholder "click to show datepicker"}]
 ;; ATTENTION /\
    ])
+```
 
 ## Converting javascript function to clojurescript
 

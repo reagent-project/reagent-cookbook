@@ -20,7 +20,7 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 
 Calendars
 
-* dropdown calendar: [bootstrap-datepicker]((https://github.com/gadfly361/reagent-cookbook/tree/master/bootstrap-datepicker)
+* dropdown calendar: [bootstrap-datepicker](https://github.com/gadfly361/reagent-cookbook/tree/master/bootstrap-datepicker)
 
 Charting
 
