@@ -1,6 +1,6 @@
 # reagent-cookbook
 
-The goal of this repo is to provide recipes for how to accomplish specific tasks in a [reagent](https://github.com/holmsand/reagent) webapp.  This repo is a work in progress; more recipes coming soon. Also, well-documented contributions are welcomed!
+The goal of this repo is to provide recipes for how to accomplish specific tasks in a [reagent](https://github.com/reagent-project/reagent) webapp.  This repo is a work in progress; more recipes coming soon. Also, well-documented contributions are welcomed!
 
 *Note: many of these recipes will be based on the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.*
 
@@ -17,6 +17,10 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 [Firebase](https://github.com/gadfly361/reagent-cookbook/tree/master/firebase)
 
 ### Adding external javascript libraries
+
+Calendars
+
+* dropdown calendar: [bootstrap-datepicker]((https://github.com/gadfly361/reagent-cookbook/tree/master/bootstrap-datepicker)
 
 Charting
 
