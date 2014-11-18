@@ -30,7 +30,7 @@ Add the Google Maps file to your `resources/index.html` file.  Make sure to repl
   <head>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">  
-    <title>leaflet</title>
+    <title>google-maps</title>
   </head>
   <body class="container">
 
