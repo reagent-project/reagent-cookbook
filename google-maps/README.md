@@ -215,7 +215,7 @@ The css we want to add looks like this:
 #map-canvas { height: 300px; }
 ```
 
-However, we want to write this in clojure using Garden instead.  We can do this by going to the `src/google-maps/css/screen.clj` file and updating it as follows:
+However, we want to write this in clojure using Garden instead.  We can do this by going to the `src/google_maps/css/screen.clj` file and updating it as follows:
 
 ```clojure
 (defstyles screen

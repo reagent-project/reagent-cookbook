@@ -40,6 +40,7 @@ jQuery UI
 Maps
 
 * [Leaflet](https://github.com/gadfly361/reagent-cookbook/tree/master/leaflet) ([demo](http://rc-leaflet.s3-website-us-west-1.amazonaws.com/))
+* [Google Maps](https://github.com/gadfly361/reagent-cookbook/tree/master/google-maps) [demo](http://rc-google-maps.s3-website-us-west-1.amazonaws.com/)
 
 ### Styling
 
