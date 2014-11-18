@@ -9,6 +9,4 @@
                :color (rgb 123 45 6)}]
   
   ;; Google Map
-  [:#map-canvas {:height "300px"
-                 :margin 0
-                 :padding 0}])
+  [:#map-canvas {:height "300px"}])
