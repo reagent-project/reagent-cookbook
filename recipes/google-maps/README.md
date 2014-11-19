@@ -44,6 +44,7 @@ Add the Google Maps file to your `resources/index.html` file.  Make sure to repl
 <!-- ATTENTION \/ -->
     <!-- Google Maps -->
      <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
+     <!-- Replace "API_KEY" with your actual key! -->
 <!-- ATTENTION /\ -->
 
     <!-- Bootstrap -->
@@ -233,6 +234,8 @@ However, we want to write this in clojure using Garden instead.  We can do this 
 # Usage
 
 To view our app, we need to perform the following steps:
+
+In `resources/index.html`, replace `API_KEY` with your actual API key. If you don't have one, follow the steps [here](https://developers.google.com/maps/documentation/javascript/tutorial#api_key).
 
 Create a css file.
 

@@ -6,7 +6,7 @@ You want to add a new page from *markdown* to your [reagent](https://github.com/
 
 We are going to use macros in clojure and the [markdown-clj](https://github.com/yogthos/markdown-clj) library to add a page from markdown to our reagent webapp.
 
-This recipe assumes you have read the [adding a page](https://github.com/gadfly361/reagent-cookbook/tree/master/adding-a-page) recipe.
+This recipe assumes you have read the [adding a page](https://github.com/gadfly361/reagent-cookbook/tree/master/recipes/adding-a-page) recipe.
 
 ## Create a reagent project
 
@@ -103,7 +103,7 @@ This is a neat function that allows you to render html text as opposed to displa
 
 ## Add markdown page to our map of pages
 
-Navigate to `src/page_from_markdown/views/pages`.  This is where we define which page is being displayed. If you are unfamiliar with the pages map, I would recommend reading the [adding a page](https://github.com/gadfly361/reagent-cookbook/tree/master/adding-a-page) recipe.  Let's add our markdown page.
+Navigate to `src/page_from_markdown/views/pages`.  This is where we define which page is being displayed. If you are unfamiliar with the pages map, I would recommend reading the [adding a page](https://github.com/gadfly361/reagent-cookbook/tree/master/recipes/adding-a-page) recipe.  Let's add our markdown page.
 
 ```clojure
 (ns page-from-markdown.views.pages
