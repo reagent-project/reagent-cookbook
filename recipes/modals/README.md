@@ -21,7 +21,7 @@ $ lein new reagent-seed modals
 First, let's add the [reagent-modals](https://github.com/Frozenlock/reagent-modals) library to our `project.clj` file.
 
 ```clojure
-(defproject page-from-markdown "0.1.0-SNAPSHOT"
+(defproject modals "0.1.0-SNAPSHOT"
   :source-paths ["src" "dev"]
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2342"]
@@ -76,7 +76,7 @@ We can see that there are two views:
 * about_page.cljs
 * home_page.cljs
 
-## Adding morris to home-page component
+## Adding modals to home-page component
 
 I think we should add a bootstrap modal to the home page, but first, let's take a look at what is already there.
 
