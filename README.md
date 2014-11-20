@@ -12,7 +12,9 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 
 [adding a page from markdown](https://github.com/gadfly361/reagent-cookbook/tree/master/recipes/page-from-markdown) ([demo](http://rc-page-from-markdown.s3-website-us-west-1.amazonaws.com/))
 
-[modals](https://github.com/gadfly361/reagent-cookbook/tree/master/recipes/modals) ([demo](http://rc-modals.s3-website-us-west-1.amazonaws.com/))
+[modal window](https://github.com/gadfly361/reagent-cookbook/tree/master/recipes/modals) ([demo](http://rc-modals.s3-website-us-west-1.amazonaws.com/))
+
+[toggle class](https://github.com/gadfly361/reagent-cookbook/tree/master/recipes/toggle-class) ([demo](http://rc-toggle-class.s3-website-us-west-1.amazonaws.com/))
 
 ### Connecting to a database
 
