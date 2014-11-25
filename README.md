@@ -1,4 +1,4 @@
-# reagent-cookbook
+![Reagent-Cookbook](logo.png)
 
 The goal of this repo is to provide recipes for how to accomplish specific tasks in a [reagent](https://github.com/reagent-project/reagent) webapp.  More recipes coming soon.
 
