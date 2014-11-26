@@ -1,14 +1,13 @@
 (ns droppable.views.home-page
   (:require [reagent.core :as reagent]
-            [droppable.session :as session :refer [put! get-state]]))
+            [droppable.session :as session :refer [global-put! global-state]]))
 
-(put! :drops 0)
+(global-put! :drops 0)
 
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-
-   [:div "The total number of drops has been: " [:span#total-drops (get-state :drops) ]]
+   [:div "The total number of drops has been: " [:span#total-drops (global-state :drops) ]]
    [:div#draggable.ui-widget-content [:p "Drag me to my target"]]
    [:div#droppable.ui-widget-header [:p "Drop here"]]
    ])
@@ -22,7 +21,7 @@
                                             (.html (.find (.addClass (js/$ this) "ui-state-highlight") 
                                                           "p")
                                                    "Dropped!"))
-                                   (put! :drops (inc (get-state :drops)))
+                                   (global-put! :drops (inc (global-state :drops)))
                                    )}))))
 
 (defn home-page []

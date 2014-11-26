@@ -15,7 +15,7 @@
                 ;; equal to footer height
                 :margin-bottom "-100px"}]
   [:.page-wrap:after {:content "\"\""    ;notice the escape characters
-                     :display "block"}]
+                      :display "block"}]
   [:.site-footer :.page-wrap:after {:height "100px"}]
   [:.site-footer {:background "orange"}]
   )

@@ -22,7 +22,7 @@
 ;; script is added to all HTML files.
 (defroutes site
   (resources "/")
-  (GET "/*" req (page "index")))
+  (GET "/*" req (page "public/index")))
 
 (defn run!
   "Call this function to run a server on port 8080"

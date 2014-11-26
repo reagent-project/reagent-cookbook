@@ -3,5 +3,5 @@
 (defn new-page []
   [:div
    [:h2 "New Page"]
-   [:div "This is our brand new pagre!"]
+   [:div "This is our brand new page!"]
    ])

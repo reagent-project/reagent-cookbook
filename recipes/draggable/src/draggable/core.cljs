@@ -1,13 +1,13 @@
 (ns draggable.core
-  (:require [reagent.core :as reagent :refer [atom]]
-            [draggable.session :as session :refer [get-state]]
+  (:require [reagent.core :as reagent]
+            [draggable.session :as session :refer [global-state]]
             [draggable.routes :as routes]
             [draggable.views.common :as common]))
 
 (defn page-render []
-  [:div
+  [:div.container
    [common/header]
-   [(get-state :current-page)]])
+   [(global-state :current-page)]])
 
 (defn page-component [] 
   (reagent/create-class {:component-will-mount routes/app-routes

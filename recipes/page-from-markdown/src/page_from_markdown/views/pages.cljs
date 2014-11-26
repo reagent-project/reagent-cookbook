@@ -1,7 +1,6 @@
 (ns page-from-markdown.views.pages
   (:require [page-from-markdown.views.home-page :refer [home-page]]
             [page-from-markdown.views.about-page :refer [about-page]]
-
             [page-from-markdown.util.elem :as elem]) ;this is used in defmd macro
             (:require-macros [page-from-markdown.util.macros :refer [defmd]]))
 

@@ -4,9 +4,7 @@
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-
    [:input#example1 {:type "text" :placeholder "click to show datepicker"}]
-
    ])
 
 (defn home-did-mount []

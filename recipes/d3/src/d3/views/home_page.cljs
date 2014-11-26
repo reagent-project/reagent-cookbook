@@ -4,9 +4,7 @@
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-
    [:div#d3-node [:svg ]]
-
    ])
 
 (defn home-did-mount []

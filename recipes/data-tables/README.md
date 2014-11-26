@@ -4,11 +4,26 @@ You want to use [DataTables](http://www.datatables.net/) to display data in your
 
 # Solution
 
+**Plan of Action**
+
+We are going to create a table using DataTables' zero configuration [example](http://www.datatables.net/examples/basic_init/zero_configuration.html).
+
+Steps:
+
+* Create a new project using the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
+* Add DataTables files to index.html
+* Add DataTables to `home-page` component.
+* Convert javascript from the example to clojurescript.
+    * Change `home-page` component to `home-render` function.
+    * Place the converted javascript code into a `home-did-mount` function.
+	* Create `home-page` component which uses the `home-render` and `home-did-mount` functions.
+
+Affected files:
+
+* `resources/public/index.html`
+* `src/data_tables/views/home_page.cljs`
+
 ## Create a reagent project
-
-Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
-
-*(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
 ```
 $ lein new reagent-seed data-tables
@@ -16,14 +31,7 @@ $ lein new reagent-seed data-tables
 
 ## Add DataTables files to index.html
 
-cd into your newly created project.
-
-Getting started with DataTables is as simple as including two files in `resoucres/index.html`, the CSS styling and the DataTables script itself. These two files are available on the DataTables CDN:
-
-* //cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css
-* //cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js
-
-We want to make sure to add the CSS cdn and the DataTables cdn *after* jQuery.  Our `resources/index.html` file should look something like this:
+Add DataTables to your `resources/public/index.html` file.
 
 ```html
 <!DOCTYPE html>
@@ -52,6 +60,7 @@ We want to make sure to add the CSS cdn and the DataTables cdn *after* jQuery.  
 	<!-- DataTables -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <!-- ATENTION /\ -->
 
     <!-- CSS -->
@@ -63,42 +72,9 @@ We want to make sure to add the CSS cdn and the DataTables cdn *after* jQuery.  
 </html>
 ```
 
-## Familiarize yourself with directory layout
-
-Now, let's briefly take a look at the directory layout of our reagent webapp.
-
-```
-dev/
-    user.clj                --> functions to start server and browser repl (brepl)
-    user.cljs               --> enabling printing to browser's console when connected through a brepl
-
-project.clj                 --> application summary and setup
-
-resources/
-    index.html              --> this is the html for your application
-    public/                 --> this is where assets for your application will be stored
-
-src/example/
-    core.cljs               ---> main reagent component for application
-    css/
-        screen.clj          ---> main css file using Garden
-    routes.cljs             ---> defining routes using Secretary
-    session.cljs            ---> contains atom with application state
-    views/
-        about_page.cljs     ---> reagent component for the about page
-    	common.cljs         ---> common reagent components to all page views
-    	home_page.cljs      ---> reagent component for the home page
-    	pages.cljs          ---> map of page names to their react/reagent components
-```
-
-We can see that there are two views:
-
-* about_page.cljs
-* home_page.cljs
-
 ## Adding DataTables to home-page component
 
-I think we should add DataTables to the home page, but first, let's take a look at what is already there.
+Navigate to `src/data_tables/views/home_page.cljs`.  To add DataTables, we need to create a table element with a unique id (`#example`).
 
 ```clojure
 (ns data-tables.views.home-page)
@@ -106,39 +82,7 @@ I think we should add DataTables to the home page, but first, let's take a look 
 (defn home-page []
   [:div
    [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
-   ])
-```
-
-### Converting javascript function to clojurescript
-
-Ok, the DataTables [zero configuration](http://www.datatables.net/examples/basic_init/zero_configuration.html) guide says to include the following javascript:
-
-```javascript
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
-```
-
-Let's convert this to clojurescript.
-
-```clojure
-(.ready (js/$ js/document) (fn []
-                               (.DataTable (js/$ "#example"))
-                               ))
-```
-
-### Create a table with id "#example"
-
-Basically, this function applies the `.DataTable()` method on whichever html element has an id of `"#example"`.  Let's create a table with an id of "#example" in the `home-page` reagent component. Also, let's remove some of the boilerplate from the reagent-seed template.
-
-```clojure
-(ns data-tables.views.home-page)
-
-(defn home-page []
-  [:div
-   [:h2 "Home Page"]
-
+   
 ;; ATTENTION \/
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
     [:thead
@@ -156,21 +100,39 @@ Basically, this function applies the `.DataTable()` method on whichever html ele
 ;; ATTENTION /\
 
    ])
+```
 
+## Convert javascript to clojurescript
+
+This is the javascript we want to include:
+
+```javascript
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+```
+
+Let's convert this to clojurescript.
+
+```clojure
 (.ready (js/$ js/document) (fn []
                                (.DataTable (js/$ "#example"))
                                ))
 ```
 
-### Using react/reagent component lifecycle
+Basically, this function applies the `.DataTable()` method on whichever html element has an id of `"#example"`.
 
-However, if we use the `.DataTable()` method as shown, it will fail.  This is because `.DataTable()` will look for an element with the `"#example"` id before reagent has rendered the home-page component.  What we need to do is tap into the react/reagent component lifecycle.  First, let's change `home-page` to `home-render`.
+### Change home-page component to home-render function
+
+However, if we use the above code, it will fail. This is because when we change views and come back to this view, the code won't get re-run.  What we need to do is tap into the react/reagent component lifecycle. First, let's change the `home-page` component to `home-render` function.
 
 ```clojure
 ...
 (defn home-render []
 ...
 ```
+
+### Create did-mount function
 
 Next, let'd add our `.DataTable()` method to a *did-mount* component.
 
@@ -203,7 +165,9 @@ Next, let'd add our `.DataTable()` method to a *did-mount* component.
 ;; ATTENTION /\
 ```
 
-To make the `home-page` component, which will use both the `home-render` and `home-did-mount` functions, we have to add *reagent* to our namespace.
+### Create home-page component
+
+To make the `home-page` component we have to add *reagent* to our namespace.
 
 ```clojure
 (ns data-tables.views.home-page
@@ -211,7 +175,7 @@ To make the `home-page` component, which will use both the `home-render` and `ho
 ...
 ```
 
-Ok, finally, let's create our `home-page` component.
+Ok, finally, let's create our `home-page` component by using the `home-render` and `home-did-mount` functions.
 
 ```clojure
 (ns data-tables.views.home-page
@@ -246,8 +210,6 @@ Ok, finally, let's create our `home-page` component.
                          :component-did-mount home-did-mount}))
 ;; ATTENTION /\
 ```
-
-This is all it takes to add DataTables.
 
 # Usage
 

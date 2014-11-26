@@ -1,7 +1,7 @@
 (ns page-from-markdown.routes
     (:require [secretary.core :as secretary :include-macros true :refer [defroute]]
-              [page-from-markdown.session :as session]
-              [page-from-markdown.views.pages :as pages]
+              [page-from-markdown.session :as session :refer [global-put!]]
+              [page-from-markdown.views.pages :refer [pages]]
               [goog.events :as events]
               [goog.history.EventType :as EventType])
     (:import goog.History))
@@ -23,16 +23,16 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (session/put! :current-page (pages/pages :home-page))
-    (session/put! :nav "home"))
+    (global-put! :current-page (pages :home-page))
+    (global-put! :nav "home"))
 
   (defroute "/about" []
-    (session/put! :current-page (pages/pages :about-page))
-    (session/put! :nav "about"))
+    (global-put! :current-page (pages :about-page))
+    (global-put! :nav "about"))
 
   (defroute "/page-from-markdown" []
-    (session/put! :current-page (pages/pages :page-from-markdown))
-    (session/put! :nav "page-from-markdown"))
+    (global-put! :current-page (pages :page-from-markdown))
+    (global-put! :nav "page-from-markdown"))
 
   (hook-browser-navigation!)
   )

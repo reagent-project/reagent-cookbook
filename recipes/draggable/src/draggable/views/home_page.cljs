@@ -4,9 +4,7 @@
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-
    [:div#draggable.ui-widget-content [:p "Drag me around"]]
-
    ])
 
 (defn home-did-mount []

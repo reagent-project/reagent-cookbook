@@ -25,7 +25,6 @@
     [:div.portlet
      [:div.portlet-header "Images"]
      [:div.portlet-content "Lorem ipsum dolor sit amet, consectetuer adipiscing elit"]] ]
-
    ])
 
 (defn home-did-mount []

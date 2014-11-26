@@ -7,8 +7,11 @@
 
 ;; ----------
 ;; Helper Functions
-(defn get-state [k & [default]]
-  (clojure.core/get @app-state k default))
+(defn global-state [k & [default]]
+  (get @app-state k default))
 
-(defn put! [k v]
+(defn global-put! [k v]
   (swap! app-state assoc k v))
+
+(defn local-put! [a k v]
+  (swap! a assoc k v))

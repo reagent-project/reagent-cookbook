@@ -4,13 +4,26 @@ You want to connect to [firebase](https://www.firebase.com/) in your [reagent](h
 
 # Solution
 
+**Plan of Action**
+
 We are going to connect firebase to a text input field.
 
+Steps:
+
+* Create a new project using the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
+* Add firebase file to index.html.
+* Add firebase to `home-page` component.
+* Create `input-field` component.
+    * Send value to Firebase on event change.
+    * Listen to Firebase and place changes in global applicaton sate.
+    * Use the input-field component.
+	
+Affected files:
+
+* `resources/index.html`
+* `src/firebase/views/home_page.cljs`
+
 ## Create a reagent project
-
-Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
-
-*(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
 ```
 $ lein new reagent-seed firebase
@@ -18,7 +31,7 @@ $ lein new reagent-seed firebase
 
 ## Add firebase to index.html
 
-Add firebase to your `resources/index.html` file.
+Add firebase to your `resources/public/index.html` file.
 
 ```html
 <!DOCTYPE html>
@@ -28,14 +41,14 @@ Add firebase to your `resources/index.html` file.
     <meta content="utf-8" http-equiv="encoding">  
     <title>firebase</title>
   </head>
-  <body class="container">
+  <body>
 
     <div id="app"> Loading... </div>
 
     <!-- ReactJS -->
     <script src="http://fb.me/react-0.11.1.js"></script>
 
-<!-- Attention \/ -->
+<!-- ATTENTION \/ -->
     <!-- firebase -->
     <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
 <!-- ATTENTION /\ -->
@@ -57,54 +70,9 @@ Add firebase to your `resources/index.html` file.
 </html>
 ```
 
-## Familiarize yourself with directory layout
+## Add firebase to home-page component
 
-Now, let's briefly take a look at the directory layout of our reagent webapp.
-
-```
-dev/
-    user.clj                --> functions to start server and browser repl (brepl)
-    user.cljs               --> enabling printing to browser's console when connected through a brepl
-
-project.clj                 --> application summary and setup
-
-resources/
-    index.html              --> this is the html for your application
-    public/                 --> this is where assets for your application will be stored
-
-src/example/
-    core.cljs               ---> main reagent component for application
-    css/
-        screen.clj          ---> main css file using Garden
-    routes.cljs             ---> defining routes using Secretary
-    session.cljs            ---> contains atom with application state
-    views/
-        about_page.cljs     ---> reagent component for the about page
-    	common.cljs         ---> common reagent components to all page views
-    	home_page.cljs      ---> reagent component for the home page
-    	pages.cljs          ---> map of page names to their react/reagent components
-```
-
-We can see that there are two views:
-
-* about_page.cljs
-* home_page.cljs
-
-## Adding firebase to home-page component
-
-I think we should add firebase to the home page, but first, let's take a look at what is already there.
-
-```clojure
-(ns firebase.views.home-page)
-
-(defn home-page []
-  [:div
-   [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
-   ])
-```
-
-To add firebase, we need to add a [reference](https://www.firebase.com/docs/web/guide/understanding-data.html) to our firebase location of interest.
+Navigate to `src/firebase/views/home_page.cljs`.  To add firebase, we need to add a [reference](https://www.firebase.com/docs/web/guide/understanding-data.html) to our firebase location of interest.
 
 ```clojure
 (ns firebase.views.home-page)
@@ -113,13 +81,13 @@ To add firebase, we need to add a [reference](https://www.firebase.com/docs/web/
   (let [fb (js/Firebase. "FIXME")]  ;; REPLACE FIXME WITH YOUR FIREBASE REFERENCE
     [:div
      [:h2 "Home Page"]
-     [:div "Woot! You are starting a reagent application."]
+	 
      ]))
 ```
 
-## Create an input-field function
+## Create an input-field component
 
-Create a function `input-field` that takes two arguments: a value and a firebase reference. The goal here is to create an input field and to update firebase whenever the input is changed.
+Create an `input-field` component that takes two arguments: a value and a firebase reference. The goal here is to create an input field and to update firebase whenever the input is changed.
 
 ```clojure
 (ns firebase.views.home-page)
@@ -135,11 +103,11 @@ Create a function `input-field` that takes two arguments: a value and a firebase
   (let [fb (js/Firebase. "FIXME")]  ;; REPLACE FIXME WITH YOUR FIREBASE REFERENCE
     [:div
      [:h2 "Home Page"]
-     [:div "Woot! You are starting a reagent application."]
+
      ]))
 ```
 
-## Send value to Firebase on event change
+### Send value to Firebase on event change
 
 Let's start building our `on-change` function. The first thing we want to do is send the input value to firebase.  We can do this with `.set` from the [firebase api](https://www.firebase.com/docs/web/api/firebase/set.html).  As you can see below, we are setting the key `"text-from-app"` to the value of our input field.
 
@@ -161,18 +129,18 @@ Let's start building our `on-change` function. The first thing we want to do is 
   (let [fb (js/Firebase. "FIXME")]  ;; REPLACE FIXME WITH YOUR FIREBASE REFERENCE
     [:div
      [:h2 "Home Page"]
-     [:div "Woot! You are starting a reagent application."]
+
      ]))
 ```
 
-## Listen to Firebase and place changes in local sate
+### Listen to Firebase and place changes in globl application sate
 
-Next, we want to complete the circle. If a value is sent to firebase (or if a value is changed in firerbase), we want to hear about it back in our webapp.  We can do this by asking firebase to send us a *snapshot* of the *value* *on* a change via the `.on` function.  With that *snapshot* we can find the value we want and place it in our local state.  This is done using the `session/put!` function which associates a key-value pair in the `session/app-state` atom (which is where our local state is stored).
+Next, we want to complete the circle. If a value is sent to firebase (or if a value is changed in firerbase), we want to hear about it back in our webapp.  We can do this by asking firebase to send us a *snapshot* of the *value* *on* a change via the `.on` function.  With that *snapshot* we can find the value we want and place it in our global application state.  This is done using the `session/global-put!` function which associates a key-value pair in the `session/app-state` atom (which is where our global application state is stored).
 
 ```clojure
 (ns firebase.views.home-page
 ;; ATTENTION \/
-  (:require [firebase.session :as session :refer [get-state]])
+  (:require [firebase.session :as session :refer [global-state global-put!]])
 ;; ATTENTION /\
   )
 
@@ -180,25 +148,25 @@ Next, we want to complete the circle. If a value is sent to firebase (or if a va
   (.set fb (clj->js {:text-from-app (-> event .-target .-value)}))
 ;; ATTENTION \/
   (.on fb "value" (fn [snapshot] 
-                    (session/put! :my-text ((js->clj (.val snapshot)) "text-from-app"))))
+                    (global-put! :my-text ((js->clj (.val snapshot)) "text-from-app"))))
 ;; ATTENTION /\
   )
 
 ...
 ```
 
-## Use the input-field function
+### Use the input-field component
 
-Finally, we want to use our `input-field` function, which will call the `on-change` function whenever there is a change in the text input field.
+Finally, we want to use our `input-field` component, which will call the `on-change` function whenever there is a change in the text input field.
 
 ```clojure
 (ns firebase.views.home-page
-  (:require [firebase.session :as session :refer [get-state]]))
+  (:require [firebase.session :as session :refer [global-state global-put!]]))
 
 (defn on-change [event fb] 
   (.set fb (clj->js {:text-from-app (-> event .-target .-value)}))
   (.on fb "value" (fn [snapshot] 
-                    (session/put! :my-text ((js->clj (.val snapshot)) "text-from-app")))))
+                    (global-put! :my-text ((js->clj (.val snapshot)) "text-from-app")))))
 
 (defn input-field [value fb]
   [:input {:type "text"
@@ -213,9 +181,10 @@ Finally, we want to use our `input-field` function, which will call the `on-chan
 
 ;; ATTENTION \/
      [:div
-      [:p "The value is now: " (get-state :my-text)]
-      [:p "Change it here: " [input-field (get-state :my-text) fb]]]
+      [:p "The value is now: " (global-state :my-text)]
+      [:p "Change it here: " [input-field (global-state :my-text) fb]]]
 ;; ATTENTION /\
+     ]))
 ```
 
 # Usage

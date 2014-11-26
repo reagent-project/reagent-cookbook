@@ -1,13 +1,13 @@
 (ns modals.core
-  (:require [reagent.core :as reagent :refer [atom]]
-            [modals.session :as session :refer [get-state]]
+  (:require [reagent.core :as reagent]
+            [modals.session :as session :refer [global-state]]
             [modals.routes :as routes]
             [modals.views.common :as common]))
 
 (defn page-render []
-  [:div
+  [:div.container
    [common/header]
-   [(get-state :current-page)]])
+   [(global-state :current-page)]])
 
 (defn page-component [] 
   (reagent/create-class {:component-will-mount routes/app-routes

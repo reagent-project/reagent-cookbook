@@ -1,16 +1,17 @@
 (ns sortable-portlets.views.common
-  (:require  [sortable-portlets.session :as session :refer [get-state]]))
+  (:require  [sortable-portlets.session :as session :refer [global-state]]))
 
 (defn active? [state val]
   (if (= state val) "active" ""))
 
 (defn header []
-  [:div.page-header {:class-name "row"}
-   ;; 4 column units
-  [:div#title {:class-name "col-md-4"} "sortable-portlets"]
-   ;; 8 column units
-   [:div {:class-name "col-md-8"}
+  [:div.page-header.row
+
+  [:div#title.col-md-6 
+   "sortable-portlets"]
+
+   [:div.col-md-6
     [:ul.nav.nav-pills 
-     [:li {:class (active? (get-state :nav) "home")}  [:a {:href "#/"} [:span {:class-name "fa fa-home"} " Home"]]]
-     [:li {:class (active? (get-state :nav) "about")} [:a {:href "#/about"} "About"]]
-     ]]])
+     [:li {:class (active? (global-state :nav) "home")}  [:a {:href "#/"} [:span.fa.fa-home " Home"]]]
+     [:li {:class (active? (global-state :nav) "about")} [:a {:href "#/about"} "About"]]]]
+   ])

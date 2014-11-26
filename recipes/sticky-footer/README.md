@@ -6,49 +6,30 @@ You want to add a sticky footer using [Garden](https://github.com/noprompt/garde
 
 # Solution
 
-Our solution will be based on this this [CSS-TRICKS page](http://css-tricks.com/snippets/css/sticky-footer/).
+**Plan of Action**
+
+Our solution will be based on this this CSS-TRICKS [example](http://css-tricks.com/snippets/css/sticky-footer/).
+
+Steps:
+
+* Create a new project using the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
+* Add footer to index.html
+* Add CSS
+
+Affected files:
+
+* `resources/public/index.html`
+* `src/stick_footer/css/screen.cljs`
 
 ## Create a reagent project
-
-Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template since it comes with garden.
-
-*(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
 ```
 $ lein new reagent-seed sticky-footer
 ```
 
-## Familiarize yourself with directory layout
-
-Now, let's briefly take a look at the directory layout of our reagent webapp.
-
-```
-dev/
-    user.clj                --> functions to start server and browser repl (brepl)
-    user.cljs               --> enabling printing to browser's console when connected through a brepl
-
-project.clj                 --> application summary and setup
-
-resources/
-    index.html              --> this is the html for your application
-    public/                 --> this is where assets for your application will be stored
-
-src/example/
-    core.cljs               ---> main reagent component for application
-    css/
-        screen.clj          ---> main css file using Garden
-    routes.cljs             ---> defining routes using Secretary
-    session.cljs            ---> contains atom with application state
-    views/
-        about_page.cljs     ---> reagent component for the about page
-    	common.cljs         ---> common reagent components to all page views
-    	home_page.cljs      ---> reagent component for the home page
-    	pages.cljs          ---> map of page names to their react/reagent components
-```
-
 ## Add Footer to index.html
 
-In our `resources/index.html` file, we need to add a parent div to our app and a footer.
+In our `resources/public/index.html` file, we need to add a parent div to our app and a footer.
 
 ```html
 <!DOCTYPE html>
@@ -58,17 +39,34 @@ In our `resources/index.html` file, we need to add a parent div to our app and a
     <meta content="utf-8" http-equiv="encoding">  
     <title>sticky-footer</title>
   </head>
-  <body class="container">
+  <body>
 
 <!-- ATTENTION \/ -->
     <div class="page-wrap">
       <div id="app"> Loading... </div>
     </div>
-    <footer class="site-footer">
+    <footer class="site-footer container">
       I'm the Sticky Footer.
     </footer>
 <!-- ATTENTION /\ -->
-...
+
+    <!-- ReactJS -->
+    <script src="http://fb.me/react-0.11.1.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/screen.css">
+    <!-- Clojurescript -->
+    <script src="/js/app.js"></script>
+
+  </body>
+</html>
 ```
 
 ## Add CSS

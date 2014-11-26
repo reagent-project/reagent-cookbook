@@ -1,7 +1,7 @@
 (ns adding-a-page.routes
     (:require [secretary.core :as secretary :include-macros true :refer [defroute]]
-              [adding-a-page.session :as session]
-              [adding-a-page.views.pages :as pages]
+              [adding-a-page.session :as session :refer [global-put!]]
+              [adding-a-page.views.pages :refer [pages]]
               [goog.events :as events]
               [goog.history.EventType :as EventType])
     (:import goog.History))
@@ -23,16 +23,16 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (session/put! :current-page (pages/pages :home-page))
-    (session/put! :nav "home"))
+    (global-put! :current-page (pages :home-page))
+    (global-put! :nav "home"))
 
   (defroute "/about" []
-    (session/put! :current-page (pages/pages :about-page))
-    (session/put! :nav "about"))
+    (global-put! :current-page (pages :about-page))
+    (global-put! :nav "about"))
 
-  (defroute "/new-page" []
-    (session/put! :current-page (pages/pages :new-page))
-    (session/put! :nav "new"))
+  (defroute "/new" []
+    (global-put! :current-page (pages :new-page))
+    (global-put! :nav "new"))
 
   (hook-browser-navigation!)
   )

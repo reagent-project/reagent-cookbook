@@ -1,7 +1,7 @@
 (ns data-tables.routes
     (:require [secretary.core :as secretary :include-macros true :refer [defroute]]
-              [data-tables.session :as session]
-              [data-tables.views.pages :as pages]
+              [data-tables.session :as session :refer [global-put!]]
+              [data-tables.views.pages :refer [pages]]
               [goog.events :as events]
               [goog.history.EventType :as EventType])
     (:import goog.History))
@@ -23,12 +23,12 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (session/put! :current-page (pages/pages :home-page))
-    (session/put! :nav "home"))
+    (global-put! :current-page (pages :home-page))
+    (global-put! :nav "home"))
 
   (defroute "/about" []
-    (session/put! :current-page (pages/pages :about-page))
-    (session/put! :nav "about"))
+    (global-put! :current-page (pages :about-page))
+    (global-put! :nav "about"))
 
   (hook-browser-navigation!)
   )

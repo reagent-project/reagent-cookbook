@@ -31,7 +31,7 @@
                      :compiler {;; Where to save the file:
                                 :output-to "resources/public/css/screen.css"
                                 ;; Compress the output?
-                                :pretty-print? false}}]}
+                                :pretty-print? true}}]}
   
  :cljsbuild {:builds [{;; Optional name of the build:
                         :id "d3"

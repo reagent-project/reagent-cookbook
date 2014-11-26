@@ -1,22 +1,31 @@
 # Problem
 
-You want to add a [bootstrap modal](http://getbootstrap.com/javascript/) to your [reagent](https://github.com/reagent-project/reagent) webapp.
+You want to add a [modal window](http://getbootstrap.com/javascript/) to your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
+**Plan of Action**
+
 We are going to use the [reagent-modals](https://github.com/Frozenlock/reagent-modals) library.
 
+Steps:
+
+* Create a new project using the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
+* Add reagent-modals library to `project.clj`
+* Add modal window to `home-page` component.
+
+Affected files:
+
+* `project.clj`
+* `src/modals/views/home_page.cljs`
+
 ## Create a reagent project
-
-Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
-
-*(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
 ```
 $ lein new reagent-seed modals
 ```
 
-## Add reagent-modals library
+## Add reagent-modals library to project.clj
 
 First, let's add the [reagent-modals](https://github.com/Frozenlock/reagent-modals) library to our `project.clj` file.
 
@@ -34,63 +43,17 @@ First, let's add the [reagent-modals](https://github.com/Frozenlock/reagent-moda
                  [secretary "1.2.0"]
                  ;; CSS
                  [garden "1.2.1"] 
-
 ;; ATTENTION \/
-                 ;; modals
+                 ;; modal window
                  [org.clojars.frozenlock/reagent-modals "0.1.0"] ]
 ;; ATTENTION /\
 
 ...
 ```
 
-## Familiarize yourself with directory layout
+## Add modal window to home-page component
 
-Now, let's briefly take a look at the directory layout of our reagent webapp.
-
-```
-dev/
-    user.clj                --> functions to start server and browser repl (brepl)
-    user.cljs               --> enabling printing to browser's console when connected through a brepl
-
-project.clj                 --> application summary and setup
-
-resources/
-    index.html              --> this is the html for your application
-    public/                 --> this is where assets for your application will be stored
-
-src/example/
-    core.cljs               ---> main reagent component for application
-    css/
-        screen.clj          ---> main css file using Garden
-    routes.cljs             ---> defining routes using Secretary
-    session.cljs            ---> contains atom with application state
-    views/
-        about_page.cljs     ---> reagent component for the about page
-    	common.cljs         ---> common reagent components to all page views
-    	home_page.cljs      ---> reagent component for the home page
-    	pages.cljs          ---> map of page names to their react/reagent components
-```
-
-We can see that there are two views:
-
-* about_page.cljs
-* home_page.cljs
-
-## Adding modals to home-page component
-
-I think we should add a bootstrap modal to the home page, but first, let's take a look at what is already there.
-
-```clojure
-(ns modals.views.home-page)
-
-(defn home-page []
-  [:div
-   [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
-   ])
-```
-
-To add a bootstrap modal, we need to require the reagent-modals library in our namespace.
+Navigate to `src/modals/views/home_page.cljs`. To add a modal window, we need to require the reagent-modals library in our namespace.
 
 ```clojure
 (ns modals.views.home-page

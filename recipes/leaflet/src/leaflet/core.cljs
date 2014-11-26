@@ -1,13 +1,13 @@
 (ns leaflet.core
-  (:require [reagent.core :as reagent :refer [atom]]
-            [leaflet.session :as session :refer [get-state]]
+  (:require [reagent.core :as reagent]
+            [leaflet.session :as session :refer [global-state]]
             [leaflet.routes :as routes]
             [leaflet.views.common :as common]))
 
 (defn page-render []
-  [:div
+  [:div.container
    [common/header]
-   [(get-state :current-page)]])
+   [(global-state :current-page)]])
 
 (defn page-component [] 
   (reagent/create-class {:component-will-mount routes/app-routes

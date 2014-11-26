@@ -1,13 +1,13 @@
 (ns toggle-class.core
-  (:require [reagent.core :as reagent :refer [atom]]
-            [toggle-class.session :as session :refer [get-state]]
+  (:require [reagent.core :as reagent]
+            [toggle-class.session :as session :refer [global-state]]
             [toggle-class.routes :as routes]
             [toggle-class.views.common :as common]))
 
 (defn page-render []
-  [:div
+  [:div.container
    [common/header]
-   [(get-state :current-page)]])
+   [(global-state :current-page)]])
 
 (defn page-component [] 
   (reagent/create-class {:component-will-mount routes/app-routes

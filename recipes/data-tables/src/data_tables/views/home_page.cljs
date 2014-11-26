@@ -4,7 +4,6 @@
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-   
    [:table#example.table.table-striped.table-bordered {:cell-spacing "0" :width "100%"}
     [:thead
      [:tr [:th "Name"]
@@ -18,7 +17,6 @@
       [:td "42"]]
      [:tr [:td "Frank"]
       [:td "37"]]]]
-	  
    ])
 
 (defn home-did-mount []

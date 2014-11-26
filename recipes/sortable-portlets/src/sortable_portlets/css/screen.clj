@@ -7,7 +7,8 @@
   ;; Coloring Title
   [:div#title {:font-size (em 3)
                :color (rgb 123 45 6)}]
-  ;; Sortable Portlets
+
+  ;; sortable portlets
   [:body {:min-width "520px"}]
   [:.column {:width "170px"
              :float "left"

@@ -1,7 +1,7 @@
 (ns firebase.routes
     (:require [secretary.core :as secretary :include-macros true :refer [defroute]]
-              [firebase.session :as session]
-              [firebase.views.pages :as pages]
+              [firebase.session :as session :refer [global-put!]]
+              [firebase.views.pages :refer [pages]]
               [goog.events :as events]
               [goog.history.EventType :as EventType])
     (:import goog.History))
@@ -23,12 +23,12 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (session/put! :current-page (pages/pages :home-page))
-    (session/put! :nav "home"))
+    (global-put! :current-page (pages :home-page))
+    (global-put! :nav "home"))
 
   (defroute "/about" []
-    (session/put! :current-page (pages/pages :about-page))
-    (session/put! :nav "about"))
+    (global-put! :current-page (pages :about-page))
+    (global-put! :nav "about"))
 
   (hook-browser-navigation!)
   )

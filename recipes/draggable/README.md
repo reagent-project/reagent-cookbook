@@ -4,13 +4,28 @@ You want to add a [draggable](http://jqueryui.com/draggable/) element in your [r
 
 # Solution
 
+**Plan of Action**
+
 We are going to follow this [example](http://jqueryui.com/draggable/).
 
+Steps:
+
+* Create a new project using the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
+* Add jQuery UI files to index.html
+* Add draggable element to `home-page` component.
+* Convert javascript from the example to clojurescript.
+    * Change `home-page` component to `home-render` function.
+    * Place the converted javascript code into a `home-did-mount` function.
+	* Create `home-page` component which uses the `home-render` and `home-did-mount` functions.
+* Add CSS
+
+Affected files:
+
+* `resources/public/index.html`
+* `src/draggable/views/home_page.cljs`
+* `src/draggable/css/screen.cljs`
+
 ## Create a reagent project
-
-Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
-
-*(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
 ```
 $ lein new reagent-seed draggable
@@ -18,17 +33,17 @@ $ lein new reagent-seed draggable
 
 ## Add jQuery ui files to index.html
 
-Add the draggable jQuery ui files to your `resources/index.html` file.
+Add the draggable jQuery ui files to your `resources/public/index.html` file.
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta content="utf-8" http-equiv="encoding">
+    <meta content="utf-8" http-equiv="encoding">  
     <title>draggable</title>
   </head>
-  <body class="container">
+  <body>
 
     <div id="app"> Loading... </div>
 
@@ -37,11 +52,9 @@ Add the draggable jQuery ui files to your `resources/index.html` file.
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- ATTENTION \/ -->
     <!-- jQuery Draggable -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- ATTENTION /\ -->
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -56,77 +69,29 @@ Add the draggable jQuery ui files to your `resources/index.html` file.
 
   </body>
 </html>
-```
-
-## Familiarize yourself with directory layout
-
-Now, let's briefly take a look at the directory layout of our reagent webapp.
 
 ```
-dev/
-    user.clj                --> functions to start server and browser repl (brepl)
-    user.cljs               --> enabling printing to browser's console when connected through a brepl
 
-project.clj                 --> application summary and setup
+## Add draggable element to home-page component
 
-resources/
-    index.html              --> this is the html for your application
-    public/                 --> this is where assets for your application will be stored
-
-src/example/
-    core.cljs               ---> main reagent component for application
-    css/
-        screen.clj          ---> main css file using Garden
-    routes.cljs             ---> defining routes using Secretary
-    session.cljs            ---> contains atom with application state
-    views/
-        about_page.cljs     ---> reagent component for the about page
-    	common.cljs         ---> common reagent components to all page views
-    	home_page.cljs      ---> reagent component for the home page
-    	pages.cljs          ---> map of page names to their react/reagent components
-```
-
-We can see that there are two views:
-
-* about_page.cljs
-* home_page.cljs
-
-## Adding draggable element to home-page component
-
-I think we should add a draggable element to the home page, but first, let's take a look at what is already there.
-
-```clojure
-(ns draggable.views.home-page)
-
-(defn home-page []
-  [:div
-   [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
-   ])
-```
-
-To add a draggable element, we need the following:
+Navigate to `src/draggable/views/home_page.cljs`.  To add a draggable element, we need the following:
 
 * parent div with a unique id and a class of "ui-widget-content".
 * nested element inside div to be dragged
 
-Also, let's remove some of the boilerplate from the reagent-seed template.
-
 ```clojure
 (ns draggable.views.home-page)
 
 (defn home-page []
   [:div
    [:h2 "Home Page"]
-
 ;; ATTENTION \/
    [:div#draggable.ui-widget-content [:p "Drag me around"]]
 ;; ATTENTION /\
-
    ])
 ```
 
-## Converting javascript function to clojurescript
+## Convert javascript to clojurescript
 
 This is the javascript we want to include:
 
@@ -144,15 +109,17 @@ Let's convert this to clojurescript.
 	))
 ```
 
-### Using react/reagent component lifecycle
+### Change home-page component to home-render function
 
-However, if we use the above code, it will fail. This is because when we change views and come back to this view, the code won't get re-run to make the element draggable.  What we need to do is tap into the react/reagent component lifecycle. First, let's change `home-page` to `home-render`.
+However, if we use the above code, it will fail. This is because when we change views and come back to this view, the code won't get re-run.  What we need to do is tap into the react/reagent component lifecycle. First, let's change the `home-page` component to `home-render` function.
 
 ```clojure
 ...
 (defn home-render []
 ...
 ```
+
+### Create did-mount function
 
 Next, let's add our code to a *did-mount* function.
 
@@ -173,7 +140,9 @@ Next, let's add our code to a *did-mount* function.
 ;; ATTENTION /\
 ```
 
-To make the `home-page` component, which will use both the `home-render` and `home-did-mount` functions, we have to add *reagent* to our namespace.
+### Create home-page component
+
+To make the `home-page` component we have to add *reagent* to our namespace.
 
 ```clojure
 (ns draggable.views.home-page
@@ -181,7 +150,7 @@ To make the `home-page` component, which will use both the `home-render` and `ho
 ...
 ```
 
-Ok, finally, let's create our `home-page` component.
+Ok, finally, let's create our `home-page` component by using the `home-render` and `home-did-mount` functions.
 
 ```clojure
 (ns draggable.views.home-page
@@ -190,9 +159,7 @@ Ok, finally, let's create our `home-page` component.
 (defn home-render []
   [:div
    [:h2 "Home Page"]
-
    [:div#draggable.ui-widget-content [:p "Drag me around"]]
-
    ])
 
 (defn home-did-mount []
@@ -218,11 +185,15 @@ The css we want to add looks like this:
 However, we want to write this in clojure using Garden instead.  We can do this by going to the `src/draggable/css/screen.clj` file and updating it as follows:
 
 ```clojure
+(ns draggable.css.screen
+  (:require  [garden.def :refer [defstyles]]
+             [garden.units :as u :refer [em]]
+             [garden.color :as color :refer [rgb]]))
+
 (defstyles screen
   ;; Coloring Title
   [:div#title {:font-size (em 3)
                :color (rgb 123 45 6)}]
-
 ;; ATTENTION \/
   ;; draggable element
   [:#draggable {:width "150px"

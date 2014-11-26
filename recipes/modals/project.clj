@@ -10,8 +10,8 @@
                  ;; Client-side routing
                  [secretary "1.2.0"]
                  ;; CSS
-                 [garden "1.2.1"] 
-                 ;; modals
+                 [garden "1.2.1"]
+                 ;; modal window
                  [org.clojars.frozenlock/reagent-modals "0.1.0"] ]
 
   :min-lein-version "2.4.3"
@@ -33,7 +33,7 @@
                      :compiler {;; Where to save the file:
                                 :output-to "resources/public/css/screen.css"
                                 ;; Compress the output?
-                                :pretty-print? false}}]}
+                                :pretty-print? true}}]}
   
  :cljsbuild {:builds [{;; Optional name of the build:
                         :id "modals"

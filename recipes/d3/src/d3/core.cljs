@@ -1,13 +1,13 @@
 (ns d3.core
-  (:require [reagent.core :as reagent :refer [atom]]
-            [d3.session :as session :refer [get-state]]
+  (:require [reagent.core :as reagent]
+            [d3.session :as session :refer [global-state]]
             [d3.routes :as routes]
             [d3.views.common :as common]))
 
 (defn page-render []
-  [:div
+  [:div.container
    [common/header]
-   [(get-state :current-page)]])
+   [(global-state :current-page)]])
 
 (defn page-component [] 
   (reagent/create-class {:component-will-mount routes/app-routes

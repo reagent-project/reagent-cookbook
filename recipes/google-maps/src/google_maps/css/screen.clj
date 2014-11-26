@@ -7,6 +7,6 @@
   ;; Coloring Title
   [:div#title {:font-size (em 3)
                :color (rgb 123 45 6)}]
-  
   ;; Google Map
-  [:#map-canvas {:height "300px"}])
+  [:#map-canvas {:height "300px"}]
+  )

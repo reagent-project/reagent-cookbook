@@ -4,70 +4,34 @@ You want to toggle the class of an element (without using jQuery) in your [reage
 
 # Solution
 
+**Plan of Action**
+
 We are going to store the class of an element in a reagent atom, and then toggle the class when a button is clicked.
 
+Steps:
+
+* Create a new project using the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
+* Toggle class of a button in `home-page` component
+    * Add an atom to track local state of home-page component
+	* Create a button
+	* Create function to toggle class of button
+	* Make atom a reagent atom
+
+Affected files:
+
+* `src/toggle_class/views/home_page.cljs`
+
 ## Create a reagent project
-
-Let's start off with the [reagent-seed](https://github.com/gadfly361/reagent-seed) template.
-
-*(Note: this recipe was made when reagent-seed was version 0.1.5)*
 
 ```
 $ lein new reagent-seed adding-a-page
 ```
 
-## Familiarize yourself with reagent-seed template
-
-This section goes over the organization of the reagent-seed template. If you are already familiar, please skip to the next section.
-
-### Directory layout
-
-Now, let's briefly take a look at the directory layout of our reagent webapp.
-
-```
-dev/
-    user.clj                --> functions to start server and browser repl (brepl)
-    user.cljs               --> enabling printing to browser's console when connected through a brepl
-
-project.clj                 --> application summary and setup
-
-resources/
-    index.html              --> this is the html for your application
-    public/                 --> this is where assets for your application will be stored
-
-src/example/
-    core.cljs               ---> main reagent component for application
-    css/
-        screen.clj          ---> main css file using Garden
-    routes.cljs             ---> defining routes using Secretary
-    session.cljs            ---> contains atom with application state
-    views/
-        about_page.cljs     ---> reagent component for the about page
-    	common.cljs         ---> common reagent components to all page views
-    	home_page.cljs      ---> reagent component for the home page
-    	pages.cljs          ---> map of page names to their react/reagent components
-```
-
-We can see that there are two views (i.e., pages):
-
-* about_page.cljs
-* home_page.cljs
-
 ## Toggle class of a button in the home-page component
 
-Toggling the class of a button doesn't seem like it needs to be stored in the global state of our application (which is stored in the `app-state` atom of the `toggle-class.session` namespace).  Instead, I think we should create an atom local to the home page, but first, let's see what is already in the `toggle-class.views.home-page` namespace.
+Toggling the class of a button doesn't seem like it needs to be stored in the global state of our application (which is stored in the `app-state` atom of the `toggle-class.session` namespace).  Instead, I think we should create an atom local to the `home-page` component.  Navigate to `src/toggle_class/views/home_page.cljs
 
-```clojure
-(ns toggle-class.views.home-page)
-
-(defn home-page []
-  [:div
-   [:h2 "Home Page"]
-   [:div "Woot! You are starting a reagent application."]
-   ])
-```
-
-### Add an atom
+### Add an atom to track local state of home-page component
 
 Ok, let's add that atom.  Inside the atom we can create a key (I'm going to call it `:btn-class`) with a value set to the initial class of our button (`btn btn-default`).
 
@@ -85,7 +49,7 @@ Ok, let's add that atom.  Inside the atom we can create a key (I'm going to call
 ;; ATTENTION /\
 ```
 
-### Create the button
+### Create a button
 
 Next, we want to create a button.
 
@@ -105,7 +69,7 @@ Next, we want to create a button.
        ])))
 ```
 
-### Toggle class of button
+### Create function to toggle class of button
 
 The above code will initialize the class of the button to be `btn btn-default`. However, we want to toggle the class of the button when the button is clicked. We can accomplish that as follows.
 
@@ -188,3 +152,4 @@ user=> (run!)
 ```
 
 Open a browser and go to *localhost:8080*. You should see your reagent application!
+
