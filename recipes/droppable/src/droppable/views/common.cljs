@@ -12,6 +12,6 @@
 
    [:div.col-md-6
     [:ul.nav.nav-pills 
-     [:li {:class (active? (global-state :nav) "home")}  [:a {:href "#/"} [:span.fa.fa-home " Home"]]]
+     [:li {:class (active? (global-state :nav) "home")}  [:a {:href "#/"} [:span [:i.fa.fa-home] " Home"]]]
      [:li {:class (active? (global-state :nav) "about")} [:a {:href "#/about"} "About"]]]]
    ])
