@@ -69,7 +69,6 @@ Add the bootstrap-datepicker files to your `resources/public/index.html` file.
 
   </body>
 </html>
-
 ```
 
 ## Add bootstrap-datepicker to home-page component

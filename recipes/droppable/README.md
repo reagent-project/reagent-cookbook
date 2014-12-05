@@ -81,7 +81,6 @@ Add the droppable jQuery ui files to your `resources/public/index.html` file.
 
   </body>
 </html>
-
 ```
 
 ## Add droppable element to home-page component

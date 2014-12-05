@@ -52,9 +52,11 @@ Add the draggable jQuery ui files to your `resources/public/index.html` file.
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+<!-- ATTENTION \/ -->
     <!-- jQuery Draggable -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!-- ATTENTION /\ -->
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -69,7 +71,6 @@ Add the draggable jQuery ui files to your `resources/public/index.html` file.
 
   </body>
 </html>
-
 ```
 
 ## Add draggable element to home-page component
