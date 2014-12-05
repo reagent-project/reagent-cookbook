@@ -21,7 +21,7 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
     * Tables
         * [DataTables](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/data-tables) ([demo](http://rc-data-tables.s3-website-us-west-1.amazonaws.com/))
     * jQuery UI
-        * [autocomplete](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/autocomplete) ([demo](rc-autocomplete.s3-website-us-west-1.amazonaws.com))
+        * [autocomplete](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/autocomplete) ([demo](http://rc-autocomplete.s3-website-us-west-1.amazonaws.com/))
         * [draggable element](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/draggable) ([demo](http://rc-draggable.s3-website-us-west-1.amazonaws.com/))
         * [droppable element](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/droppable) ([demo](http://rc-droppable.s3-website-us-west-1.amazonaws.com/))
         * [sortable portlets](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/sortable-portlets) ([demo](http://rc-sortable-portlets.s3-website-us-west-1.amazonaws.com/))
