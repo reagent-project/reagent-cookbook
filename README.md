@@ -1,6 +1,14 @@
-![Reagent-Cookbook](logo.png)
+# ![Reagent-Project](logo-rounded.jpg) Reagent Cookbook
 
-The goal of this repo is to provide recipes for how to accomplish specific tasks in a [reagent](https://github.com/reagent-project/reagent) webapp.  More recipes coming soon.
+The goal of this repo is to provide recipes for how to accomplish specific tasks in a [reagent](https://github.com/reagent-project/reagent) webapp.
+
+For updates, follow us on twitter: [@ReagentProject](https://twitter.com/ReagentProject)
+For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a45dA9eDA0Q) to us on youtube.
+
+__Spotlight__
+
+* [morris](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris) ([demo](http://rc-morris.s3-website-us-west-1.amazonaws.com/)) ([video](https://www.youtube.com/watch?v=2vq7ZfT7m1o))
+* [Tic Tac Toe](https://github.com/gadfly361/reagent-tic-tac-toe) ([demo](http://rc-tic-tac-toe.s3-website-us-west-1.amazonaws.com/))
 
 ## Recipes
 
@@ -8,7 +16,7 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
     * [adding a page](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/adding-a-page) ([demo](http://rc-adding-a-page.s3-website-us-east-1.amazonaws.com/))
 	* [adding a page from markdown](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/page-from-markdown) ([demo](http://rc-page-from-markdown.s3-website-us-west-1.amazonaws.com/))
 	* [data from ajax](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/data-from-ajax)
-	* [modal window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/modals) ([demo](http://rc-modals.s3-website-us-west-1.amazonaws.com/))
+	* [modal bootstrap window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/modals) ([demo](http://rc-modals.s3-website-us-west-1.amazonaws.com/))
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class) ([demo](http://rc-toggle-class.s3-website-us-west-1.amazonaws.com/))
 * __Connecting to a database__
     * [Firebase](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/firebase)
@@ -17,7 +25,7 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
         * dropdown calendar: [bootstrap-datepicker](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-datepicker) ([demo](http://rc-bootstrap-datepicker.s3-website-us-west-1.amazonaws.com/))
 	* Charting
         * [d3](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/d3) ([demo](http://rc-d3.s3-website-us-west-1.amazonaws.com/))
-        * [morris](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris) ([demo](http://rc-morris.s3-website-us-west-1.amazonaws.com/))
+        * [morris](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris) ([demo](http://rc-morris.s3-website-us-west-1.amazonaws.com/)) ([video](https://www.youtube.com/watch?v=2vq7ZfT7m1o))
     * Tables
         * [DataTables](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/data-tables) ([demo](http://rc-data-tables.s3-website-us-west-1.amazonaws.com/))
     * jQuery UI
@@ -31,9 +39,16 @@ The goal of this repo is to provide recipes for how to accomplish specific tasks
 * __Styling__
     * [Sticky Footer](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/sticky-footer) ([demo](http://rc-sticky-footer.s3-website-us-west-1.amazonaws.com/))
 
+## Example Applications
+
+* [Tic Tac Toe](https://github.com/gadfly361/reagent-tic-tac-toe) ([demo](http://rc-tic-tac-toe.s3-website-us-west-1.amazonaws.com/))
+
 ## Common Starting Point for Recipes
 
-Many of these recipes will be based on the [reagent-seed](https://github.com/gadfly361/reagent-seed) template, which has the following directory layout:
+**ATTENTION** The current recipes start with [reagent-seed](https://github.com/gadfly361/reagent-seed). However, everything will eventually be converted to start with [reagent-template](https://github.com/reagent-project/reagent-template).
+To help improve clarity of the recipes, we are in the process of adding a barebones profile to reagent-template. Once that is ready, I will make the transition.
+
+For your reference, the current recipes are based on reagent-seed, which has the following directory layout:
 
 ```
 dev/
@@ -68,4 +83,4 @@ The `home-page` view will be the typical starting point for recipes using the re
 
 ## Contributing
 
-Well-documented contributions are welcomed!  Please fork, branch, and then submit a pull request.
+Well-documented recipes are welcomed!  Please fork, branch, and submit a pull request.  Also, give me a shout if you have an example of a Reagent application.
