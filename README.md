@@ -12,7 +12,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 
 * __General Tasks__
     * [adding a page](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/adding-a-page) ([Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/))
-	* [bootstrap modal window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-modal) (([Demo](http://rc-bootstrap-modal.s3-website-us-west-1.amazonaws.com/))
+	* [bootstrap modal window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-modal) ([Demo](http://rc-bootstrap-modal.s3-website-us-west-1.amazonaws.com/))
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class) ([Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/))
 * __Adding external javascript libraries__
     * Calendars
@@ -35,12 +35,18 @@ For the old recipes based on reagent-seed, see the [old-recipes](https://github.
 
 ## Example Applications
 
-* [Tic Tac Toe](https://github.com/gadfly361/reagent-tic-tac-toe) ([demo](http://rc-tic-tac-toe.s3-website-us-west-1.amazonaws.com/))
+* [Tic Tac Toe](https://github.com/gadfly361/reagent-tic-tac-toe) ([Demo](http://rc-tic-tac-toe.s3-website-us-west-1.amazonaws.com/))
 * [clojure-quotester](https://github.com/philjackson/clojure-quotester) 
 
 ## Common Starting Point for Recipes
 
-Ultimately, this cookbook is meant for *development* to learn how to do something in reagent.  With that in mind, I created a very minimal starting point called [reagent-cookbook-template](https://github.com/gadfly361/reagent-cookbook-template).  The intent of each recipe should be easy to follow and can be implemented with other reagent templates, such as [reagent-template](https://github.com/reagent-project/reagent-template) or [reagent-seed](https://github.com/gadfly361/reagent-seed), etc.
+The starting point for reagent-cookbook recipes is [reagent-cookbook-template](https://github.com/gadfly361/reagent-cookbook-template).
+
+```
+$ lein new rc <name of recipe>
+```
+
+Note: reagent-cookbook-template was made specifically for following along with recipes - it is not meant for production.  If you are interested in starting a new reagent application, then [reagent-template](https://github.com/reagent-project/reagent-template) provides a good starting configuration: `$ lein new reagent <name of app>`.
 
 ## Contributing
 
