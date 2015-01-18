@@ -4,7 +4,7 @@ You want to add a page using [Secretary](https://github.com/gf3/secretary) to yo
 
 # Solution
 
-[Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/)
+[Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/) [Video](https://www.youtube.com/watch?v=D7uwDUUngy0)
 
 *Steps*
 

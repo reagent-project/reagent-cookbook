@@ -11,12 +11,13 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 ## Recipes
 
 * __General Tasks__
-    * [adding a page](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/adding-a-page) ([Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/))
+    * [adding a page](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/adding-a-page) ([Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/)) ([Video](https://www.youtube.com/watch?v=D7uwDUUngy0))
 	* [bootstrap modal window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-modal) ([Demo](http://rc-bootstrap-modal.s3-website-us-west-1.amazonaws.com/))
-	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class) ([Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/))
+    * [input validation (color-coded)](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/input-validation) ([Demo](http://rc-input-validation.s3-website-us-west-1.amazonaws.com/))
+	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class) ([Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/)) ([Video](https://www.youtube.com/watch?v=WcMrLhW20zg))
 * __Adding external javascript libraries__
     * Calendars
-        * dropdown calendar: [bootstrap-datepicker](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-datepicker) ([Demo](http://rc-bootstrap-datepicker2.s3-website-us-west-1.amazonaws.com/))
+        * dropdown calendar: [bootstrap-datepicker](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-datepicker) ([Demo](http://rc-bootstrap-datepicker2.s3-website-us-west-1.amazonaws.com/)) ([Video](https://www.youtube.com/watch?v=kSzb8YHZV9Q))
 	* Charting
         * [nvd3](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/nvd3) ([Demo](http://rc-nvd3.s3-website-us-west-1.amazonaws.com/))
         * [morris](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris) ([Demo](http://rc-morris2.s3-website-us-west-1.amazonaws.com/))

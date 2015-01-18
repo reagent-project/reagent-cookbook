@@ -4,7 +4,7 @@ You want to add [bootstrap-datepicker](https://github.com/eternicode/bootstrap-d
 
 # Solution
 
-[Demo](http://rc-bootstrap-datepicker2.s3-website-us-west-1.amazonaws.com/)
+[Demo](http://rc-bootstrap-datepicker2.s3-website-us-west-1.amazonaws.com/) [Video](https://www.youtube.com/watch?v=kSzb8YHZV9Q)
 
 We are going to follow this [example](http://runnable.com/UmOlOZbXvZRqAABU/bootstrap-datepicker-example-text-input-with-specifying-date-format2).
 

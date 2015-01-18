@@ -24,7 +24,7 @@ We are going to use the [reagent-modals](https://github.com/Frozenlock/reagent-m
 $ lein new rc bootstrap-modal
 ```
 
-#### Step 2:
+#### Step 2: Add necessary items to `resources/public/index.html`
 
 ```html
 <!DOCTYPE html>
