@@ -4,7 +4,7 @@ You want to add a [modal window](http://getbootstrap.com/javascript/) to your [r
 
 # Solution
 
-[Demo](http://rc-bootstrap-modal.s3-website-us-west-1.amazonaws.com/)
+[Demo](http://rc-bootstrap-modal.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=qRJiAp92TPg)
 
 We are going to use the [reagent-modals](https://github.com/Frozenlock/reagent-modals) library.
 

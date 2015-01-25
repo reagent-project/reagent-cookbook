@@ -4,7 +4,7 @@ You want to toggle the class of an element (without using jQuery) in your [reage
 
 # Solution
 
-[Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/) [Video](https://www.youtube.com/watch?v=WcMrLhW20zg)
+[Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=WcMrLhW20zg)
 
 We are going to store the class of an element in a reagent atom, and then toggle the class when a button is clicked.
 

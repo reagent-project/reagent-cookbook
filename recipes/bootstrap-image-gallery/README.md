@@ -106,7 +106,7 @@ $ lein new rc bootstrap-image-gallery
 
 #### Step 5: Create a function to help display the pictures of fruit called `fruit`
 
-Navigate to `src/cljs/bootstrap_image_galler/core.cljs`.
+Navigate to `src/cljs/bootstrap_image_gallery/core.cljs`.
 
 ```clojure
 (defn fruit [file-name file-type]

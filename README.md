@@ -23,6 +23,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
         * [morris](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris) | ([Demo](http://rc-morris2.s3-website-us-west-1.amazonaws.com/))
     * Pictures
 	    * [bootstrap-image-gallery](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-image-gallery) | ([Demo](http://rc-bootstrap-image-gallery.s3-website-us-west-1.amazonaws.com/))
+    * [Simple Sidebar](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/simple-sidebar) | ([Demo](http://rc-simple-sidebar.s3-website-us-west-1.amazonaws.com/))
     * Tables
         * [DataTables](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/data-tables) | ([Demo](http://rc-data-tables2.s3-website-us-west-1.amazonaws.com/))
     * jQuery UI
