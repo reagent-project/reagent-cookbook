@@ -75,7 +75,7 @@ Navigate to `src/cljs/adding_a_page/core.cljs`.
 
 (defn current-page []
   (reagent/create-class {:component-will-mount current-page-will-mount
-                         :render current-page-render}))
+                         :component-function current-page-render}))
 ```
 
 #### Step 8: Add Secretary to namespace of `src/cljs/adding_a_page/core.cljs`

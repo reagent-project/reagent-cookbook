@@ -19,7 +19,7 @@
                                  )}))))
 
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:component-function home
                          :component-did-mount home-did-mount}))
 
 (reagent/render-component [home-component]

@@ -28,7 +28,7 @@
 
 (defn current-page []
   (reagent/create-class {:component-will-mount current-page-will-mount
-                         :render current-page-render}))
+                         :component-function current-page-render}))
 
 ;; Routes
 (secretary/set-config! :prefix "#")
