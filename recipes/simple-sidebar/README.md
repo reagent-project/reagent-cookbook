@@ -35,10 +35,15 @@ $ lein new rc simple-sidebar
 ```html
 <!DOCTYPE html>
 <html lang="en">
+<!-- ATTENTION 1 of 2 \/ -->
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+<!-- ATTENTION 1 of 2 /\ -->
   <body>
     <div id="app"> Loading... </div>
     <script src="http://fb.me/react-0.11.2.js"></script>
-<!-- ATTENTION \/ -->
+<!-- ATTENTION 2 of 2 \/ -->
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -46,7 +51,7 @@ $ lein new rc simple-sidebar
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="css/simple-sidebar.css">
-<!-- ATTENTION /\ -->
+<!-- ATTENTION 2 of 2/\ -->s
     <script src="/js/app.js"></script>
   </body>
 </html>
@@ -104,9 +109,11 @@ $("#menu-toggle").click(function(e) {
    [sidebar]
    [:div.page-content-wrapper
     [:div.container-fluid
+     [:div.row
+      [:div.col-lg-12
      [:h1 "Welcome to Reagent Cookbook!"]
      [menu-toggle]
-     ]]])
+       ]]]]])
 ```
 
 # Usage

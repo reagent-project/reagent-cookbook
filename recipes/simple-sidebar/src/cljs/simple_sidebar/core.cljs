@@ -31,9 +31,11 @@
    [sidebar]
    [:div.page-content-wrapper
     [:div.container-fluid
+     [:div.row
+      [:div.col-lg-12
      [:h1 "Welcome to Reagent Cookbook!"]
      [menu-toggle]
-     ]]])
+       ]]]]])
 
 (reagent/render-component [home]
                           (.getElementById js/document "app"))
