@@ -12,15 +12,15 @@
                    :align "high"}
            :labels {:overflow "justify"}}
    :tooltip {:valueSuffix " millions"}
-   :plotOptions {:bar {:dataLabels: {:enabled true}}}
+   :plotOptions {:bar {:dataLabels {:enabled true}}}
    :legend {:layout "vertical"
             :align "right"
             :verticalAlign "top"
             :x -40
             :y 100
-            :floating "true"
+            :floating true
             :borderWidth 1
-            :shadow "true"}
+            :shadow true}
    :credits {:enabled false}
    :series [{:name "Year 1800"
              :data [107 31 635 203 2]}

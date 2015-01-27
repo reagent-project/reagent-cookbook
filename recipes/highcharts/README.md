@@ -28,16 +28,21 @@ $ lein new rc highcharts
 ```html
 <!DOCTYPE html>
 <html lang="en">
+<!-- ATTENTION 1 of 2 \/ -->
+  <head>
+    <meta charset="utf-8">
+  </head>
+<!-- ATTENTION 1 of 2 /\ -->
   <body>
     <div id="app"> Loading... </div>
     <script src="http://fb.me/react-0.11.2.js"></script>
-<!-- ATTENTION \/ -->
+<!-- ATTENTION 2 of 2 \/ -->
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Highcharts -->
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-<!-- ATTENTION /\ -->
+<!-- ATTENTION 2 of 2 /\ -->
     <script src="/js/app.js"></script>
   </body>
 </html>
@@ -105,7 +110,6 @@ $(function () {
             y: 100,
             floating: true,
             borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
             shadow: true
         },
         credits: {
@@ -136,7 +140,7 @@ Let's convert this to clojurescript and place in `home-did-mount`.  However, let
 
 Above `home-did-mount`, define `chart-config`.
 
-```
+```clojure
 (def chart-config
   {:chart {:type "bar"}
    :title {:text "Historic World Population by Region"}
@@ -148,15 +152,15 @@ Above `home-did-mount`, define `chart-config`.
                    :align "high"}
            :labels {:overflow "justify"}}
    :tooltip {:valueSuffix " millions"}
-   :plotOptions {:bar {:dataLabels: {:enabled true}}}
+   :plotOptions {:bar {:dataLabels {:enabled true}}}
    :legend {:layout "vertical"
             :align "right"
             :verticalAlign "top"
             :x -40
             :y 100
-            :floating "true"
+            :floating true
             :borderWidth 1
-            :shadow "true"}
+            :shadow true}
    :credits {:enabled false}
    :series [{:name "Year 1800"
              :data [107 31 635 203 2]}
