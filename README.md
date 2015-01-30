@@ -22,6 +22,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
         * [highcharts](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/highcharts) | [Demo](http://rc-highcharts.s3-website-us-west-1.amazonaws.com/)
         * [nvd3](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/nvd3) | [Demo](http://rc-nvd3.s3-website-us-west-1.amazonaws.com/)
         * [morris](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris) | [Demo](http://rc-morris2.s3-website-us-west-1.amazonaws.com/)
+		* [mermaid](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris) | [Demo](http://rc-mermaid.s3-website-us-west-1.amazonaws.com/)
     * Pictures
 	    * [bootstrap-image-gallery](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-image-gallery) | [Demo](http://rc-bootstrap-image-gallery.s3-website-us-west-1.amazonaws.com/)
     * [Simple Sidebar](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/simple-sidebar) | [Demo](http://rc-simple-sidebar.s3-website-us-west-1.amazonaws.com/)
