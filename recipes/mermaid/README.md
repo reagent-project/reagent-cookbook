@@ -82,7 +82,8 @@ $ lein new rc mermaid
 
 ```clojure
 (reagent/render-component [home-component]
-    
+                          (.getElementById js/document "app"))
+``` 
 
 # Usage
 
