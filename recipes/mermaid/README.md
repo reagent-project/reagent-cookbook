@@ -1,6 +1,6 @@
 # Problem
 
-You want to use [mermaid](https://github.com/knsv/mermaid) (a d3 charting/diagraming library from markdown-like syntax) in your [reagent](https://github.com/reagent-project/reagent) webapp.
+You want to use [mermaid](https://github.com/knsv/mermaid) (a d3 charting/diagramming library from markdown-like syntax) in your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
@@ -12,8 +12,10 @@ We are going to follow the example in mermaid's [README](https://github.com/knsv
 
 1. Create a new project
 2. Add necessary items to `resources/public/index.html`
-3. Create an `example-diagram`
-4. Add `example-diagram` to `home`
+3. Add div with the class of _mermaid_ to `home`, along with the text for a diagram
+4. Call mermaid's `init` method in a *did-mount* function
+5. Use `home` and `home-did-mount` to create a reagent component called `home-component`
+6. Change the initially rendered component from `home` to `home-component`
 
 #### Step 1: Create a new project
 
@@ -42,11 +44,12 @@ $ lein new rc mermaid
 </html>
 ```
 
-#### Step 3: Create an `example-diagram`
+#### Step 3: Add div with the class of _mermaid_ to `home`, along with the text for a diagram
 
 ```clojure
-(def example-diagram
-"sequenceDiagram
+(defn home []
+  [:div [:h1 "Welcome to Reagent Cookbook!"]
+  [:div.mermaid "sequenceDiagram
     participant Alice
     participant Bob
     Alice->>John: Hello John, how are you?
@@ -56,17 +59,30 @@ $ lein new rc mermaid
     Note right of John: Rational thoughts <br/>prevail...
     John-->>Alice: Great!
     John->>Bob: How about you?
-    Bob-->>John: Jolly good!")
-```
-
-#### Step 4: Add `example-diagram` to `home`
-
-```clojure
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-   [:div.mermaid example-diagram]
+    Bob-->>John: Jolly good!"]
    ])
 ```
+
+#### Step 4: Call mermaid's `init` method in a *did-mount* function
+
+```clojure
+(defn home-did-mount []
+  (.init js/mermaid))
+```
+
+#### Step 5: Use `home` and `home-did-mount` to create a reagent component called `home-component`
+
+```clojure
+(defn home-component []
+  (reagent/create-class {:component-function home
+                         :component-did-mount home-did-mount}))
+```
+
+#### Step 6: Change the initially rendered component from `home` to `home-component`
+
+```clojure
+(reagent/render-component [home-component]
+    
 
 # Usage
 
