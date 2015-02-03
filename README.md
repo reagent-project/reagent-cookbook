@@ -41,8 +41,9 @@ For the old recipes based on reagent-seed, see the [old-recipes](https://github.
 
 ## Example Applications
 
+* [reagent-breakout](https://github.com/city41/reagent-breakout)
 * [reagent-phonecat](https://github.com/vvvvalvalval/reagent-phonecat)
-* [Tic Tac Toe](https://github.com/gadfly361/reagent-tic-tac-toe) | [Demo](http://rc-tic-tac-toe.s3-website-us-west-1.amazonaws.com/)
+* [reagent-tic-tac-toe](https://github.com/gadfly361/reagent-tic-tac-toe) | [Demo](http://rc-tic-tac-toe.s3-website-us-west-1.amazonaws.com/)
 * [clojure-quotester](https://github.com/philjackson/clojure-quotester) 
 
 ## Common Starting Point for Recipes
