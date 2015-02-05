@@ -88,7 +88,7 @@ The classes `sidebar-wrapper` and `sidebar-nav` are from Simple Sidebar.  You ca
             )))
 
 (defn menu-toggle []
-  (reagent/create-class {:component-function menu-toggle-render
+  (reagent/create-class {:render menu-toggle-render
                          :component-did-mount menu-toggle-did-mount}))
 ```
 

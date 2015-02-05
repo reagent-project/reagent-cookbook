@@ -175,7 +175,7 @@ Above `home-did-mount`, define `chart-config`.
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:component-function home
+  (reagent/create-class {:render home
                          :component-did-mount home-did-mount}))
 ```
 

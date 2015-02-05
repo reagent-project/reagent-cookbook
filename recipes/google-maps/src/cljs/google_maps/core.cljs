@@ -13,7 +13,7 @@
         (js/google.maps.Map. map-canvas map-options)))
 
 (defn home-component []
-  (reagent/create-class {:component-function home
+  (reagent/create-class {:render home
                          :component-did-mount home-did-mount}))
 
 (reagent/render-component [home-component]

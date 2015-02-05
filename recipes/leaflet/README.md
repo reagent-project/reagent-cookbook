@@ -86,7 +86,7 @@ Let's convert this to clojurescript and place in `home-did-mount`.  You will nee
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:component-function home
+  (reagent/create-class {:render home
                          :component-did-mount home-did-mount}))
 ```
 

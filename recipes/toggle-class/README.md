@@ -56,7 +56,7 @@ Navigate to `src/cljs/toggle_class/core.cljs`.
 
 #### Step 4: Add button and local state to `home`
 
-```
+```clojure
 (defn home []
   (let [state (reagent/atom {:btn-class "btn btn-default"})]
     (fn []

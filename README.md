@@ -41,7 +41,7 @@ For the old recipes based on reagent-seed, see the [old-recipes](https://github.
 
 ## Example Applications
 
-* [reagent-breakout](https://github.com/city41/reagent-breakout)
+* [reagent-breakout](https://github.com/city41/reagent-breakout) | [Demo](http://city41.github.io/reagent-breakout/index.html)
 * [reagent-phonecat](https://github.com/vvvvalvalval/reagent-phonecat)
 * [reagent-tic-tac-toe](https://github.com/gadfly361/reagent-tic-tac-toe) | [Demo](http://rc-tic-tac-toe.s3-website-us-west-1.amazonaws.com/)
 * [clojure-quotester](https://github.com/philjackson/clojure-quotester) 
