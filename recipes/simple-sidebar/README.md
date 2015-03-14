@@ -42,7 +42,6 @@ $ lein new rc simple-sidebar
 <!-- ATTENTION 1 of 2 /\ -->
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION 2 of 2 \/ -->
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -88,7 +87,7 @@ The classes `sidebar-wrapper` and `sidebar-nav` are from Simple Sidebar.  You ca
             )))
 
 (defn menu-toggle []
-  (reagent/create-class {:render menu-toggle-render
+  (reagent/create-class {:reagent-render menu-toggle-render
                          :component-did-mount menu-toggle-did-mount}))
 ```
 

@@ -22,7 +22,7 @@
             )))
 
 (defn menu-toggle []
-  (reagent/create-class {:render menu-toggle-render
+  (reagent/create-class {:reagent-render menu-toggle-render
                          :component-did-mount menu-toggle-did-mount}))
 ;; ---
 

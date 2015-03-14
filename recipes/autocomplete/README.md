@@ -30,7 +30,6 @@ $ lein new rc autocomplete
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION \/ -->
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -136,7 +135,7 @@ Let's convert this to clojurescript and place in `home-did-mount`
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 ```
 

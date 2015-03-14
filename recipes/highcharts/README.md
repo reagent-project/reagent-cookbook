@@ -35,7 +35,6 @@ $ lein new rc highcharts
 <!-- ATTENTION 1 of 2 /\ -->
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION 2 of 2 \/ -->
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -175,7 +174,7 @@ Above `home-did-mount`, define `chart-config`.
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 ```
 

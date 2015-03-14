@@ -30,7 +30,6 @@ $ lein new rc bootstrap-datepicker
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION \/ -->
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -81,7 +80,7 @@ Let's convert this to clojurescript and place in `home-did-mount`
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 ```
 

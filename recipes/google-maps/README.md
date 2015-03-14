@@ -39,7 +39,6 @@ Add the script tag below, but replace `API_KEY` with you *actual* API key.
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION \/ -->
     <!-- Google Maps -->
      <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
@@ -90,7 +89,7 @@ Let's convert this to clojurescript and place in `home-did-mount`
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 ```
 
@@ -114,7 +113,6 @@ Let's convert this to clojurescript and place in `home-did-mount`
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
     <!-- Google Maps -->
      <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
      <!-- Replace "API_KEY" with your actual key! -->

@@ -30,7 +30,6 @@ Let's add Bootstrap so we can use their classes in our toggle button.
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION \/ -->
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

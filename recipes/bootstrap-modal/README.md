@@ -31,7 +31,6 @@ $ lein new rc bootstrap-modal
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION \/ -->
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -101,4 +100,3 @@ Start a server.
 ```
 $ lein ring server
 ```
-	

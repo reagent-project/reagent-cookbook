@@ -32,7 +32,6 @@ $ lein new rc leaflet
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION \/ -->
     <!-- Leaflet -->
      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
@@ -86,7 +85,7 @@ Let's convert this to clojurescript and place in `home-did-mount`.  You will nee
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 ```
 
@@ -110,7 +109,6 @@ Let's convert this to clojurescript and place in `home-did-mount`.  You will nee
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
     <!-- Leaflet -->
      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
      <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>

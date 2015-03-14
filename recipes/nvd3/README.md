@@ -35,7 +35,6 @@ $ lein new rc nvd3
 <!-- ATTENTION 1 of 2 /\ -->
   <body>
     <div id="app"> Loading... </div>
-    <script src="http://fb.me/react-0.11.2.js"></script>
 <!-- ATTENTION 2 of 2 \/ -->
     <!-- nvd3 -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.js"></script>
@@ -129,7 +128,7 @@ Let's convert this to clojurescript and place in `home-did-mount`
 
 ```clojure
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 ```
 

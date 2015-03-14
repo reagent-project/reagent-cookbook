@@ -12,7 +12,7 @@
           )))
 
 (defn home-component []
-  (reagent/create-class {:render home
+  (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 
 (reagent/render-component [home-component]
