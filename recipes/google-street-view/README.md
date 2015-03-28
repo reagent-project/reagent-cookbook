@@ -1,6 +1,6 @@
 # Problem
 
-You want to add Google Street View image to your [reagent](https://github.com/reagent-project/reagent) webapp.
+You want to add a Google Street View image to your [reagent](https://github.com/reagent-project/reagent) webapp.
 
 # Solution
 
@@ -25,7 +25,7 @@ We are going to loosely follow this [example](https://www.udacity.com/course/vie
 $ lein new rc google-street-view
 ```
 
-To request a google street view image with a url, you need to parts:
+To request a google street view image with a url, you need two parts:
 
 1. The "base" part
 2. The address part

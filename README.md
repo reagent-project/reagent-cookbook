@@ -4,7 +4,7 @@
 
 The goal of this repo is to provide recipes for how to accomplish specific tasks in a [reagent](https://github.com/reagent-project/reagent) webapp.
 
-For updates, follow us on twitter: [@ReagentProject](https://twitter.com/ReagentProject)
+For updates, follow us on twitter: [@ReagentProject](https://twitter.com/ReagentProject). Please include `#reagent #clojurescript` when tweeting about reagent.
 
 For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a45dA9eDA0Q) to us on youtube.
 
