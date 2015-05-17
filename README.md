@@ -35,6 +35,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
     * [Simple Sidebar](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/simple-sidebar) | [Demo](http://rc-simple-sidebar.s3-website-us-west-1.amazonaws.com/)
 * Tables
     * [DataTables](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/data-tables) | [Demo](http://rc-data-tables2.s3-website-us-west-1.amazonaws.com/)
+    * [Filter and Sort Table](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/filter-and-sort-table)
 * Validation
     * [input validation (color-coded)](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/input-validation) | [Demo](http://rc-input-validation.s3-website-us-west-1.amazonaws.com/)
 
