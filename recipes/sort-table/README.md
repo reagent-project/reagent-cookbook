@@ -1,7 +1,11 @@
-# Goal
+# Problem
 
-Create a table that allows sorting of column content by clicking on the column
+You want to create a table that allows sorting of column content by clicking on the column
 headers.
+
+# Solution
+
+[Demo](http://rc-sort-table.s3-website-us-west-1.amazonaws.com/)
 
 ## Step 1: Create a new project
 
@@ -11,7 +15,7 @@ lein new rc sort-table
 
 ## Step 2: Add needed items to index.html
 
-We will add foundation for an easy way to make out example more visually
+We will add foundation for an easy way to make our example more visually
 pleasant while we experiment. Modify `resources/public/index.html` to look like
 the following:
 
@@ -20,13 +24,13 @@ the following:
 <html lang="en">
   <body>
     <div id="app"> Loading... </div>
-  <!-- Added style sheets -->
+  <!-- ATTENTION \/ -->
     <!-- Foundation CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/normalize.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" />
     <!-- CSS -->
     <link rel="stylesheet" href="css/table.css">
-  <!-- /Added style sheets -->
+  <!-- ATTENTION /\ -->
     <script src="/js/app.js"></script>
   </body>
 </html>
@@ -49,22 +53,12 @@ We are going to add a minimal css file to center the table. Create
 
 From here on out we will be working in `src/cljs/sort_table/core.cljs`
 
-### Namespace and requires
-
-For this example we will only need to require reagent itself and the reagent
-atom.
-
-```clojure
-(ns sort-table.core
-    (:require [reagent.core :as reagent :refer [atom]]))
-```
-
 ### Atom
 
 We store our components state in an atom. Let's go ahead and create that next.
 
 ```clojure
-(def state (atom {:sort-val :first-name :ascending true}))
+(def state (reagent/atom {:sort-val :first-name :ascending true}))
 ```
 
 We have two elements of state to keep track of. The `:sort-val` will specify
@@ -152,12 +146,12 @@ At this point we have all the work done. All that is left is to get the componen
 
 Compile cljs files.
 
-```shell
-lein cljsbuild once
+```
+$ lein cljsbuild once
 ```
 
 Stare a local server
 
-```shell
-lein ring server
+```
+$ lein ring server
 ```

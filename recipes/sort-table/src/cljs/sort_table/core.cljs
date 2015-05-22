@@ -1,7 +1,7 @@
 (ns sort-table.core
-    (:require [reagent.core :as reagent :refer [atom]]))
+    (:require [reagent.core :as reagent]))
 
-(def state (atom {:sort-val :first-name :ascending true}))
+(def state (reagent/atom {:sort-val :first-name :ascending true}))
 
 (def table-contents
   [{:id 1 :first-name "Bram"    :last-name "Moolenaar"  :known-for "Vim"}
