@@ -10,6 +10,8 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 
 ## Recipes
 
+* Animation
+    * [ReactCSSTransitionGroup](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/ReactCSSTransitionGroup) | [Demo](http://rc-animation.s3-website-us-west-1.amazonaws.com/)
 * Bootstrap
     * [bootstrap modal window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-modal) | [Demo](http://rc-bootstrap-modal.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=qRJiAp92TPg)
     * [bootstrap-datepicker](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-datepicker) | [Demo](http://rc-bootstrap-datepicker2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=kSzb8YHZV9Q)
@@ -29,8 +31,9 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
     * [Leaflet](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/leaflet) | [Demo](http://rc-leaflet2.s3-website-us-west-1.amazonaws.com/)
     * [Google Maps](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/google-maps) | [Demo](http://rc-google-maps2.s3-website-us-west-1.amazonaws.com/)
 * Misc.
-    * [adding a page](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/adding-a-page) | [Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=D7uwDUUngy0)
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class) | [Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=WcMrLhW20zg)
+* Routing
+    * [adding a page](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/adding-a-page) with secretary | [Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=D7uwDUUngy0)
 * Sidebar
     * [Simple Sidebar](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/simple-sidebar) | [Demo](http://rc-simple-sidebar.s3-website-us-west-1.amazonaws.com/)
 * Tables
