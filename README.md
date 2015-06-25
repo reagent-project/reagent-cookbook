@@ -31,6 +31,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
     * [Leaflet](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/leaflet) | [Demo](http://rc-leaflet2.s3-website-us-west-1.amazonaws.com/)
     * [Google Maps](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/google-maps) | [Demo](http://rc-google-maps2.s3-website-us-west-1.amazonaws.com/)
 * Misc.
+    * [Live Markdown Editor](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/markdown-editor) | [Demo](https://rawgit.com/lacarmen/reagent-markdown-editor/master/demo/editor.html)
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class) | [Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=WcMrLhW20zg)
 * Routing
     * [adding a page](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/adding-a-page) with secretary | [Demo](http://rc-adding-a-page2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=D7uwDUUngy0)
