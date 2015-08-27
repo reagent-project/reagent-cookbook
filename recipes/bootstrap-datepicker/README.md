@@ -76,6 +76,13 @@ Let's convert this to clojurescript and place in `home-did-mount`
           (fn [] (.datepicker (js/$ "#example1") (clj->js {:format "dd/mm/yyyy"})))))
 ```
 
+The `.ready` method is used to assure that the DOM node exists on the page before executing the `.datepicker` method. However, since we are tapping into the did-mount lifecycle of the component, we are already assured that the component will exist. Let's refactor the code as follows:
+
+```clojure
+(defn home-did-mount [this]
+  (.datepicker (js/$ (js/$ "#example1")) (clj->js {:format "dd/mm/yyyy"})))
+```
+
 #### Step 5: Use `home` and `home-did-mount` to create a reagent component called `home-component`
 
 ```clojure
@@ -87,8 +94,7 @@ Let's convert this to clojurescript and place in `home-did-mount`
 #### Step 6: Change the initially rendered component from `home` to `home-component`
 
 ```clojure
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
+(reagent/render [home-component] (.getElementById js/document "app"))
 ```
 
 # Usage
