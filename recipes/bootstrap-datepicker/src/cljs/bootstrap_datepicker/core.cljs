@@ -6,7 +6,7 @@
    [:input#example1 {:type "text" :placeholder "click to show datepicker"}]])
 
 (defn home-did-mount [this]
-  (.datepicker (js/$ (js/$ "#example1")) (clj->js {:format "dd/mm/yyyy"})))
+  (.datepicker (js/$ "#example1") (clj->js {:format "dd/mm/yyyy"})))
 
 (defn home-component []
   (reagent/create-class {:reagent-render home

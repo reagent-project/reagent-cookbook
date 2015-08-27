@@ -80,7 +80,7 @@ The `.ready` method is used to assure that the DOM node exists on the page befor
 
 ```clojure
 (defn home-did-mount [this]
-  (.datepicker (js/$ (js/$ "#example1")) (clj->js {:format "dd/mm/yyyy"})))
+  (.datepicker (js/$ "#example1") (clj->js {:format "dd/mm/yyyy"})))
 ```
 
 #### Step 5: Use `home` and `home-did-mount` to create a reagent component called `home-component`
