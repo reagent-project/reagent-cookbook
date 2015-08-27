@@ -12,10 +12,10 @@ We are going to follow this [example](http://runnable.com/UmOlOZbXvZRqAABU/boots
 
 1. Create a new project
 2. Add necessary itmes to `resources/public/index.html`
-3. Add text input with unique id to `home`
-4. Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
-5. Use `home` and `home-did-mount` to create a reagent component called `home-component`
-6. Change the initially rendered component from `home` to `home-component`
+3. Add text input to `datepicker-render`
+4. Convert javascript to clojurescript and put inside a *did-mount* function called `datepicker-did-mount`
+5. Use `datepicker-render` and `datepicker-did-mount` to create a reagent component called `datepicker`
+6. Add the `datepicker` component to the `home` component
 
 #### Step 1: Create a new project
 
@@ -45,18 +45,16 @@ $ lein new rc bootstrap-datepicker
 </html>
 ```
 
-#### Step 3: Add text input with unique id to `home`
+#### Step 3: Add text input to `datepicker-render`
 
 Navigate to `src/cljs/bootstrap_datepicker/core.cljs`. 
 
 ```clojure
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-   [:input#example1 {:type "text" :placeholder "click to show datepicker"}]
-   ])
+(defn datepicker-render []
+  [:input {:type "text" :placeholder "click to show datepicker"}])
 ```
 
-#### Step 4: Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
+#### Step 4: Convert javascript to clojurescript and put inside a *did-mount* function called `datepicker-did-mount`
 
 This is the javascript we need.
 
@@ -68,33 +66,35 @@ $(document).ready(function () {
 });
 ```
 
-Let's convert this to clojurescript and place in `home-did-mount`
+Let's convert this to clojurescript and place in `datepicker-did-mount`
 
 ```clojure
-(defn home-did-mount []
+(defn datepicker-did-mount []
   (.ready (js/$ js/document) 
           (fn [] (.datepicker (js/$ "#example1") (clj->js {:format "dd/mm/yyyy"})))))
 ```
 
-The `.ready` method is used to assure that the DOM node exists on the page before executing the `.datepicker` method. However, since we are tapping into the did-mount lifecycle of the component, we are already assured that the component will exist. Let's refactor the code as follows:
+The `.ready` method is used to assure that the DOM node exists on the page before executing the `.datepicker` method. However, since we are tapping into the did-mount lifecycle of the component, we are already assured that the component will exist. In addition, rather than using jQuery to select the element by id, we can get the DOM node directly using React/Reagent.  Let's refactor the code as follows:
 
 ```clojure
-(defn home-did-mount [this]
-  (.datepicker (js/$ "#example1") (clj->js {:format "dd/mm/yyyy"})))
+(defn datepicker-did-mount [this]
+  (.datepicker (js/$ (reagent/dom-node this)) (clj->js {:format "dd/mm/yyyy"})))
 ```
 
-#### Step 5: Use `home` and `home-did-mount` to create a reagent component called `home-component`
+#### Step 5: Use `datepicker-render` and `datepicker-did-mount` to create a reagent component called `datepicker`
 
 ```clojure
-(defn home-component []
-  (reagent/create-class {:reagent-render home
-                         :component-did-mount home-did-mount}))
+(defn datepicker []
+  (reagent/create-class {:reagent-render datepicker-render
+                         :component-did-mount datepicker-did-mount}))
 ```
 
-#### Step 6: Change the initially rendered component from `home` to `home-component`
+#### Step 6: Add the `datepicker` component to the `home` component
 
 ```clojure
-(reagent/render [home-component] (.getElementById js/document "app"))
+(defn home []
+  [:div [:h1 "Welcome to Reagent Cookbook!"]
+   [datepicker]])
 ```
 
 # Usage

@@ -1,15 +1,18 @@
 (ns bootstrap-datepicker.core
     (:require [reagent.core :as reagent]))
 
+(defn datepicker-render []
+  [:input#example1 {:type "text" :placeholder "click to show datepicker"}])
+
+(defn datepicker-did-mount [this]
+  (.datepicker (js/$ (reagent/dom-node this)) (clj->js {:format "dd/mm/yyyy"})))
+
+(defn datepicker []
+  (reagent/create-class {:reagent-render datepicker-render
+                         :component-did-mount datepicker-did-mount}))
+
 (defn home []
   [:div [:h1 "Welcome to Reagent Cookbook!"]
-   [:input#example1 {:type "text" :placeholder "click to show datepicker"}]])
+   [datepicker]])
 
-(defn home-did-mount [this]
-  (.datepicker (js/$ "#example1") (clj->js {:format "dd/mm/yyyy"})))
-
-(defn home-component []
-  (reagent/create-class {:reagent-render home
-                         :component-did-mount home-did-mount}))
-
-(reagent/render [home-component] (.getElementById js/document "app"))
+(reagent/render [home] (.getElementById js/document "app"))
