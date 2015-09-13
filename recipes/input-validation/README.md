@@ -4,7 +4,7 @@ You want to create color-coded input validation in your [reagent](https://github
 
 # Solution
 
-We are going to validate that a password is at least 8 characters long.
+We are going to validate that a password is at least 6 characters long.
 
 *Steps*
 
@@ -20,7 +20,7 @@ We are going to validate that a password is at least 8 characters long.
 ```
 $ lein new rc input-validation
 ```
-pp
+
 #### Step 2: Create a `password-valid?` predicate function
 
 ```clojure
