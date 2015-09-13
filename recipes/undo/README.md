@@ -19,7 +19,7 @@ You want to add *undo* via [historian](https://github.com/reagent-project/histor
 $ lein new rc undo
 ```
 
-#### Step 2: Add Secretary to `project.clj` :dependencies vector
+#### Step 2: Add Historian to `project.clj` :dependencies vector
 
 ```clojure
 [historian "1.1.0"]
@@ -56,3 +56,14 @@ Navigate to `src/cljs/undo/core.cljs` and update the `ns` to the following.
    [:button {:on-click #(swap! app-state update-in [:counter] inc)} "Increment"]
    [:button {:on-click #(hist/undo!)} "Undo"] ])
 ```
+
+# Usage
+
+Compile cljs files.
+
+```
+$ lein clean
+$ lein cljsbuild once prod
+```
+
+Open `resources/public/index.html`.
