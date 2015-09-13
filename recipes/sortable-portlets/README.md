@@ -4,20 +4,18 @@ You want to add [sortable portlets](http://jqueryui.com/sortable/#portlets) to y
 
 # Solution
 
-[Demo](http://rc-sortable-portlets2.s3-website-us-west-1.amazonaws.com/)
-
 We are going to follow this [example](http://jqueryui.com/sortable/#portlets).
 
 *Steps*
 
 1. Create a new project
 2. Add necessary items to `resources/public/index.html`
-3. Create a few portlet element in `home`
+3. Create a few portlet element in `home-render`
 4. Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
-5. Use `home` and `home-did-mount` to create a reagent component called `home-component`
-6. Change the initially rendered component from `home` to `home-component`
-7. Create `resources/public/css/screen.css` files and add necessary CSS
-8. Add CSS file to `resources/public/index.html`
+5. Use `home-render` and `home-did-mount` to create a reagent component called `home`
+6. Create `resources/public/css/screen.css` files and add necessary CSS
+7. Add CSS file to `resources/public/index.html`
+8. Add externs
 
 #### Step 1: Create a new project
 
@@ -31,26 +29,27 @@ $ lein new rc sortable-portlets
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-<!-- ATTENTION \/ -->
-    <!-- jQuery UI -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <div id="app"></div>
+
+    <!-- ATTENTION \/ -->
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.min.css">
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+    <!-- ATTENTION /\ -->
+
+    <script src="js/compiled/app.js"></script>
+    <script>sortable_portlets.core.main();</script>
   </body>
 </html>
 ```
 
-#### Step 3: Create a few portlet element in `home`
+#### Step 3: Create a few portlet element in `home-render`
 
 Navigate to `src/cljs/sortable_portlets/core.cljs`.  Let's create our portlets by adding some divs.  We need to add a few classes to our divs so jQuery can manipulate them and add the portlet functionality.
 
 ```clojure
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-;; ATTENTION \/
+(defn home-render []
+  [:div
    [:div.column
     [:div.portlet
      [:div.portlet-header "Feeds"]
@@ -71,7 +70,6 @@ Navigate to `src/cljs/sortable_portlets/core.cljs`.  Let's create our portlets b
     [:div.portlet
      [:div.portlet-header "Images"]
      [:div.portlet-content "Lorem ipsum dolor sit amet, consectetuer adipiscing elit"]] ]
-;; ATTENTION /\
    ])
 ```
 
@@ -117,30 +115,23 @@ Let's convert this to clojurescript and place in `home-did-mount`
               (addClass "ui-widget-header ui-corner-all")
               (prepend "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>"))
 
-          (.click (js/$ ".portlet-toggle") (fn []
-                                             (this-as this 
-                                                      (let [icon (js/$ this)]
-                                                        (.toggleClass icon "ui-icon-minusthick ui-icon-plusthick")
-                                                        (.toggle (.find (.closest icon ".portlet") ".portlet-content"))
-                                                        )))))))
+          (.click (js/$ ".portlet-toggle") 
+                  (fn []
+                    (this-as this 
+                             (let [icon (js/$ this)]
+                               (.toggleClass icon "ui-icon-minusthick ui-icon-plusthick")
+                               (.toggle (.find (.closest icon ".portlet") ".portlet-content")))))))))
 ```
 
-#### Step 5: Use `home` and `home-did-mount` to create a reagent component called `home-component`
+#### Step 5: Use `home-render` and `home-did-mount` to create a reagent component called `home`
 
 ```clojure
-(defn home-component []
-  (reagent/create-class {:reagent-render home
+(defn home []
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 ```
 
-#### Step 6: Change the initially rendered component from `home` to `home-component`
-
-```clojure
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
-```
-
-#### Step 7: Create `resources/public/css/screen.css` files and add necessary CSS
+#### Step 6: Create `resources/public/css/screen.css` files and add necessary CSS
 
 ```css
 body {
@@ -176,24 +167,50 @@ body {
 }
 ```
 
-#### Step 8:  Add CSS file to `resources/public/index.html`
+#### Step 7:  Add CSS file to `resources/public/index.html`
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-    <!-- jQuery UI -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- ATTENTION \/ -->
+    <div id="app"></div>
+
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.min.css">
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+
+    <!-- ATTENTION \/ -->
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/screen.css">
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <link rel="stylesheet" href="css/screen.css">
+    <!-- ATTENTION /\ -->
+
+    <script src="js/compiled/app.js"></script>
+    <script>sortable_portlets.core.main();</script>
   </body>
 </html>
+```
+
+#### Step 8: Add externs
+
+For advanced compilation, we need to protect jQuery vars from getting renamed. Add an `externs.js` file.
+
+```js
+var $ = function(){};
+$.addClass = function(){};
+$.click = function(){};
+$.closest.find.toggle = function(){};
+$.draggable = function(){};
+$.droppable = function(){};
+$.find = function(){};
+$.prepend = function(){};
+$.sortable = function(){};
+$.toggleClass = function(){};
+```
+
+Open `project.clj` and add a reference to the externs in the cljsbuild portion.
+
+```clojure
+:externs ["externs.js"]
 ```
 
 # Usage
@@ -201,12 +218,8 @@ body {
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
-
-```
-$ lein ring server
-```
-	
+Open `resources/public/index.html`.

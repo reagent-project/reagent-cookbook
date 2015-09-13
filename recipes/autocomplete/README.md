@@ -4,18 +4,15 @@ You want to add [jQuery UI's](http://jqueryui.com/) autocomplete to your [reagen
 
 # Solution
 
-[Demo](http://rc-autocomplete2.s3-website-us-west-1.amazonaws.com/)
-
 We are going to follow this [example](http://jqueryui.com/autocomplete/).
 
 *Steps*
 
 1. Create a new project
 2. Add necessary items to `resources/public/index.html`
-3. Add autocomplete element to `home`
+3. Add autocomplete element to `home-render`
 4. Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
-5. Use `home` and `home-did-mount` to create a reagent component called `home-component`
-6. Change the initially rendered component from `home` to `home-component`
+5. Use `home` and `home-did-mount` to create a reagent component called `home`
 
 #### Step 1: Create a new project
 
@@ -29,13 +26,16 @@ $ lein new rc autocomplete
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-<!-- ATTENTION \/ -->
+    <div id="app"></div>
+
+    <!-- ATTENTION \/ -->
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.min.css">
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+    <!-- ATTENTION /\ -->
+
+    <script src="js/compiled/app.js"></script>
+    <script>autocomplete.core.main();</script>
   </body>
 </html>
 ```
@@ -51,17 +51,13 @@ Navigate to `src/cljs/autocomplete/core.cljs`. This is the html we need.
 </div>
 ```
 
-Let's convert this and put in `home`.
+Let's convert this and put in a function called `home-render`.
 
 ```clojure
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-;; ATTENTION \/
-   [:div.ui-widget
-    [:label {:for "tags"} "Programming Languages: "]
-    [:input#tags]]
-;; ATTENTION /\
-   ])
+(defn home-render []
+  [:div.ui-widget
+   [:label {:for "tags"} "Programming Languages: "]
+   [:input#tags]])
 ```
 
 #### Step 4: Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
@@ -103,47 +99,42 @@ This is the javascript we need.
 Let's convert this to clojurescript and place in `home-did-mount`
 
 ```clojure
+(def tags 
+  ["ActionScript"
+   "AppleScript"
+   "Asp"
+   "BASIC"
+   "C"
+   "C++"
+   "Clojure"
+   "COBOL"
+   "ColdFusion"
+   "Erlang"
+   "Fortran"
+   "Groovy"
+   "Haskell"
+   "Java"
+   "JavaScript"
+   "Lisp"
+   "Perl"
+   "PHP"
+   "Python"
+   "Ruby"
+   "Scala"
+   "Scheme"])
+
 (defn home-did-mount []
   (js/$ (fn []
-          (let [available-tags ["ActionScript"
-                                "AppleScript"
-                                "Asp"
-                                "BASIC"
-                                "C"
-                                "C++"
-                                "Clojure"
-                                "COBOL"
-                                "ColdFusion"
-                                "Erlang"
-                                "Fortran"
-                                "Groovy"
-                                "Haskell"
-                                "Java"
-                                "JavaScript"
-                                "Lisp"
-                                "Perl"
-                                "PHP"
-                                "Python"
-                                "Ruby"
-                                "Scala"
-                                "Scheme"]]
-            (.autocomplete (js/$ "#tags") 
-                           (clj->js {:source available-tags}))))))
+          (.autocomplete (js/$ "#tags") 
+                         (clj->js {:source tags})))))
 ```
 
-#### Step 5: Use `home` and `home-did-mount` to create a reagent component called `home-component`
+#### Step 5: Use `home-render` and `home-did-mount` to create a reagent component called `home`
 
 ```clojure
-(defn home-component []
-  (reagent/create-class {:reagent-render home
+(defn home []
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
-```
-
-#### Step 6: Change the initially rendered component from `home` to `home-component`
-
-```clojure
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
 ```
 
 # Usage
@@ -151,11 +142,8 @@ Let's convert this to clojurescript and place in `home-did-mount`
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
-
-```
-$ lein ring server
-```
+Open `resources/public/index.html`.

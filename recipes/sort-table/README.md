@@ -5,15 +5,24 @@ headers.
 
 # Solution
 
-[Demo](http://rc-sort-table.s3-website-us-west-1.amazonaws.com/)
+*Steps*
 
-## Step 1: Create a new project
+1. Create a new project
+2. Add necessary items to `resources/public/index.html`
+3. Create a reagent atom called `app-state`
+4. Add the table contents
+5. Setup the sort value
+6. Sort the table contents
+7. Create the `table` component
+8. Add `table` to `home`
 
-```shell
-lein new rc sort-table
+#### Step 1: Create a new project
+
+```
+$ lein new rc sort-table
 ```
 
-## Step 2: Add needed items to index.html
+#### Step 2: Add necessary items to `resources/public/index.html`
 
 We will add foundation for an easy way to make our example more visually
 pleasant while we experiment. Modify `resources/public/index.html` to look like
@@ -23,49 +32,35 @@ the following:
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-  <!-- ATTENTION \/ -->
+    <div id="app"></div>
+
+    <!-- ATTENTION \/ -->
     <!-- Foundation CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/normalize.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" />
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/table.css">
-  <!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <!-- ATTENTION /\ -->
+
+    <script src="js/compiled/app.js"></script>
+    <script>sort_table.core.main();</script>
   </body>
 </html>
 ```
 
-## Step 3: Add table.css
-
-We are going to add a minimal css file to center the table. Create
-`resources/public/css/table.css` and add the following contents:
-
-```css
-#table-wrap {
-    margin: auto;
-    padding-top: 30px;
-    width: 600px;
-}
-```
-
-## Step 4: Build out the example
+#### Step 3: Create a reagent atom called `app-state`
 
 From here on out we will be working in `src/cljs/sort_table/core.cljs`
 
-### Atom
-
-We store our components state in an atom. Let's go ahead and create that next.
+We store our components state in a reagent atom. Let's go ahead and create that next.
 
 ```clojure
-(def state (reagent/atom {:sort-val :first-name :ascending true}))
+(def app-state (reagent/atom {:sort-val :first-name :ascending true}))
 ```
 
 We have two elements of state to keep track of. The `:sort-val` will specify
 which column is currently being sorted, and `:ascending` will determine which
 direction we should sort the contents in.
 
-### The table contents
+#### Step 4: Add the table contents
 
 Next up we create a list of maps that contain the data that will be displayed in the table.
 
@@ -80,36 +75,36 @@ Next up we create a list of maps that contain the data that will be displayed in
    {:id 7 :first-name "Yehuda"  :last-name "Katz"       :known-for "Ember"}])
 ```
 
-### Setting the sort value
+#### Step 5:  Setup the sort value
 
 To start off with our table will be sorted on `:first-name` as declared in the
-definition of the state atom. We will need a way to change the sort column when
+definition of the `app-state` reagent atom. We will need a way to change the sort column when
 the user clicks on a heading. Clicking on a column that is already sorted will
 reverse the sort direction. We will create a function `update-sort-value` that
 will address this logic.
 
 ```clojure
 (defn update-sort-value [new-val]
-  (if (= new-val (:sort-val @state))
-    (swap! state assoc :ascending (not (:ascending @state)))
-    (swap! state assoc :ascending true))
-  (swap! state assoc :sort-val new-val))
+  (if (= new-val (:sort-val @app-state))
+    (swap! app-state update-in [:ascending] not)
+    (swap! app-state assoc :ascending true))
+  (swap! app-state assoc :sort-val new-val))
 ```
 
-### Sort the table contents
+#### Step 6: Sort the table contents
 
 Now that we can decide which column to sort on we need to do the actual
 sorting.
 
 ```clojure
 (defn sorted-contents []
-  (let [sorted-contents (sort-by (:sort-val @state) table-contents)]
-    (if (:ascending @state)
+  (let [sorted-contents (sort-by (:sort-val @app-state) table-contents)]
+    (if (:ascending @app-state)
       sorted-contents
-      (rseq sorted-contents))))
+      (rseq sorted-contents)))
 ```
 
-### Assemble the table
+#### Step 7: Create the `table` component
 
 With our update and sort functions in place we can put the table together. We
 assign the `update-sort-value` function to be called with the appropriate value
@@ -126,32 +121,31 @@ body of the table.
         [:th {:width "200" :on-click #(update-sort-value :known-for) } "Known For"]]]
     [:tbody
       (for [person (sorted-contents)]
-        ^{:key (:id person)} [:tr [:td (:first-name person)] [:td (:last-name person)] [:td (:known-for person)]])]])
+        ^{:key (:id person)} 
+        [:tr [:td (:first-name person)] 
+         [:td (:last-name person)] 
+         [:td (:known-for person)]])]])
 ```
 
-### Define and render the component
+#### Step 8: Add `table` to `home`
 
 At this point we have all the work done. All that is left is to get the component onto the page.
 
 ```clojure
-(defn table-component []
-  [:div {:id "table-wrap"}
+(defn home []
+  [:div {:style {:margin "auto"
+                 :padding-top "30px"
+                 :width "600px"}}
     [table]])
-
-(reagent/render-component [table-component]
-                          (.getElementById js/document "app"))
 ```
 
-## Usage
+# Usage
 
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Stare a local server
-
-```
-$ lein ring server
-```
+Open `resources/public/index.html`.

@@ -1,0 +1,2 @@
+var $ = function(){};
+$.highcharts = function(){};

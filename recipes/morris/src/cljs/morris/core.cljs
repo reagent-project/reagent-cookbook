@@ -1,10 +1,8 @@
 (ns morris.core
     (:require [reagent.core :as reagent]))
 
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-   [:div#donut-example ]
-   ])
+(defn home-render []
+  [:div#donut-example ])
 
 (defn home-did-mount []
   (.Donut js/Morris (clj->js {:element "donut-example"
@@ -12,9 +10,11 @@
                                      {:label "In-Store Sales" :value 30}
                                      {:label "Mail-Order Sales" :value 20}]})))
 
-(defn home-component []
-  (reagent/create-class {:reagent-render home
+(defn home []
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

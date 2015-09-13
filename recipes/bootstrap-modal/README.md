@@ -4,8 +4,6 @@ You want to add a [modal window](http://getbootstrap.com/javascript/) to your [r
 
 # Solution
 
-[Demo](http://rc-bootstrap-modal.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=qRJiAp92TPg)
-
 We are going to use the [reagent-modals](https://github.com/Frozenlock/reagent-modals) library.
 
 *Steps*
@@ -30,15 +28,18 @@ $ lein new rc bootstrap-modal
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-<!-- ATTENTION \/ -->
+    <div id="app"></div>
+
+    <!-- ATTENTION \/ -->
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <!-- ATTENTION /\ -->
+
+    <script src="js/compiled/app.js"></script>
+    <script>bootstrap_modal.core.main();</script>
   </body>
 </html>
 ```
@@ -48,7 +49,7 @@ $ lein new rc bootstrap-modal
 Add the following to the `:dependencies` vector.
 
 ```clojure
-[org.clojars.frozenlock/reagent-modals "0.2.2"]
+[org.clojars.frozenlock/reagent-modals "0.2.3"]
 ```
 
 #### Step 4: Add reagent-modals to `src/cljs/bootstrap_modal/core.cljs` namespace
@@ -63,7 +64,7 @@ Add the following to the `:dependencies` vector.
 
 ```clojure
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
+  [:div
    [reagent-modals/modal-window]
    ])
 ```
@@ -71,7 +72,8 @@ Add the following to the `:dependencies` vector.
 
 ```clojure
 (defn modal-window-button []
-  [:div.btn.btn-primary {:on-click #(reagent-modals/modal! [:div "some message to the user!"])} 
+  [:div.btn.btn-primary 
+   {:on-click #(reagent-modals/modal! [:div "some message to the user!"])} 
    "My Modal"])
 ```
 
@@ -79,11 +81,11 @@ Add the following to the `:dependencies` vector.
 
 ```clojure
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
+  [:div
    [reagent-modals/modal-window]
-;; ATTNETION \/
+   ;; ATTNETION \/
    [modal-window-button]
-;; ATTENTION /\
+   ;; ATTENTION /\
    ])
 ```
 
@@ -92,11 +94,8 @@ Add the following to the `:dependencies` vector.
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
-
-```
-$ lein ring server
-```
+Open `resources/public/index.html`.

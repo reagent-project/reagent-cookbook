@@ -6,8 +6,6 @@ You want to use [ReactCSSTransitionGroup](https://facebook.github.io/react/docs/
 
 # Solution
 
-[Demo](http://rc-animation.s3-website-us-west-1.amazonaws.com/)
-
 In this example, we will be making a list of items that have an animated transition when they are created and removed.
 
 *Steps*
@@ -30,8 +28,8 @@ $ lein new rc animation
 #### Step 2: Exclude react from reagent and add react-with-addons to dependecies vector in `project.clj`
 
 ```clojure
-[reagent "0.5.0" :exclusions [cljsjs/react]]
-[cljsjs/react-with-addons "0.12.2-4"]
+[reagent "0.5.1" :exclusions [cljsjs/react]]
+[cljsjs/react-with-addons "0.13.3-0"]
 ```
 
 #### Step 3: Navigate to `src/cljs/animation/core.cljs` and adapt react's CSSTransitionGroup addon to reagent
@@ -111,7 +109,7 @@ Notice the use of the `css-transition-group` from step 3, and the use of the nam
 
 ```clojure
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
+  [:div
    [:div (str "Total list items to date:  " (:items-counter @app-state))]
    [:button {:on-click #(add-item)} "add"]
    [:button {:on-click #(delete-item)} "delete"]
@@ -129,11 +127,8 @@ Notice the use of the `css-transition-group` from step 3, and the use of the nam
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
-
-```
-$ lein ring server
-```
+Open `resources/public/index.html`.

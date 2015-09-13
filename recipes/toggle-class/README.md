@@ -4,8 +4,6 @@ You want to toggle the class of an element (without using jQuery) in your [reage
 
 # Solution
 
-[Demo](http://rc-toggle-class2.s3-website-us-west-1.amazonaws.com/) | [Video](https://www.youtube.com/watch?v=WcMrLhW20zg)
-
 We are going to store the class of an element in a reagent atom, and then toggle the class when a button is clicked.
 
 *Steps*
@@ -13,7 +11,8 @@ We are going to store the class of an element in a reagent atom, and then toggle
 1. Create a new project
 2. Add necessary items to `resources/public/index.html`
 3. Create a `toggle-class` function
-4. Add button and local state to `home`
+4. Create [form-2](https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-2--a-function-returning-a-function) component with a reagent atom called `local-state`
+5. Add a button to `home` and uses the `toggle-class` function on-click
 
 #### Step 1: Create a new project
 
@@ -23,21 +22,21 @@ $ lein new rc toggle-class
 
 #### Step 2: Add necessary items to `resources/public/index.html`
 
-Let's add Bootstrap so we can use their classes in our toggle button.
+Let's add Bootstrap css so we can use their button classes in our toggle button.
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-<!-- ATTENTION \/ -->
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <div id="app"></div>
+    <script src="js/compiled/app.js"></script>
+
+    <!-- ATTENTION \/ -->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <!-- ATTENTION /\ -->
+
+    <script>toggle_class.core.main();</script>
   </body>
 </html>
 ```
@@ -53,17 +52,27 @@ Navigate to `src/cljs/toggle_class/core.cljs`.
     (swap! a assoc k class1)))
 ```
 
-#### Step 4: Add button and local state to `home`
+#### Step 4: Create a [form-2](https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-2--a-function-returning-a-function) component with a reagent atom called `local-state`
 
 ```clojure
 (defn home []
-  (let [state (reagent/atom {:btn-class "btn btn-default"})]
+  (let [local-state (reagent/atom {:btn-class "btn btn-default"})]
     (fn []
-      [:div [:h1 "Welcome to Reagent Cookbook!"]
-       [:div {:class (@state :btn-class)
-              :on-click #(toggle-class state :btn-class "btn btn-default" "btn btn-danger")}
-        "Click me"]
-       ])))
+      [:div ])))
+```
+
+#### Step 5: Add a button to `home` and uses the `toggle-class` function on-click
+
+```clojure
+(defn home []
+  (let [local-state (reagent/atom {:btn-class "btn btn-default"})]
+    (fn []
+      ;; ATTENTION \/
+      [:div {:class (@local-state :btn-class)
+             :on-click #(toggle-class local-state :btn-class "btn btn-default" "btn btn-danger")}
+       "Click me"]
+      ;; ATTENTION /\
+      )))
 ```
 
 # Usage
@@ -71,11 +80,8 @@ Navigate to `src/cljs/toggle_class/core.cljs`.
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
-
-```
-$ lein ring server
-```
+Open `resources/public/index.html`.

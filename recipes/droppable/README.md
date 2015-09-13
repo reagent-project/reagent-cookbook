@@ -4,20 +4,16 @@ You want to add a [droppable](http://jqueryui.com/droppable/) element in your [r
 
 # Solution
 
-[Demo](http://rc-droppable2.s3-website-us-west-1.amazonaws.com/)
-
-We are going to follow this [example](http://jqueryui.com/droppable/).
+We are going to take inspiration from this [example](http://jqueryui.com/droppable/), but do it reagent-style.
 
 *Steps*
 
 1. Create a new project
 2. Add necessary items to `resources/public/index.html`
-3. Create draggable element and a drop area in `home`
-4. Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
-5. Use `home` and `home-did-mount` to create a reagent component called `home-component`
-6. Change the initially rendered component from `home` to `home-component`
-7. Create `resources/public/css/screen.css` files and add necessary CSS
-8. Add CSS file to `resources/public/index.html`
+3. Create a `draggable` component
+4. Create a `drop-area` component
+5. Add `draggable` and `drop-area` to `home`
+6. Add externs
 
 Prerequisite Recipes:
 
@@ -35,112 +31,101 @@ $ lein new rc droppable
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-<!-- ATTENTION \/ -->
-    <!-- jQuery UI -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <div id="app"></div>
+
+    <!-- ATTENTION \/ -->
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.min.css">
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+    <!-- ATTENTION /\ -->
+
+    <script src="js/compiled/app.js"></script>
+    <script>droppable.core.main();</script>
   </body>
 </html>
 ```
 
-#### Step 3: Create draggable element and a drop area in `home`
+#### Step 3: Create a `draggable` component
 
-Navigate to `src/cljs/droppable/core.cljs`. To add a droppable element, we need the following:
+```clojure
+(defn draggable-render []
+  [:div.ui-widget-content {:style {:width "100px"
+                                   :height "100px" 
+                                   :padding "0.5em"
+                                   :float "left" 
+                                   :margin "10px 10px 10px 0"}}
+   [:p "Drag me to my target"]])
 
-* a draggable element
-    * parent div with a unique id and a class of "ui-widget-content".
-    * nested element inside div to be dragged
-* an element that is a drop area
-    * parent div with a unique id and a class of ui-widget-header
-	* nested element inside div
+(defn draggable-did-mount [this]
+  (.draggable (js/$ (reagent/dom-node this))))
+
+(defn draggable []
+  (reagent/create-class {:reagent-render draggable-render
+                         :component-did-mount draggable-did-mount}))
+```
+
+#### Step 4: Create a `drop-area` component
+
+Let's create a reagent atom called `app-state` that will store the class and text of our drop-area component.  Next, let's create the render function for our drop-area component, called `drop-area-render`, that listens to changes in `app-state`.
+
+
+```clojure
+(def app-state (reagent/atom {:drop-area {:class "ui-widget-header"
+                                          :text "Drop here"}}))
+										  
+(defn drop-area-render []
+  (let [class (get-in @app-state [:drop-area :class])
+        text (get-in @app-state [:drop-area :text])]
+    [:div {:class class
+           :style {:width "150px" 
+                   :height "150px"
+                   :padding "0.5em" 
+                   :float "left" 
+                   :margin "10px"}}
+     [:p text]]))
+```
+
+We need to use jQuery UI's `.droppable` method on our drop-area component.  On the `drop` event, we can pass a handler that will update our `app-state` with a new class and text.
+
+```clojure
+(defn drop-area-did-mount [this]
+  (.droppable (js/$ (reagent/dom-node this))
+              #js {:drop (fn []
+                           (swap! app-state assoc-in [:drop-area :class] "ui-widget-header ui-state-highlight")
+                           (swap! app-state assoc-in [:drop-area :text] "Dropped!"))}))
+```
+
+Finally, let's create our `drop-area` component by combining `drop-area-did-mount` with `drop-area-render`.
+
+```clojure
+(defn drop-area []
+  (reagent/create-class {:reagent-render drop-area-render
+                         :component-did-mount drop-area-did-mount}))
+```
+
+#### Step 5: Add `draggable` and `drop-area` to `home`
 
 ```clojure
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-;; ATTENTION \/
-   [:div#draggable.ui-widget-content [:p "Drag me to my target"]]
-   [:div#droppable.ui-widget-header [:p "Drop here"]]
-;; ATTENTION /\
-   ])
+  [:div
+   [draggable]
+   [drop-area]])
 ```
 
-#### Step 4: Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
+#### Step 6: Add externs
 
-This is the javascript we need.
+For advanced compilation, we need to protect `$.draggable` and `$.droppable` from getting renamed. Add an `externs.js` file.
 
-```javascript
-  $(function() {
-    $( "#draggable" ).draggable();
-    $( "#droppable" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      }
-    });
-  });
+```js
+var $ = function(){};
+$.draggable = function(){};
+$.droppable = function(){};
 ```
 
-Let's convert this to clojurescript and place in `home-did-mount`
+Open `project.clj` and add a reference to the externs in the cljsbuild portion.
 
 ```clojure
-(defn home-did-mount []
-  (js/$ (fn []
-        (.draggable (js/$ "#draggable"))
-        (.droppable (js/$ "#droppable")
-                    #js {:drop (fn [event ui]
-                                 (this-as this
-                                          (.html (.find (.addClass (js/$ this) "ui-state-highlight") 
-                                                        "p")
-                                                 "Dropped!"))
-                                 )}))))
-```
-
-#### Step 5: Use `home` and `home-did-mount` to create a reagent component called `home-component`
-
-```clojure
-(defn home-component []
-  (reagent/create-class {:reagent-render home
-                         :component-did-mount home-did-mount}))
-```
-
-#### Step 6: Change the initially rendered component from `home` to `home-component`
-
-```clojure
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
-```
-
-#### Step 7: Create `resources/public/css/screen.css` files and add necessary CSS
-
-```css
-#draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-#droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-```
-
-#### Step 8:  Add CSS file to `resources/public/index.html`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <div id="app"> Loading... </div>
-    <!-- jQuery UI -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- ATTENTION \/ -->
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/screen.css">
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
-  </body>
-</html>
+:externs ["externs.js"]
 ```
 
 # Usage
@@ -148,11 +133,9 @@ Let's convert this to clojurescript and place in `home-did-mount`
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
+Open `resources/public/index.html`.
 
-```
-$ lein ring server
-```

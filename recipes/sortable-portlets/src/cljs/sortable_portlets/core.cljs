@@ -1,8 +1,8 @@
 (ns sortable-portlets.core
-    (:require [reagent.core :as reagent]))
+  (:require [reagent.core :as reagent]))
 
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
+(defn home-render []
+  [:div
    [:div.column
     [:div.portlet
      [:div.portlet-header "Feeds"]
@@ -37,16 +37,18 @@
               (addClass "ui-widget-header ui-corner-all")
               (prepend "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>"))
 
-          (.click (js/$ ".portlet-toggle") (fn []
-                                             (this-as this 
-                                                      (let [icon (js/$ this)]
-                                                        (.toggleClass icon "ui-icon-minusthick ui-icon-plusthick")
-                                                        (.toggle (.find (.closest icon ".portlet") ".portlet-content"))
-                                                        )))))))
+          (.click (js/$ ".portlet-toggle") 
+                  (fn []
+                    (this-as this 
+                             (let [icon (js/$ this)]
+                               (.toggleClass icon "ui-icon-minusthick ui-icon-plusthick")
+                               (.toggle (.find (.closest icon ".portlet") ".portlet-content")))))))))
 
-(defn home-component []
-  (reagent/create-class {:reagent-render home
+(defn home []
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

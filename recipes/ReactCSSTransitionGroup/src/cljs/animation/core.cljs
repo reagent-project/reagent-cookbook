@@ -1,5 +1,5 @@
 (ns animation.core
-  (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]))
 
 (def css-transition-group
   (reagent/adapt-react-class js/React.addons.CSSTransitionGroup))
@@ -47,7 +47,7 @@
     (swap! app-state assoc :items (vec (butlast items)))))
 
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
+  [:div
    [:div (str "Total list items to date:  " (:items-counter @app-state))]
    [:button {:on-click #(add-item)} "add"]
    [:button {:on-click #(delete-item)} "delete"]
@@ -59,5 +59,7 @@
                  (:items @app-state))]]
    ])
 
-(reagent/render-component [home]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

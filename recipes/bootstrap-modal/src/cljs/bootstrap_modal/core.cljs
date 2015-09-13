@@ -1,16 +1,21 @@
 (ns bootstrap-modal.core
-    (:require [reagent.core :as reagent]
-              [reagent-modals.modals :as reagent-modals]))
+  (:require [reagent.core :as reagent]
+            [reagent-modals.modals :as reagent-modals]))
 
 (defn modal-window-button []
-  [:div.btn.btn-primary {:on-click #(reagent-modals/modal! [:div "some message to the user!"])} 
+  [:div.btn.btn-primary 
+   {:on-click #(reagent-modals/modal! [:div "some message to the user!"])} 
    "My Modal"])
 
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
+  [:div
    [reagent-modals/modal-window]
+   ;; ATTNETION \/
    [modal-window-button]
+   ;; ATTENTION /\
    ])
 
-(reagent/render-component [home]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

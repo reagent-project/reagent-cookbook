@@ -1,43 +1,45 @@
 (ns autocomplete.core
-  (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]))
 
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-   [:div.ui-widget
-    [:label {:for "tags"} "Programming Languages: "]
-    [:input#tags]]
-   ])
+(defn home-render []
+  [:div.ui-widget
+   [:label {:for "tags"} "Programming Languages: "]
+   [:input#tags]])
+
+(def tags 
+  ["ActionScript"
+   "AppleScript"
+   "Asp"
+   "BASIC"
+   "C"
+   "C++"
+   "Clojure"
+   "COBOL"
+   "ColdFusion"
+   "Erlang"
+   "Fortran"
+   "Groovy"
+   "Haskell"
+   "Java"
+   "JavaScript"
+   "Lisp"
+   "Perl"
+   "PHP"
+   "Python"
+   "Ruby"
+   "Scala"
+   "Scheme"])
 
 (defn home-did-mount []
   (js/$ (fn []
-          (let [available-tags ["ActionScript"
-                                "AppleScript"
-                                "Asp"
-                                "BASIC"
-                                "C"
-                                "C++"
-                                "Clojure"
-                                "COBOL"
-                                "ColdFusion"
-                                "Erlang"
-                                "Fortran"
-                                "Groovy"
-                                "Haskell"
-                                "Java"
-                                "JavaScript"
-                                "Lisp"
-                                "Perl"
-                                "PHP"
-                                "Python"
-                                "Ruby"
-                                "Scala"
-                                "Scheme"]]
-            (.autocomplete (js/$ "#tags") 
-                           (clj->js {:source available-tags}))))))
+          (.autocomplete (js/$ "#tags") 
+                         (clj->js {:source tags})))))
 
-(defn home-component []
-  (reagent/create-class {:reagent-render home
+(defn home []
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

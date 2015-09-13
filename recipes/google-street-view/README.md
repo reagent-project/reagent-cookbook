@@ -4,8 +4,6 @@ You want to add a Google Street View image to your [reagent](https://github.com/
 
 # Solution
 
-[Demo](http://rc-google-street-view.s3-website-us-east-1.amazonaws.com/)
-
 We are going to loosely follow this [example](https://www.udacity.com/course/viewer#!/c-ud110/l-3310298553/e-3180658599/m-3180658600) provided by [Udacity](https://www.udacity.com/).
 
 *Steps*
@@ -16,8 +14,7 @@ We are going to loosely follow this [example](https://www.udacity.com/course/vie
 4. Create a function that makes the full url for the street view image request
 5. Create a reagent atom called `app-state` to store the street and city values
 6. Create an `input` component where a user can change the value of a key in `app-state`
-7. Create an `address` component that displays an image based on the street and city supplied by a user
-8. Use the `address` componenet in the `home` page component
+7. Create an `home` component that displays an image based on the street and city supplied by a user
 
 #### Step 1: Create a new project
 
@@ -68,24 +65,14 @@ Navigate to `src/cljs/google_street_view/core.cljs`.
            :on-change #(swap! app-state assoc k (-> % .-target .-value))}])
 ```
 
-#### Step 7: Create an `address` component that displays an image based on the street and city supplied by a user
-
-```clojure
-(defn address []
-  [:div
-   [:p "Street: " [input :street]]
-   [:p "City: " [input :city]] 
-   [:img {:src (street-view-url (@app-state :street) (@app-state :city))}]
-   ])
-```
-
-#### Step 8: Use the `address` componenet in the `home` page component
+#### Step 7: Create an `home` component that displays an image based on the street and city supplied by a user
 
 ```clojure
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-   [address]
-   ])
+  [:div
+   [:p "Street: " [input :street]]
+   [:p "City: " [input :city]] 
+   [:img {:src (street-view-url (@app-state :street) (@app-state :city))}]])
 ```
 
 # Usage
@@ -93,11 +80,10 @@ Navigate to `src/cljs/google_street_view/core.cljs`.
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
+Open `resources/public/index.html`.
 
-```
-$ lein ring server
-```
+

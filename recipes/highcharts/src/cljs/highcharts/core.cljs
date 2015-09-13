@@ -30,20 +30,19 @@
              :data [973 914 4054 732 34]}]
    })
 
+(defn home-render []
+  [:div {:style {:min-width "310px" :max-width "800px" 
+                 :height "400px" :margin "0 auto"}}])
+
+(defn home-did-mount [this]
+  (.highcharts (js/$ (reagent/dom-node this))
+               (clj->js chart-config)))
+
 (defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-   [:div#example {:style {:min-width "310px" :max-width "800px" 
-                          :height "400px" :margin "0 auto"}}]
-   ])
-
-(defn home-did-mount []
-  (js/$ (fn []
-          (.highcharts (js/$ "#example")
-                       (clj->js chart-config)))))
-
-(defn home-component []
-  (reagent/create-class {:reagent-render home
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

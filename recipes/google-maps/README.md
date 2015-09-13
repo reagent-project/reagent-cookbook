@@ -4,8 +4,6 @@ You want to add [Google Maps](https://developers.google.com/maps/documentation/j
 
 # Solution
 
-[Demo](http://rc-google-maps2.s3-website-us-west-1.amazonaws.com/)
-
 We are going to follow this [example](https://developers.google.com/maps/documentation/javascript/tutorial#HelloWorld).
 
 *Steps*
@@ -13,12 +11,10 @@ We are going to follow this [example](https://developers.google.com/maps/documen
 1. Create a new project
 2. Obtain a Google Maps API Key
 3. Add necessary items to `resources/public/index.html`
-4. Create div with a unique id in `home`
+4. Create a function called `home-render` with an empty div
 5. Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
-6. Use `home` and `home-did-mount` to create a reagent component called `home-component`
-7. Change the initially rendered component from `home` to `home-componen`
-8. Create `resources/public/css/screen.css` files and add necessary CSS
-9. Add CSS file to `resources/public/index.html`
+6. Use `home-render` and `home-did-mount` to create a reagent component called `home`
+7. Add externs
 
 #### Step 1: Create a new project
 
@@ -38,27 +34,27 @@ Add the script tag below, but replace `API_KEY` with you *actual* API key.
 <!DOCTYPE html>
 <html lang="en">
   <body>
-    <div id="app"> Loading... </div>
-<!-- ATTENTION \/ -->
+    <div id="app"></div>
+
+    <!-- ATTENTION \/ -->
     <!-- Google Maps -->
-     <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
-     <!-- Replace "API_KEY" with your actual key! -->
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
+    <!-- Replace "API_KEY" with your actual key! -->
+    <!-- ATTENTION /\ -->
+
+    <script src="js/compiled/app.js"></script>
+    <script>google_maps.core.main();</script>
   </body>
 </html>
 ```
 
-#### Step 4: Create div with a unique id in `home`
+#### Step 4: Create a function called `home-render` with an empty div
 
 Navigate to `src/cljs/google_maps/core.cljs`.
 
 ```clojure
-(defn home []
-  [:div [:h1 "Welcome to Reagent Cookbook!"]
-;; ATTENTION \/
-   [:div#map-canvas]
-;; ATTENTION /\
+(defn home-render []
+  [:div {:style {:height "300px"}} 
    ])
 ```
 
@@ -67,62 +63,46 @@ Navigate to `src/cljs/google_maps/core.cljs`.
 To center a map around Sydney, this is the javascript we need.
 
 ```javascript
-    var mapOptions = {
-        center: { lat: -34.397, lng: 150.644},
-        zoom: 8
-    };
+var mapOptions = {
+  center: { lat: -34.397, lng: 150.644},
+  zoom: 8
+};
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 ```
 
 Let's convert this to clojurescript and place in `home-did-mount`
 
 ```clojure
-(defn home-did-mount []
-  (let [map-canvas  (.getElementById js/document "map-canvas")
+(defn home-did-mount [this]
+  (let [map-canvas (reagent/dom-node this)
         map-options (clj->js {"center" (google.maps.LatLng. -34.397, 150.644)
                               "zoom" 8})]
         (js/google.maps.Map. map-canvas map-options)))
 ```
 
-#### Step 6: Use `home` and `home-did-mount` to create a reagent component called `home-component`
+#### Step 6: Use `home-render` and `home-did-mount` to create a reagent component called `home`
 
 ```clojure
-(defn home-component []
-  (reagent/create-class {:reagent-render home
+(defn home []
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 ```
 
-#### Step 7: Change the initially rendered component from `home` to `home-component`
+#### Step 7: Add externs
+
+For advanced compilation, we need to protect `google.maps.Map` and `google.maps.LatLng` from getting renamed. Add an `externs.js` file.
+
+```js
+google.maps = {};
+google.maps.Map = function(){};
+google.maps.LatLng = function() {};
+```
+
+Open `project.clj` and add a reference to the externs in the cljsbuild portion.
 
 ```clojure
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
-```
-
-#### Step 8: Create `resources/public/css/screen.css` files and add necessary CSS
-
-```css
-#map-canvas { height: 300px; }
-```
-
-#### Step 9:  Add CSS file to `resources/public/index.html`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <div id="app"> Loading... </div>
-    <!-- Google Maps -->
-     <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
-     <!-- Replace "API_KEY" with your actual key! -->
-<!-- ATTENTION \/ -->
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/screen.css">
-<!-- ATTENTION /\ -->
-    <script src="/js/app.js"></script>
-  </body>
-</html>
+:externs ["externs.js"]
 ```
 
 # Usage
@@ -130,11 +110,8 @@ Let's convert this to clojurescript and place in `home-did-mount`
 Compile cljs files.
 
 ```
-$ lein cljsbuild once
+$ lein clean
+$ lein cljsbuild once prod
 ```
 
-Start a server.
-
-```
-$ lein ring server
-```
+Open `resources/public/index.html`.

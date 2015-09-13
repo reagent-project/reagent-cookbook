@@ -1,7 +1,7 @@
 (ns sort-table.core
     (:require [reagent.core :as reagent]))
 
-(def state (reagent/atom {:sort-val :first-name :ascending true}))
+(def app-state (reagent/atom {:sort-val :first-name :ascending true}))
 
 (def table-contents
   [{:id 1 :first-name "Bram"    :last-name "Moolenaar"  :known-for "Vim"}
@@ -13,14 +13,14 @@
    {:id 7 :first-name "Yehuda"  :last-name "Katz"       :known-for "Ember"}])
 
 (defn update-sort-value [new-val]
-  (if (= new-val (:sort-val @state))
-    (swap! state assoc :ascending (not (:ascending @state)))
-    (swap! state assoc :ascending true))
-  (swap! state assoc :sort-val new-val))
+  (if (= new-val (:sort-val @app-state))
+    (swap! app-state update-in [:ascending] not)
+    (swap! app-state assoc :ascending true))
+  (swap! app-state assoc :sort-val new-val))
 
 (defn sorted-contents []
-  (let [sorted-contents (sort-by (:sort-val @state) table-contents)]
-    (if (:ascending @state)
+  (let [sorted-contents (sort-by (:sort-val @app-state) table-contents)]
+    (if (:ascending @app-state)
       sorted-contents
       (rseq sorted-contents))))
 
@@ -33,11 +33,18 @@
         [:th {:width "200" :on-click #(update-sort-value :known-for) } "Known For"]]]
     [:tbody
       (for [person (sorted-contents)]
-        ^{:key (:id person)} [:tr [:td (:first-name person)] [:td (:last-name person)] [:td (:known-for person)]])]])
+        ^{:key (:id person)} 
+        [:tr [:td (:first-name person)] 
+         [:td (:last-name person)] 
+         [:td (:known-for person)]])]])
 
-(defn table-component []
-  [:div {:id "table-wrap"}
+(defn home []
+  [:div {:style {:margin "auto"
+                 :padding-top "30px"
+                 :width "600px"}}
     [table]])
 
-(reagent/render-component [table-component]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

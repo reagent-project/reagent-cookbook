@@ -1,26 +1,33 @@
 (ns input-validation.core
-  (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]))
 
-(defn input-valid?
-  "Valid if input is less than 10 characters"
-  [x]
-  (> 10 (count x)))
+(defn password-valid?
+  "Valid if password is greater than 5 characters"
+  [password]
+  (> (count password) 5))
 
-(defn color [input]
+(defn password-color [password]
   (let [valid-color "green"
         invalid-color "red"]
-    (if (input-valid? input) 
-      valid-color invalid-color)))
+    (if (password-valid? password) 
+      valid-color 
+      invalid-color)))
+
+(def app-state (reagent/atom {:password nil}))
+
+(defn password []
+  [:input {:type "password"
+           :on-change #(swap! app-state assoc :password (-> % .-target .-value))}])
 
 (defn home []
-  (let [state (reagent/atom {:user-input "some value"})]
-    (fn []
-      [:div [:h1 "Welcome to Reagent Cookbook!"]
-       [:span {:style {:padding "20px"
-                       :background-color (color (@state :user-input))}}
-        [:input {:value (@state :user-input)
-                 :on-change #(swap! state assoc :user-input (-> % .-target .-value))
-                 }]]])))
+  [:div {:style {:margin-top "30px"}}
+   "Please enter a password greater than 5 characters. "
+   [:span {:style {:padding "20px"
+                   :background-color (password-color (@app-state :password))}}
+    [password]
+    ]])
 
-(reagent/render-component [home]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+

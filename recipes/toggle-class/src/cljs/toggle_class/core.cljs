@@ -1,5 +1,5 @@
 (ns toggle-class.core
-    (:require [reagent.core :as reagent]))
+  (:require [reagent.core :as reagent]))
 
 (defn toggle-class [a k class1 class2]
   (if (= (@a k) class1)
@@ -7,13 +7,13 @@
     (swap! a assoc k class1)))
 
 (defn home []
-  (let [state (reagent/atom {:btn-class "btn btn-default"})]
+  (let [local-state (reagent/atom {:btn-class "btn btn-default"})]
     (fn []
-      [:div [:h1 "Welcome to Reagent Cookbook!"]
-       [:div {:class (@state :btn-class)
-              :on-click #(toggle-class state :btn-class "btn btn-default" "btn btn-danger")}
-        "Click me"]
-       ])))
+      [:div {:class (@local-state :btn-class)
+             :on-click #(toggle-class local-state :btn-class "btn btn-default" "btn btn-danger")}
+       "Click me"])))
 
-(reagent/render-component [home]
-                          (.getElementById js/document "app"))
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+
