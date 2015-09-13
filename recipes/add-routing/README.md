@@ -18,7 +18,7 @@ You want to add routing using [Secretary](https://github.com/gf3/secretary) to y
 #### Step 1: Create a new project
 
 ```
-$ lein new reagent-figwheel add-routing
+$ lein new rc add-routing
 ```
 
 #### Step 2: Add Secretary to `project.clj` :dependencies vector

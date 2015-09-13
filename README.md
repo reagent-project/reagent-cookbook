@@ -32,7 +32,9 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
     * [Live Markdown Editor](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/markdown-editor)
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class)
 * Routing
-    * [add routing](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/add-routing) with secretary
+    * [add routing](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/add-routing) with [secretary](https://github.com/gf3/secretary)
+* State
+    * [undo](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/undo) with [historian](https://github.com/reagent-project/historian)
 * Sidebar
     * [Simple Sidebar](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/simple-sidebar)
 * Tables
