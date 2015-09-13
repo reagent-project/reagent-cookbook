@@ -12,7 +12,7 @@ We are going to follow this [example](http://jqueryui.com/autocomplete/).
 2. Add necessary items to `resources/public/index.html`
 3. Add autocomplete element to `home-render`
 4. Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
-5. Use `home` and `home-did-mount` to create a reagent component called `home`
+5. Use `home-render` and `home-did-mount` to create a reagent component called `home`
 
 #### Step 1: Create a new project
 
@@ -40,7 +40,7 @@ $ lein new rc autocomplete
 </html>
 ```
 
-#### Step 3: Add autocomplete element to `home`
+#### Step 3: Add autocomplete element to `home-render`
 
 Navigate to `src/cljs/autocomplete/core.cljs`. This is the html we need.
 
