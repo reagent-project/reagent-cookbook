@@ -29,6 +29,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
     * [Leaflet](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/leaflet)
     * [Google Maps](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/google-maps)
 * Misc.
+    * [compare argv](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/compare-argv)
     * [Live Markdown Editor](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/markdown-editor)
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class)
 * Routing
