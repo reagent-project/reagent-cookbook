@@ -117,7 +117,8 @@ For advanced compilation, we need to protect `$.click` and `$.toggleClass` from 
 
 ```js
 var $ = function(){};
-$.highcharts = function(){};
+$.click = function(){};
+$.toggleClass = function(){};
 ```
 
 Open `project.clj` and add a reference to the externs in the cljsbuild portion.

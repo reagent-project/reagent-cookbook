@@ -14,6 +14,7 @@ You want to add routing using [Secretary](https://github.com/gf3/secretary) to y
 6. Create routes
 7. Create a `home` and `about` pages that link to each other
 8. Create a `current-page` multimethod that will return which page component to display based on `app-state`
+9. Update `main` to include `app-routes` and to render `current-page`
 
 #### Step 1: Create a new project
 
@@ -102,7 +103,7 @@ Secretary is a client-side router for clojurscript. We are going to create two r
   [:div ])
 ```
 
-#### Step 9: Update `main` include `app-routes` and to render `current-page`
+#### Step 9: Update `main` to include `app-routes` and to render `current-page`
 
 ```clojure
 (defn ^:export main []

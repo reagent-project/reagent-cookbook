@@ -1,14 +1,12 @@
 # reagent-server-rendering
 
-
-
 ## Problem
 
 You want to Reagent to generate HTML on the server and send a rendered page to the browser.
 
 ## Solution
 
-We're going to follow [this example])https://carouselapps.com/2015/09/11/isomorphic-clojurescriptjavascript-for-pre-rendering-single-page-applications-part-1/_ using Nashorn to render Reagent on the server.
+We're going to follow [this example](https://carouselapps.com/2015/09/11/isomorphic-clojurescriptjavascript-for-pre-rendering-single-page-applications-part-1/) using Nashorn to render Reagent on the server.
 
 *Steps*
 
