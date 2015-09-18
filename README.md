@@ -8,6 +8,10 @@ For updates, follow us on twitter: [@ReagentProject](https://twitter.com/Reagent
 
 For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a45dA9eDA0Q) to us on youtube.
 
+## Basics
+
+* [Basic Component](https://github.com/reagent-project/reagent-cookbook/tree/master/basics/basic-component)
+
 ## Recipes
 
 * Animation
