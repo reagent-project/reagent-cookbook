@@ -42,7 +42,7 @@ In the end, `foo` `bar` and `baz` all produce the same reagent component! For mo
 
 ---
 
-Let's try this all out!  Create a new project.
+Let's create a project and try this out.
 
 ```
 $ lein new rc basic-component
