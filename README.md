@@ -11,6 +11,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 ## Basics
 
 * [Basic Component](https://github.com/reagent-project/reagent-cookbook/tree/master/basics/basic-component)
+* [Component-level State](https://github.com/reagent-project/reagent-cookbook/tree/master/basics/component-level-state)
 * [Cursors](https://github.com/reagent-project/reagent-cookbook/tree/master/basics/cursors)
 
 ## Recipes

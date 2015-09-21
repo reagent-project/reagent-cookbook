@@ -48,7 +48,7 @@ Let's create a project and try this out.
 $ lein new rc basic-component
 ```
 
-Navigate to `src/cljs/basic_component.cljs` and make it look like this.
+Navigate to `src/cljs/basic_component/core.cljs` and make it look like this.
 
 ```clojure
 (ns basic-component.core

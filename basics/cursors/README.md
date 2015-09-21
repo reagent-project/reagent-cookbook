@@ -25,19 +25,13 @@ Next, let's create a cursor and a reagent component to look inside.
 
 (defn inside-foo-cursor []
   [:div (str "Inside foo-cursor: " @foo-cursor)])
+
+;; Inside foo-cursor: {:bar "Hello, world!", :baz {:quux "Woot"}}
 ```
 
 The `reagent/cursor` function takes a reagent atom and a path inside that reagent atom.  The path we provided was `[:foo]`. Notice how it is wrapped in `[ ]`, this is just a convenient way to traverse a nested map structure.  Let's make a few more cursors to understand this a little better.
 
 ```clojure
-(def foo-cursor (reagent/cursor app-state [:foo]))
-
-(defn inside-foo-cursor []
-  [:div (str "Inside foo-cursor: " @foo-cursor)])
-
-;; Inside foo-cursor: {:bar "Hello, world!", :baz {:quux "Woot"}}
-
-
 (def foobar-cursor (reagent/cursor app-state [:foo :bar]))
 
 (defn inside-foobar-cursor []
@@ -72,7 +66,7 @@ Let's create a project and try this out.
 $ lein new rc basic-component
 ```
 
-Navigate to `src/cljs/cursors.cljs` and make it look like this.
+Navigate to `src/cljs/cursors/core.cljs` and make it look like this.
 
 ```clojure
 (ns cursors.core
