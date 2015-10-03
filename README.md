@@ -72,3 +72,9 @@ Also, I would love a PR for:
 
 * Adding the right externs for advanced compilation of the *nvd3* recipe (it's inside old-recipes for now)
 * Adding the right externs for advanced compilation of the *mermaid* recipe (it's inside old-recipes for now)
+
+## LICENSE
+
+Copyright © 2015 Matthew Jaoudi
+
+Distributed under the The MIT License (MIT).
