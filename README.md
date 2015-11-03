@@ -21,6 +21,8 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 * Bootstrap
     * [bootstrap modal window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-modal)
     * [bootstrap-datepicker](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-datepicker)
+* Canvas
+    * [Canvas fills div](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/canvas-fills-div)
 * Charting
     * [highcharts](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/highcharts)
     * [morris](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/morris)

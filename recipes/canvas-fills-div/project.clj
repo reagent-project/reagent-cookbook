@@ -13,5 +13,4 @@
                         :source-paths ["src/cljs"]
                         :compiler {:output-to "resources/public/js/compiled/app.js"
                                    :optimizations :advanced
-                                   :pretty-print false
-                                   :externs ["externs.js"]}}]})
+                                   :pretty-print false}}]})
