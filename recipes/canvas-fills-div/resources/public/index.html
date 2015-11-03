@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      html, body {
+        margin:0;
+        padding:0;
+        height:100%;
+      }
+
+      div#app {
+          height: 100%;
+      }
+
+      div.with-canvas {
+          margin: 0px;
+          padding: 0px;
+          border: 0px;
+
+          height: 100%;
+      }
+
+      div.with-canvas canvas {
+          display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="js/compiled/app.js"></script>
+    <script>canvas_fills_div.core.main();</script>
+  </body>
+</html>
