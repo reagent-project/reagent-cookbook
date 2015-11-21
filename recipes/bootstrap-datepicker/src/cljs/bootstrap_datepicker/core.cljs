@@ -8,7 +8,7 @@
   (.datepicker (js/$ (reagent/dom-node this)) (clj->js {:format "dd/mm/yyyy"})))
 
 (defn home []
-  (reagent/create-class {:reagent-render home-render
+  (reagent/create-class {:render home-render
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
