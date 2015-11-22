@@ -86,7 +86,7 @@ The `.ready` method is used to assure that the DOM node exists on the page befor
 
 ```clojure
 (defn home []
-  (reagent/create-class {:reagent-render home-render
+  (reagent/create-class {:render home-render
                          :component-did-mount home-did-mount}))
 ```
 

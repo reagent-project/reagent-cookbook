@@ -17,6 +17,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 ## Recipes
 
 * Animation
+    * [mojs animation](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/mojs-animation)
     * [ReactCSSTransitionGroup](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/ReactCSSTransitionGroup)
 * Bootstrap
     * [bootstrap modal window](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/bootstrap-modal)

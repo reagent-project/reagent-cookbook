@@ -11,9 +11,9 @@ By comparing the new values with the old, we can identify which arguments trigge
 *Steps*
 
 1. Create a new project
-1. Add css to `resources/public/index.html`
-1. Create a component which compares prior vs current arguments
-1. Update the `home` component to have two atoms and buttons to increment each one
+2. Add css to `resources/public/index.html`
+3. Create a component which compares prior vs current arguments
+4. Update the `home` component to have two atoms and buttons to increment each one
 
 #### Step 1: Create a new project
 
