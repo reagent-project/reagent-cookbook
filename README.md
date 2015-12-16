@@ -52,6 +52,8 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 * Tables
     * [DataTables](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/data-tables)
 	* [sortable table](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/sort-table)
+* Testing
+	* [test-example with lein-doo](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example)
 * Validation
     * [input validation (color-coded)](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/input-validation)
 
