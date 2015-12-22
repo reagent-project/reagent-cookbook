@@ -6,10 +6,10 @@ You want to add [cljs.test](https://github.com/clojure/clojurescript/blob/master
 
 *Steps*
 
-0. Follow all of the instructions in the [test-example](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example) recipe.
-1. Add [cljs-react-test](https://github.com/bensu/cljs-react-test) and [dommy](https://github.com/Prismatic/dommy) to `project.clj` :dependencies vector, as well as change react to react-with-addons
-2. Add an increment button to `core.cljs`
-3. Add a test that will simulate the on-click event
+1. Follow all of the instructions in the [test-example](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example) recipe.
+2. Add [cljs-react-test](https://github.com/bensu/cljs-react-test) and [dommy](https://github.com/Prismatic/dommy) to `project.clj` :dependencies vector, as well as change react to react-with-addons
+3. Add an increment button to `core.cljs`
+4. Add a test that will simulate the on-click event
 
 #### Step 1: Follow all of the instructions in the [test-example](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example) recipe.
 

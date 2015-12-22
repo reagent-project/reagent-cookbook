@@ -55,6 +55,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 * Testing
     * [test-example with lein-doo](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example)
     * [test-example with lein-doo and ReactTestUtils](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example-with-ReactTestUtils)
+	* [test-example with lein-doo and test.check](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example-with-test-check)
 * Validation
     * [input validation (color-coded)](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/input-validation)
 
