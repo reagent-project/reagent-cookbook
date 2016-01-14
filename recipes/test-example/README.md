@@ -8,7 +8,7 @@ You want to add [cljs.test](https://github.com/clojure/clojurescript/blob/master
 
 1. Create a new project
 2. Add lein-doo to `project.clj` :plugins vector
-3. Add `test` build to `project.clj
+3. Add `test` build to `project.clj`
 4. Add a test file with a `deftest`
 5. Add a test runner
 
