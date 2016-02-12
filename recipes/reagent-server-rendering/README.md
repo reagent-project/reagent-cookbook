@@ -112,7 +112,7 @@ The `render-page` function will acquire an engine from the pool and call the `re
       (render-page page-id)]
      (include-js "js/compiled/app.js")
      [:script {:type "text/javascript"}
-      (str "main('" page-id "');")]]]))
+      (str "reagent_server_rendering.core.main('" page-id "');")]]]))
 ```
 
 The `page` function uses Hiccup to generate a static page and inject the generated HTML produced by the `render-page` function into it.
@@ -127,6 +127,8 @@ We'll now define routes for `/` and `/about` pages. Each route will pass a uniqu
   (GET "/about" [] (page "about"))
   (resources "/")
   (not-found "Not Found"))
+
+(def app (wrap-defaults app-routes site-defaults))
 ```
 
 ### Step 7: Modify the ClojureScript namespace to provide functions to render the pages on the server and the client
@@ -156,3 +158,20 @@ We'll now define routes for `/` and `/about` pages. Each route will pass a uniqu
 ```
 
 The `render-page` function will render the HTML string given the page id that will be served from the server. The `main` function will render Reagent components at runtime when ClojureScript is loaded in the browser.
+
+# Usage
+
+```bash
+# watch files for changes and rebuild...
+lein cljsbuild auto
+
+# ...or only build once
+lein clsjbuild once
+
+# start the server (in another terminal if you watch)
+lein ring server-headless
+```
+
+Open [localhost:3000](http://localhost:3000) to see the page rendered.
+
+If you're seeing an error like this: `java.lang.IllegalArgumentException: No implementation of method: :make-reader of protocol: #'clojure.java.io/IOFactory found for class: nil`, you probably forgot to build cljs, or there was an error building it.
