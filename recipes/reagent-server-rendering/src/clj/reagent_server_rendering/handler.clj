@@ -45,7 +45,7 @@
       (render-page page-id)]
      (include-js "js/compiled/app.js")
      [:script {:type "text/javascript"}
-      (str "main('" page-id "');")]]]))
+      (str "reagent_server_rendering.core.main('" page-id "');")]]]))
 
 (defroutes app-routes
   (GET "/" [] (page "home"))
