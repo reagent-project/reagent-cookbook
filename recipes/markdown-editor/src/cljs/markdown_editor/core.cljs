@@ -1,5 +1,6 @@
 (ns markdown-editor.core
-  (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]))
+
 
 (defn editor [content]
   [:textarea.form-control
@@ -28,7 +29,7 @@
   (when (not-empty @content)
     (markdown-component @content)))
 
-(defn page []
+(defn home []
   (let [content (reagent/atom nil)]
     (fn []
       [:div
@@ -38,12 +39,13 @@
          [:div.col-sm-6
           [:h3 "Editor"]
           [editor content]]
+
          [:div.col-sm-6
           [:h3 "Preview"]
           [preview content]]
+
          ]]])))
 
-
 (defn ^:export main []
-  (reagent/render [page]
+  (reagent/render [home]
                   (.getElementById js/document "app")))

@@ -1,1 +1,0 @@
-(ns markdown-editor.core)
