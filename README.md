@@ -59,8 +59,6 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 * Validation
     * [input validation (color-coded)](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/input-validation)
 
-If you would like to see a *demo* of a recipe, clone this repo and open the recipe's index.html file.
-
 ## Common Starting Point for Recipes
 
 The starting point for reagent-cookbook recipes is [reagent-cookbook-template](https://github.com/gadfly361/reagent-cookbook-template).
