@@ -77,7 +77,7 @@ Rather than using jQuery to select the element by id, we can get the DOM node di
 
 ```clojure
 (defn home-did-mount [this]
-  (.DataTable (js/$ (reagent/dom-node this))))
+  (.draggable (js/$ (reagent/dom-node this))))
 ```
 
 
