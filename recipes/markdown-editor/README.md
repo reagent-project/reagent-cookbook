@@ -14,11 +14,10 @@ You want to create a live Markdown editor with code syntax highlighting in the p
 2. Add necessary items to `resources/public/index.html`
 3. Create a local reagent atom in `home`
 4. Create the `editor` component and add it to `home`
-5. Create the `markdown` and `preview` components
-6. Add the `preview` section to the right of the `editor`
-7. Create a function to apply syntax highlighting the code blocks in the `preview`
-8. Post-process the preview content using the `highlight-code` function
-9. Add externs to your project
+5. Create the `markdown` component
+6. Create the `preview` component and add it to `home`
+7. Add externs to your project
+
 
 #### Step 1: Create a new project
 
@@ -87,24 +86,55 @@ Binding the atom to the editor
        ])))
 ```
 
-#### Step 5: Create the `markdown` and `preview` components
+#### Step 5: Create the `markdown` component
 
-We'll be using [marked.js]() to compile the Markdown
+First, let's create the render function that will convert the content
+to markdown via marked.js.
+
+```clojure
+(defn markdown-render [content]
+  [:div {:dangerouslySetInnerHTML
+         {:__html (-> content str js/marked)}}])
+```
+
+Second, let's create the will-mount function, which will retrieve the
+code blocks with a js query selector and use highlight.js for the
+syntax highlighting.
+
+```clojure
+(defn highlight-code [html-node]
+  (let [nodes (.querySelectorAll html-node "pre code")]
+    (loop [i (.-length nodes)]
+      (when-not (neg? i)
+        (when-let [item (.item nodes i)]
+          (.highlightBlock js/hljs item))
+        (recur (dec i))))))
+
+(defn markdown-did-mount [this]
+  (let [node (reagent/dom-node this)]
+    (highlight-code node)))
+```
+
+Finally, let's create the markdown-component.
 
 ```clojure
 (defn markdown-component [content]
-  (fn []
-    [:div {:dangerouslySetInnerHTML
-           {:__html (-> content str js/marked)}}]))
-
-(defn preview [content]
-  (when (not-empty @content)
-    (markdown-component @content)))
+  (reagent/create-class
+   {:reagent-render      markdown-render
+    :component-did-mount markdown-did-mount}))
 ```
 
-#### Step 6: Add the `preview` section to the right of the `editor`
+#### Step 6: Create the `preview` component and add it to `home`
+
+Show a preview of the markdown.
 
 ```clojure
+;; ATTENTION 1 of 2 \/
+(defn preview [content]
+  (when (not-empty @content)
+    [markdown-component @content]))
+;; ATTENTION 1 of 2 /\
+
 (defn home []
   (let [content (reagent/atom nil)]
     (fn []
@@ -115,52 +145,23 @@ We'll be using [marked.js]() to compile the Markdown
          [:div.col-sm-6
           [:h3 "Editor"]
           [editor content]]
-         ;; ATTENTION \/
+         ;; ATTENTION 2 of 2\/
          [:div.col-sm-6
           [:h3 "Preview"]
           [preview content]]
-         ;; ATTENTION /\
+         ;; ATTENTION 2 of 2/\
          ]]])))
 ```
 
-#### Step 7: Create a function to apply syntax highlighting the code blocks in the preview
 
-Retrieve the code blocks with a js query selector and use highlight.js for the syntax highlighting
-
-```clojure
-(defn highlight-code [html-node]
-  (let [nodes (.querySelectorAll html-node "pre code")]
-    (loop [i (.-length nodes)]
-      (when-not (neg? i)
-        (when-let [item (.item nodes i)]
-          (.highlightBlock js/hljs item))
-        (recur (dec i))))))
-```
-
-#### Step 8: Post-process the preview content using the `highlight-code` function
-
-Use `with-meta` to add metadata to the `fn` that we wrote earlier. We want to add `highlight-code` to `:component-did-mount` so that it will be called *after* the HTML has been generated and the preview has been mounted in the browser DOM. 
-
-```clojure
-(defn markdown-component [content]
-  [(with-meta
-     (fn []
-       [:div {:dangerouslySetInnerHTML
-              {:__html (-> content str js/marked)}}])
-     {:component-did-mount
-      (fn [this]
-        (let [node (reagent/dom-node this)]
-          (highlight-code node)))})])
-```
-
-#### Step 9: Add externs to your project
+#### Step 7: Add externs to your project
 
 Create `externs.js`. This is necessary if you will be building this code for production since the compiler will munge function names that belong to external libraries. 
 
 ```javascript
 var hljs = {};
 hljs.highlightBlock = function(){};
-marked = function(){};
+var marked = function(){};
 ```
 
 You'll need to specify this file in your `project.clj` in `:externs`.

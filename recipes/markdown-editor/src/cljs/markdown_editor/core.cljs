@@ -1,5 +1,5 @@
 (ns markdown-editor.core
-    (:require [reagent.core :as reagent]))
+  (:require [reagent.core :as reagent]))
 
 
 (defn editor [content]
@@ -15,19 +15,22 @@
           (.highlightBlock js/hljs item))
         (recur (dec i))))))
 
+(defn markdown-render [content]
+  [:div {:dangerouslySetInnerHTML
+         {:__html (-> content str js/marked)}}])
+
+(defn markdown-did-mount [this]
+  (let [node (reagent/dom-node this)]
+    (highlight-code node)))
+
 (defn markdown-component [content]
-  [(with-meta
-     (fn []
-       [:div {:dangerouslySetInnerHTML
-              {:__html (-> content str js/marked)}}])
-     {:component-did-mount
-      (fn [this]
-        (let [node (reagent/dom-node this)]
-          (highlight-code node)))})])
+  (reagent/create-class
+   {:reagent-render      markdown-render
+    :component-did-mount markdown-did-mount}))
 
 (defn preview [content]
   (when (not-empty @content)
-    (markdown-component @content)))
+    [markdown-component @content]))
 
 (defn home []
   (let [content (reagent/atom nil)]

@@ -1,3 +1,3 @@
 var hljs = {};
 hljs.highlightBlock = function(){};
-marked = function(){};
+var marked = function(){};
