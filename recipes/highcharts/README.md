@@ -128,7 +128,7 @@ Let's convert this to clojurescript and place in `home-did-mount`.  However, let
 
 ```clojure
 (defn home-did-mount [this]
-  (js/Highcharts.Chart. (clj->js (assoc-in chart-config [:chart :renderTo] (dom-node this)))))
+  (js/Highcharts.Chart. (dom-node this) (clj->js chart-config)))
 ```
 
 Above `home-did-mount`, define `chart-config`.
