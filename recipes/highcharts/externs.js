@@ -1,2 +1,2 @@
-var $ = function(){};
-$.highcharts = function(){};
+var Highcharts;
+Highcharts.Chart = function(){};
