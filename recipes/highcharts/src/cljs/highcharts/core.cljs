@@ -31,12 +31,12 @@
    })
 
 (defn home-render []
-  [:div {:style {:min-width "310px" :max-width "800px" 
+  [:div {:style {:min-width "310px" :max-width "800px"
                  :height "400px" :margin "0 auto"}}])
 
 (defn home-did-mount [this]
   (js/Highcharts.Chart. (reagent/dom-node this)
-                        (clj->js chart-config))))
+                        (clj->js chart-config)))
 
 (defn home []
   (reagent/create-class {:reagent-render home-render
@@ -45,4 +45,3 @@
 (defn ^:export main []
   (reagent/render [home]
                   (.getElementById js/document "app")))
-
