@@ -34,7 +34,7 @@ These dependnecies will provide the necessary externs for the advanced compilati
 
 ```html
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 ```
 
 #### Step 4: Create a typeahead element
