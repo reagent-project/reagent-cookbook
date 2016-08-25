@@ -42,6 +42,8 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
     * [Live Markdown Editor](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/markdown-editor)
 	* [server-side-rendering](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/reagent-server-rendering)
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class)
+	* [file upload with filestack](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/file-upload)
+	* [typeahead](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/typeaheadjs)
 * Routing
     * [add routing](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/add-routing) with secretary
 * Sidebar
