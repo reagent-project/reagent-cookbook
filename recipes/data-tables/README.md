@@ -15,6 +15,11 @@ We are going to follow this [example](http://www.datatables.net/examples/basic_i
 5. Use `home-render` and `home-did-mount` to create a reagent component called `home`
 6. Add externs
 
+## NB This is for static-data only
+
+DataTables will only work so long as React never has to update the DOM after it's been modified by jQuery. If
+you intend to modify the content of the table from within Reagent then DataTables will stop working predictably.
+
 #### Step 1: Create a new project
 
 ```
