@@ -91,7 +91,13 @@ Let's convert this to clojurescript and place in `home-did-mount`
 
 #### Step 7: Add externs
 
-For advanced compilation, we need to protect `google.maps.Map` and `google.maps.LatLng` from getting renamed. Add an `externs.js` file.
+For [advanced compilation](https://clojurescript.org/reference/advanced-compilation), we need to protect `google.maps.Map` and `google.maps.LatLng` from getting renamed. Add a dependency on the [cljsjs google-maps package](https://github.com/cljsjs/packages/tree/master/google-maps), which provides externs for the Google Maps API:
+
+```clojure
+:dependencies [cljsjs/google-maps "3.18-1"]
+```
+
+Alternatively [provide externs](https://clojurescript.org/reference/advanced-compilation#providing-externs) by creating an `externs.js` file:
 
 ```js
 google.maps = {};
