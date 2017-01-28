@@ -44,6 +44,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 	* [toggle class](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/toggle-class)
 	* [file upload with filestack](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/file-upload)
 	* [typeahead](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/typeaheadjs)
+	* [editable label](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/editable-label)
 * Routing
     * [add routing](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/add-routing) with secretary
 * Sidebar
