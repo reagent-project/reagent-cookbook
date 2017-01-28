@@ -2,7 +2,7 @@
 
 It is encouraged that most/all of your application's state is held in a top-level reagent atom (often called `app-state` or `app-db`). However, sometimes it just makes more sense to have component-level state (e.g., whether or not a button is toggled).
 
-To create component-level state, we are going to create a [Form-2](https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-2--a-function-returning-a-function) reagent component.  In other words, we are going to create a function, that returns a fucntion, that returns hiccup.
+To create component-level state, we are going to create a [Form-2](https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-2--a-function-returning-a-function) reagent component.  In other words, we are going to create a function, that returns a function, that returns hiccup.
 
 
 ```clojure

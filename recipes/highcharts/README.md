@@ -35,9 +35,6 @@ $ lein new rc highcharts
     <div id="app"></div>
 
     <!-- ATTENTION 2 of 2 \/ -->
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <!-- Highcharts -->
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <!-- ATTENTION 2 of 2 /\ -->
@@ -131,8 +128,7 @@ Let's convert this to clojurescript and place in `home-did-mount`.  However, let
 
 ```clojure
 (defn home-did-mount [this]
-  (.highcharts (js/$ (reagent/dom-node this))
-               (clj->js chart-config)))
+  (js/Highcharts.Chart. (reagent/dom-node this) (clj->js chart-config)))
 ```
 
 Above `home-did-mount`, define `chart-config`.
@@ -181,8 +177,8 @@ Above `home-did-mount`, define `chart-config`.
 For advanced compilation, we need to protect `$.highcharts` from getting renamed. Add an `externs.js` file.
 
 ```js
-var $ = function(){};
-$.highcharts = function(){};
+var Highcharts;
+Highcharts.Chart = function(){};
 ```
 
 Open `project.clj` and add a reference to the externs in the cljsbuild portion.

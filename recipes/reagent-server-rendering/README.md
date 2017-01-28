@@ -166,7 +166,7 @@ The `render-page` function will render the HTML string given the page id that wi
 lein cljsbuild auto
 
 # ...or only build once
-lein clsjbuild once
+lein cljsbuild once
 
 # start the server (in another terminal if you watch)
 lein ring server-headless

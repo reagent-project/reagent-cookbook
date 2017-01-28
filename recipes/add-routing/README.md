@@ -64,7 +64,7 @@ Add browser history.
 
 #### Step 6: Create routes
 
-Secretary is a client-side router for clojurscript. We are going to create two routes and prefix them with `#`.  When a user hits the `#/` route, then the key `:page` in `app-sate` will get the value of `:home`.  When a user hits the `#/about` route, then the key `:page` in `app-state` will get the value of `:about`.  Later we will create a function that will dispatch to the correct reagent component based on the keys `:home` and `:about`.
+Secretary is a client-side router for clojurscript. We are going to create two routes and prefix them with `#`.  When a user hits the `#/` route, then the key `:page` in `app-state` will get the value of `:home`.  When a user hits the `#/about` route, then the key `:page` in `app-state` will get the value of `:about`.  Later we will create a function that will dispatch to the correct reagent component based on the keys `:home` and `:about`.
 
 ```clojure
 (defn app-routes []
