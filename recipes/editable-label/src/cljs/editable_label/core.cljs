@@ -1,0 +1,32 @@
+(ns editable-label.core
+    (:require [reagent.core :as reagent]))
+
+(defn label-edit
+  [item]
+  (let [form (reagent/atom item)
+        edit? (reagent/atom false)
+        input-component (fn [] [:input.text {:value @form
+                                             :on-change #(reset! form (-> % .-target .-value))
+                                             :on-key-press (fn [e]
+                                                             (when (= 13 (.-charCode e))
+                                                             (do
+                                                               (reset! edit? false)
+                                                               (reset! form @form))))
+                                             :on-mouse-leave #(do (reset! edit? false)
+                                                                (reset! form @form))}])]
+   (fn []
+    [:div
+     (if-not @edit?
+       [:label {:on-double-click #(reset! edit? true)} @form]
+       [input-component])])))
+
+(defn home []
+  [:div.container
+   [:h1 "Editing Labels"]
+   [label-edit (str "Double-click to edit")]
+   [label-edit (str "Edit me!!")]])
+
+(defn ^:export main []
+  (reagent/render [home]
+                  (.getElementById js/document "app")))
+
