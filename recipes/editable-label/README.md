@@ -22,16 +22,15 @@ $ lein new rc editable-label
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <title>Editing Labels</title>
   <body>
-    <div class "container">
-     <div id="app"></div>
-    </div>
 
+    <!-- Attention \/ -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- Attention /\ -->
+
+    <div id="app"></div>
     <script src="js/compiled/app.js"></script>
     <script>editable_label.core.main();</script>
-
   </body>
 </html>
 ```
@@ -45,25 +44,25 @@ or moving your mouse out of the element will save the inputed text and convert
 the 'input.text' back into a 'label'
 
 ```clojure
-(defn label-edit
-  [item]
-  (let [form (reagent/atom item)
-        edit? (reagent/atom false)
-        input-component (fn [] [:input.text {:value @form
-                                             :on-change #(reset! form (-> % .-target .-value))
-                                             :on-key-press (fn [e]
-                                                             (when (= 13 (.-charCode e))
-                                                             (do
-                                                               (reset! edit? false)
-                                                               (reset! form @form))))
-                                             :on-mouse-leave #(do (reset! edit? false)
-                                                                (reset! form @form))}])]
-   (fn []
-    [:div
-     (if-not @edit?
-       [:label {:on-double-click #(reset! edit? true)} @form]
-       [input-component])])))
-
+(defn label-edit [item]
+  (let [form            (reagent/atom item)
+        edit?           (reagent/atom false)
+        input-component (fn []
+                          [:input.text
+                           {:value          @form
+                            :on-change      #(reset! form (-> % .-target .-value))
+                            :on-key-press   (fn [e]
+                                              (let [enter? (= 13 (.-charCode e))]
+                                                (when enter?
+                                                  (reset! edit? false)
+                                                  (reset! form @form))))
+                            :on-mouse-leave #(do (reset! edit? false)
+                                                 (reset! form @form))}])]
+    (fn [item]
+      [:div
+       (if-not @edit?
+         [:label {:on-double-click #(reset! edit? true)} @form]
+         [input-component])])))
 ```
 #### Step 4: Call 'label-edit' component with the initial label name
 
