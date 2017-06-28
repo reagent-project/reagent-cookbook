@@ -2,7 +2,7 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.122"]
                  [reagent "0.5.1"]
-                 [cljsjs/filestack "2.4.10-0"]]
+                 [funcool/promesa "1.8.1"]]
 
   :source-paths ["src/clj"]
 
@@ -10,8 +10,9 @@
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
 
-  :cljsbuild {:builds [{:id "prod"
+  :cljsbuild {:builds [{:id           "prod"
                         :source-paths ["src/cljs"]
-                        :compiler {:output-to "resources/public/js/compiled/app.js"
-                                   :optimizations :advanced
-                                   :pretty-print false}}]})
+                        :compiler     {:output-to     "resources/public/js/compiled/app.js"
+                                       :optimizations :advanced
+                                       :pretty-print  false
+                                       :externs       ["externs.js"]}}]})
