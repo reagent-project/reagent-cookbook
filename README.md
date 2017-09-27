@@ -55,7 +55,7 @@ For video tutorials, [subscribe](https://www.youtube.com/channel/UC1UP5LiNNNf0a4
 * Tables
     * [DataTables](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/data-tables)
 	* [sortable table](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/sort-table)
-	* [filter table] (https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/filter-table)
+	* [filter table](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/filter-table)
 * Testing
     * [test-example with lein-doo](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example)
     * [test-example with lein-doo and ReactTestUtils](https://github.com/reagent-project/reagent-cookbook/tree/master/recipes/test-example-with-ReactTestUtils)
