@@ -6,7 +6,7 @@ You want to create a live Markdown editor with code syntax highlighting in the p
 
 [Demo](https://rawgit.com/lacarmen/reagent-markdown-editor/master/demo/editor.html)
 
-[Blog post](http://carmenla.me/blog/posts/2015-06-23-reagent-live-markdown-editor.html) about this project.
+[Blog post](http://carmenla.me/blog/2015-06-23-reagent-live-markdown-editor/) about this project.
 
 *Steps*
 
