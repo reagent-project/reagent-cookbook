@@ -63,7 +63,7 @@ Take a look at the foobazquux-cursor, the path is `[:foo :baz :quux]` and we can
 Let's create a project and try this out.
 
 ```
-$ lein new rc basic-component
+$ lein new rc cursors
 ```
 
 Navigate to `src/cljs/cursors/core.cljs` and make it look like this.
