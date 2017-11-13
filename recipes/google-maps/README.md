@@ -76,9 +76,9 @@ Let's convert this to clojurescript and place in `home-did-mount`
 ```clojure
 (defn home-did-mount [this]
   (let [map-canvas (reagent/dom-node this)
-        map-options (clj->js {"center" (google.maps.LatLng. -34.397, 150.644)
+        map-options (clj->js {"center" (js/google.maps.LatLng. -34.397, 150.644)
                               "zoom" 8})]
-        (js/google.maps.Map. map-canvas map-options)))
+    (js/google.maps.Map. map-canvas map-options)))
 ```
 
 #### Step 6: Use `home-render` and `home-did-mount` to create a reagent component called `home`
