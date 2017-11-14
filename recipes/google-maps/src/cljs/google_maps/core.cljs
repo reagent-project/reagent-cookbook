@@ -2,14 +2,14 @@
     (:require [reagent.core :as reagent]))
 
 (defn home-render []
-  [:div {:style {:height "300px"}} 
+  [:div {:style {:height "300px"}}
    ])
 
 (defn home-did-mount [this]
   (let [map-canvas (reagent/dom-node this)
-        map-options (clj->js {"center" (google.maps.LatLng. -34.397, 150.644)
+        map-options (clj->js {"center" (js/google.maps.LatLng. -34.397, 150.644)
                               "zoom" 8})]
-        (js/google.maps.Map. map-canvas map-options)))
+    (js/google.maps.Map. map-canvas map-options)))
 
 (defn home []
   (reagent/create-class {:reagent-render home-render
@@ -18,4 +18,3 @@
 (defn ^:export main []
   (reagent/render [home]
                   (.getElementById js/document "app")))
-
