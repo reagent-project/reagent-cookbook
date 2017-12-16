@@ -28,7 +28,7 @@ Not including the inner function is a common mistake.
      [:button {:on-click #(swap! component-state update-in [:count] inc)} "Increment"]]))
 ```
 
-If you try to click the increment button in `foo-mistake` you will never see the counter increment. This is because the reagent atom, `component-local` is getting recreated with every re-render (and `:count` is therefore never successfully incremented).  Just to confirm that the component is actually re-rendering on-click, let's add a `console.log`.
+If you try to click the increment button in `foo-mistake` you will never see the counter increment. This is because the reagent atom, `component-state` is getting recreated with every re-render (and `:count` is therefore never successfully incremented).  Just to confirm that the component is actually re-rendering on-click, let's add a `console.log`.
 
 ```clojure
 ;; Don't do this
