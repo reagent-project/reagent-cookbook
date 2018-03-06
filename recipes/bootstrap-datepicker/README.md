@@ -9,7 +9,7 @@ We are going to follow this [example](http://runnable.com/UmOlOZbXvZRqAABU/boots
 *Steps*
 
 1. Create a new project
-2. Add necessary itmes to `resources/public/index.html`
+2. Add necessary items to `resources/public/index.html`
 3. Add text input to `home-render`
 4. Convert javascript to clojurescript and put inside a *did-mount* function called `home-did-mount`
 5. Use `home-render` and `home-did-mount` to create a reagent component called `home`
@@ -28,7 +28,7 @@ $ lein new rc bootstrap-datepicker
 <html lang="en">
   <body>
     <div id="app"></div>
-	
+
     <!-- ATTENTION \/ -->
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -36,10 +36,10 @@ $ lein new rc bootstrap-datepicker
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- datepicker -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/datepicker3.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
     <!-- ATTENTION /\ -->
-	
+
     <script src="js/compiled/app.js"></script>
     <script>bootstrap_datepicker.core.main();</script>
   </body>
@@ -48,7 +48,7 @@ $ lein new rc bootstrap-datepicker
 
 #### Step 3: Add text input to `home-render`
 
-Navigate to `src/cljs/bootstrap_datepicker/core.cljs`. 
+Navigate to `src/cljs/bootstrap_datepicker/core.cljs`.
 
 ```clojure
 (defn home-render []
@@ -71,7 +71,7 @@ Let's convert this to clojurescript and place in `home-did-mount`
 
 ```clojure
 (defn home-did-mount []
-  (.ready (js/$ js/document) 
+  (.ready (js/$ js/document)
           (fn [] (.datepicker (js/$ "#example1") (clj->js {:format "dd/mm/yyyy"})))))
 ```
 
@@ -86,7 +86,7 @@ The `.ready` method is used to assure that the DOM node exists on the page befor
 
 ```clojure
 (defn home []
-  (reagent/create-class {:render home-render
+  (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 ```
 
