@@ -11,6 +11,6 @@
 
   :cljsbuild {:builds [{:id "prod"
                         :source-paths ["src/cljs"]
-                        :compiler {:output-to "resources/public/js/compiled/filter_table.js"
+                        :compiler {:output-to "resources/public/js/compiled/app.js"
                                    :optimizations :advanced
                                    :pretty-print false}}]})
