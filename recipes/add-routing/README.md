@@ -41,7 +41,7 @@ Navigate to `src/cljs/add_routing/core.cljs` and update the `ns` to the followin
 ```clojure
 (ns add-routing.core
     (:require-macros [secretary.core :refer [defroute]])
-    (:import goog.History)
+    (:import goog.history.Html5History)
     (:require [secretary.core :as secretary]
               [goog.events :as events]
               [goog.history.EventType :as EventType]
@@ -54,7 +54,7 @@ Add browser history.
 
 ```clojure
 (defn hook-browser-navigation! []
-  (doto (History.)
+  (doto (Html5History.)
     (events/listen
      EventType/NAVIGATE
      (fn [event]
