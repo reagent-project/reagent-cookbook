@@ -25,7 +25,7 @@
 
       :component-did-mount
       (fn [ this ]
-        (reset! dom-node (reagent/dom-node this)))
+        (reset! dom-node (rdom/dom-node this)))
 
       :reagent-render
       (fn [ ]
@@ -42,7 +42,7 @@
   (reset! window-width (.-innerWidth js/window)))
 
 (defn ^:export main []
-  (rdom [home]
+  (rdom/render [home]
                   (.getElementById js/document "app"))
   (.addEventListener js/window "resize" on-window-resize))
 
