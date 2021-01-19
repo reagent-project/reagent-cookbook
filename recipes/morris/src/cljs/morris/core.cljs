@@ -1,5 +1,5 @@
 (ns morris.core
-    (:require [reagent.dom :as dom]
+    (:require [reagent.dom :as rdom]
               [reagent.core :as reagent]))
 
 (defn home-render []

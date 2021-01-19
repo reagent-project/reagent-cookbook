@@ -47,6 +47,8 @@
    [:p "selected state: " @typeahead-value]
    [typeahead]])
 
-(rdom/render [home] (.getElementById js/document "app"))
+(defn ^:export main []
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 
 

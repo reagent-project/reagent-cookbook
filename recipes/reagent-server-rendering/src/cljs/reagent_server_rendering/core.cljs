@@ -1,6 +1,6 @@
 (ns reagent-server-rendering.core
     (:require [reagent.core :as reagent]
-              [reagent.dom :as dom]))
+              [reagent.dom :as rdom]))
 
 (defn home-page []
   [:div [:h2 "Welcome to reagent-server-rendering"]

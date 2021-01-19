@@ -1,6 +1,6 @@
 (ns sort-table.core
     (:require [reagent.core :as reagent]
-              [reagent.dom :as dom]))
+              [reagent.dom :as rdom]))
 
 (def app-state (reagent/atom {:sort-val :first-name :ascending true}))
 
