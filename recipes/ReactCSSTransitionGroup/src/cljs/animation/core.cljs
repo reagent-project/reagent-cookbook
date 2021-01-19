@@ -62,5 +62,5 @@
 
 (defn ^:export main []
   (rdom/render [home]
-                  (.getElementById js/document "app")))
+               (.getElementById js/document "app")))
 
