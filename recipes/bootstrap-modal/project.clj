@@ -2,7 +2,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.773"]
                  [reagent "1.0.0"]
-                 [org.clojars.frozenlock/reagent-modals "0.2.3"]]
+                 [org.clojars.frozenlock/reagent-modals "0.2.8"]]
 
   :source-paths ["src/clj"]
 

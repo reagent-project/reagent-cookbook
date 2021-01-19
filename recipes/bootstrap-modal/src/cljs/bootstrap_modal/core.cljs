@@ -12,7 +12,7 @@
 (defn home []
   [:div
    [reagent-modals/modal-window]
-   ;; ATTNETION \/
+   ;; ATTENTION \/
    [modal-window-button]
    ;; ATTENTION /\
    ])
