@@ -1,5 +1,6 @@
 (ns mojs-animation.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.rdom :as rdom]))
 
 (defn translate-y [node]
   (fn [progress]
@@ -19,6 +20,6 @@
                          :component-did-mount animation-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [animation]
+  (rdom/render [animation]
                   (.getElementById js/document "app")))
 

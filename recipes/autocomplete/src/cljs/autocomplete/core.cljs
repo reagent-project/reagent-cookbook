@@ -1,5 +1,7 @@
 (ns autocomplete.core
-    (:require [reagent.core :as reagent]))
+    (:require
+      [reagent.core :as r]
+      [reagent.dom :as rdom]))
 
 (defn home-render []
   [:div.ui-widget
@@ -36,10 +38,10 @@
                          (clj->js {:source tags})))))
 
 (defn home []
-  (reagent/create-class {:reagent-render home-render
+  (r/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

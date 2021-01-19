@@ -1,6 +1,7 @@
 (ns file-upload.core
   (:require
    [reagent.core :as reagent]
+   [reagent.dom :as rdom]
    [promesa.core :as p]))
 
 
@@ -24,5 +25,5 @@
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))

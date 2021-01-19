@@ -1,5 +1,6 @@
 (ns reagent-server-rendering.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.dom :as dom]))
 
 (defn home-page []
   [:div [:h2 "Welcome to reagent-server-rendering"]
@@ -17,5 +18,5 @@
   (reagent/render-to-string [(get pages page-id)]))
 
 (defn ^:export main [page-id]
-  (reagent/render [(get pages page-id)] (.getElementById js/document "app")))
+  (rdom/render [(get pages page-id)] (.getElementById js/document "app")))
 

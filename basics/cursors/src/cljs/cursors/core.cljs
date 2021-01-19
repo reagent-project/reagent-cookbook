@@ -1,5 +1,6 @@
 (ns cursors.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.dom :as rdom]))
 
 (def app-state (reagent/atom {:foo {:bar "Hello, world!"
                                     :baz {:quux "Woot"}}}))
@@ -37,6 +38,6 @@
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

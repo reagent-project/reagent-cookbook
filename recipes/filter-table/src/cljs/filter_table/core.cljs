@@ -1,5 +1,6 @@
 (ns filter-table.core
   (:require [reagent.core :as reagent]
+            [reagent.dom :as rdom]
             [clojure.string :as string]))
 
 (def app-state
@@ -50,5 +51,5 @@
    [search-table]])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))

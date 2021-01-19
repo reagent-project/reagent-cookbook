@@ -1,5 +1,6 @@
 (ns typeahead.core
   (:require [reagent.core :as reagent]
+            [reagent.dom :as rdom]
             [clojure.string :as s]))
 
 (def states
@@ -46,6 +47,6 @@
    [:p "selected state: " @typeahead-value]
    [typeahead]])
 
-(reagent/render [home] (.getElementById js/document "app"))
+(rdom/render [home] (.getElementById js/document "app"))
 
 

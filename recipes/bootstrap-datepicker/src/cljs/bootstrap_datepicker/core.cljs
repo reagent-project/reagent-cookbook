@@ -1,5 +1,7 @@
 (ns bootstrap-datepicker.core
-    (:require [reagent.core :as reagent]))
+    (:require
+      [reagent.dom :as rdom]
+      [reagent.core :as reagent]))
 
 (defn home-render []
   [:input {:type "text" :placeholder "click to show datepicker"}])
@@ -12,5 +14,5 @@
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))

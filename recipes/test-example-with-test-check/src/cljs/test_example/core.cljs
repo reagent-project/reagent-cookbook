@@ -1,5 +1,6 @@
 (ns test-example.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.dom :as rdom]))
 
 (defn home []
   [:div
@@ -7,5 +8,5 @@
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))

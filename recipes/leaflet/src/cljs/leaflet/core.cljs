@@ -1,5 +1,6 @@
 (ns leaflet.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.dom :as dom]
+              [reagent.core :as reagent]))
 
 (defn home-render []
   [:div#map {:style {:height "360px"}}])
@@ -18,6 +19,6 @@
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

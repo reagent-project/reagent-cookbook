@@ -1,5 +1,7 @@
 (ns google-street-view.core
-    (:require [reagent.core :as reagent]))
+    (:require
+      [reagent.dom :as rdom]
+      [reagent.core :as reagent]))
 
 (def base-url 
   "http://maps.googleapis.com/maps/api/streetview?size=600x400&location=")
@@ -24,6 +26,6 @@
    [:img {:src (street-view-url (@app-state :street) (@app-state :city))}]])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

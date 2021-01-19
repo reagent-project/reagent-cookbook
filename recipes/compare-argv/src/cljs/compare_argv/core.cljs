@@ -1,5 +1,7 @@
 (ns compare-argv.core
-    (:require [reagent.core :as reagent]))
+    (:require
+      [reagent.dom :as rdom]
+      [reagent.core :as reagent]))
 
 
 
@@ -37,6 +39,6 @@
 
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

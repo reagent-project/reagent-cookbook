@@ -1,5 +1,6 @@
 (ns basic-component.core
-  (:require [reagent.core :as reagent]))
+  (:require [reagent.core :as reagent]
+            [reagent.dom :as rdom]))
 
 ;; Form-3 Component
 (defn foo []
@@ -22,6 +23,6 @@
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

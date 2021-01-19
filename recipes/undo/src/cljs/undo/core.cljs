@@ -1,5 +1,6 @@
 (ns undo.core
     (:require [reagent.core :as reagent]
+              [reagent.dom :as rdom]
               [historian.core :as hist]))
 
 (def app-state (reagent/atom {:counter 0}))
@@ -13,6 +14,6 @@
    [:button {:on-click #(hist/undo!)} "Undo"] ])
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

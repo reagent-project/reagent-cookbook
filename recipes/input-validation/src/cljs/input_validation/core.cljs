@@ -1,5 +1,6 @@
 (ns input-validation.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.dom :as rdom]
+              [reagent.core :as reagent]))
 
 (defn password-valid?
   "Valid if password is greater than 5 characters"
@@ -28,6 +29,6 @@
     ]])
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

@@ -1,5 +1,6 @@
 (ns markdown-editor.core
-  (:require [reagent.core :as reagent]))
+  (:require [reagent.dom :as dom]
+            [reagent.core :as reagent]))
 
 
 (defn editor [content]
@@ -50,5 +51,5 @@
          ]]])))
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))

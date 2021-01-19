@@ -1,5 +1,7 @@
 (ns droppable.core
-    (:require [reagent.core :as reagent]))
+    (:require
+      [reagent.dom :as rdom]
+      [reagent.core :as reagent]))
 
 (def app-state (reagent/atom {:drop-area {:class "ui-widget-header"
                                           :text "Drop here"}}))
@@ -46,6 +48,6 @@
    [drop-area]])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

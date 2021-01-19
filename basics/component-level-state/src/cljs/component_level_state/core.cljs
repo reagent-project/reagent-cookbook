@@ -1,5 +1,6 @@
 (ns component-level-state.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.dom :as rdom]))
 
 ;; Do this
 (defn foo []  ;; A function
@@ -46,6 +47,5 @@
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
-
+  (rdom/render [home]
+               (.getElementById js/document "app"))) 
