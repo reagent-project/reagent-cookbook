@@ -14,7 +14,7 @@
   [:div.btn.btn-default "Toggle Menu"])
 
 (defn menu-toggle-did-mount [this]
-  (.click (js/$ (reagent/dom-node this))
+  (.click (js/$ (rdom/dom-node this))
           (fn [e]
             (.preventDefault e)
             (.toggleClass (js/$ "#wrapper") "toggled") ;#wrapper will be the id of a div in our home component

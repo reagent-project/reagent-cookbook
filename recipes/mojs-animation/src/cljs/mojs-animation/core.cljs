@@ -13,7 +13,7 @@
     (clj->js
      {:repeat 999
       :delay 2000
-      :onUpdate (translate-y (reagent/dom-node this))}))))
+      :onUpdate (translate-y (rdom/dom-node this))}))))
 
 (defn animation []
   (reagent/create-class {:render (fn [] [:div.square])

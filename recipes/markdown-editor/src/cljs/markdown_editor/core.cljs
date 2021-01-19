@@ -21,7 +21,7 @@
          {:__html (-> content str js/marked)}}])
 
 (defn markdown-did-mount [this]
-  (let [node (reagent/dom-node this)]
+  (let [node (rdom/dom-node this)]
     (highlight-code node)))
 
 (defn markdown-component [content]

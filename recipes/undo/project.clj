@@ -2,7 +2,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.773"]
                  [reagent "1.0.0"]
-                 [historian "1.1.0"]]
+                 [historian "1.2.2"]]
 
   :source-paths ["src/clj"]
 

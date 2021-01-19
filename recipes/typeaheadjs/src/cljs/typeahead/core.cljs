@@ -22,7 +22,7 @@
          (callback))))
 
 (defn typeahead-mounted [this]
-  (.typeahead (js/$ (reagent/dom-node this))
+  (.typeahead (js/$ (rdom/dom-node this))
               (clj->js {:hint true
                         :highlight true
                         :minLength 1})

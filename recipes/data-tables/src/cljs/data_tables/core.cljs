@@ -30,7 +30,7 @@
     ]])
 
 (defn home-did-mount [this]
-  (.DataTable (js/$ (reagent/dom-node this))))
+  (.DataTable (js/$ (rdom/dom-node this))))
 
 
 (defn home []
@@ -39,5 +39,5 @@
 
 (defn ^:export main []
   (rdom/render [home]
-                  (.getElementById js/document "app")))
+               (.getElementById js/document "app")))
 

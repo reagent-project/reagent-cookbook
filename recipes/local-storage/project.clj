@@ -2,7 +2,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.773"]
                  [reagent "1.0.0"]
-                 [alandipert/storage-atom "1.2.4"]] ;?
+                 [alandipert/storage-atom "2.0.1"]] 
 
   :source-paths ["src/clj"]
 

@@ -9,7 +9,7 @@
    [:p "Drag me around"]])
 
 (defn home-did-mount [this]
-  (.draggable (js/$ (reagent/dom-node this))))
+  (.draggable (js/$ (rdom/dom-node this))))
 
 (defn home []
   (reagent/create-class {:reagent-render home-render

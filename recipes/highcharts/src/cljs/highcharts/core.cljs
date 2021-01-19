@@ -37,7 +37,7 @@
                  :height "400px" :margin "0 auto"}}])
 
 (defn home-did-mount [this]
-  (js/Highcharts.Chart. (reagent/dom-node this)
+  (js/Highcharts.Chart. (rdom/dom-node this)
                         (clj->js chart-config)))
 
 (defn home []
