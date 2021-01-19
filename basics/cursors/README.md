@@ -108,8 +108,8 @@ Navigate to `src/cljs/cursors/core.cljs` and make it look like this.
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 ```
 
 Compile cljs files.

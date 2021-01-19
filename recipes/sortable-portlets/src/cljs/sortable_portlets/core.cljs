@@ -1,5 +1,6 @@
 (ns sortable-portlets.core
-  (:require [reagent.core :as reagent]))
+  (:require [reagent.core :as reagent]
+            [reagent.dom :as rdom]))
 
 (defn home-render []
   [:div
@@ -49,6 +50,6 @@
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

@@ -1,5 +1,7 @@
 (ns highcharts.core
-    (:require [reagent.core :as reagent]))
+    (:require
+      [reagent.dom :as rdom]
+      [reagent.core :as reagent]))
 
 (def chart-config
   {:chart {:type "bar"}
@@ -35,7 +37,7 @@
                  :height "400px" :margin "0 auto"}}])
 
 (defn home-did-mount [this]
-  (js/Highcharts.Chart. (reagent/dom-node this)
+  (js/Highcharts.Chart. (rdom/dom-node this)
                         (clj->js chart-config)))
 
 (defn home []
@@ -43,5 +45,5 @@
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))

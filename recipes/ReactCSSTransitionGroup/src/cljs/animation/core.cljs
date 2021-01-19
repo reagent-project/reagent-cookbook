@@ -1,5 +1,6 @@
 (ns animation.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.dom :as rdom]
+              [reagent.core :as reagent]))
 
 (def css-transition-group
   (reagent/adapt-react-class js/React.addons.CSSTransitionGroup))
@@ -60,6 +61,6 @@
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

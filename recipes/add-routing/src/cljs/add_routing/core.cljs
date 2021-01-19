@@ -4,6 +4,7 @@
     (:require [secretary.core :as secretary]
               [goog.events :as events]
               [goog.history.EventType :as EventType]
+              [reagent.dom :as rdom]
               [reagent.core :as reagent]))
 
 (def app-state (reagent/atom {}))
@@ -45,6 +46,6 @@
 
 (defn ^:export main []
   (app-routes)
-  (reagent/render [current-page]
+  (rdom/render [current-page]
                   (.getElementById js/document "app")))
 

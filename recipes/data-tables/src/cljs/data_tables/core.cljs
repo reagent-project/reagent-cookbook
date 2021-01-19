@@ -1,5 +1,7 @@
 (ns data-tables.core
-  (:require [reagent.core :as reagent]))
+  (:require
+   [reagent.dom :as rdom]
+   [reagent.core :as reagent]))
 
 (defn home-render []
   [:table.table.table-striped.table-bordered 
@@ -28,7 +30,7 @@
     ]])
 
 (defn home-did-mount [this]
-  (.DataTable (js/$ (reagent/dom-node this))))
+  (.DataTable (js/$ (rdom/dom-node this))))
 
 
 (defn home []
@@ -36,6 +38,6 @@
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

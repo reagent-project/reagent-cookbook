@@ -1,5 +1,6 @@
 (ns mojs-animation.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.rdom :as rdom]))
 
 (defn translate-y [node]
   (fn [progress]
@@ -12,13 +13,13 @@
     (clj->js
      {:repeat 999
       :delay 2000
-      :onUpdate (translate-y (reagent/dom-node this))}))))
+      :onUpdate (translate-y (rdom/dom-node this))}))))
 
 (defn animation []
   (reagent/create-class {:render (fn [] [:div.square])
                          :component-did-mount animation-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [animation]
+  (rdom/render [animation]
                   (.getElementById js/document "app")))
 

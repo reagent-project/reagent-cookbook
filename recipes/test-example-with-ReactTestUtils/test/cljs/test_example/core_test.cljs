@@ -4,6 +4,7 @@
             [cljs-react-test.simulate :as sim]
             [dommy.core :as dommy :refer-macros [sel1]]
             [reagent.core :as reagent]
+            [reagent.dom :as rdom]
             [test-example.core :as core]))
 
 (def ^:dynamic c)
@@ -16,7 +17,7 @@
 (deftest increment-button
   (testing "on-click"
     (let [app-state (reagent/atom {:count 0})
-          _ (reagent/render [core/increment-button app-state] c)
+          _ (rdom/render [core/increment-button app-state] c)
           node (sel1 c [:button])]
       (is (= 0 (:count @app-state)))
       (sim/click node nil)

@@ -1,5 +1,6 @@
 (ns mermaid.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.dom :as rdom]))
 
 (defn home []
   [:div [:h1 "Welcome to Reagent Cookbook!"]
@@ -23,5 +24,5 @@
   (reagent/create-class {:reagent-render home
                          :component-did-mount home-did-mount}))
 
-(reagent/render-component [home-component]
-                          (.getElementById js/document "app"))
+(rdom/render [home-component]
+             (.getElementById js/document "app"))

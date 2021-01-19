@@ -1,5 +1,6 @@
 (ns draggable.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.dom :as rdom]
+              [reagent.core :as reagent]))
 
 (defn home-render []
   [:div.ui-widget-content {:style {:width "150px" 
@@ -8,13 +9,13 @@
    [:p "Drag me around"]])
 
 (defn home-did-mount [this]
-  (.draggable (js/$ (reagent/dom-node this))))
+  (.draggable (js/$ (rdom/dom-node this))))
 
 (defn home []
   (reagent/create-class {:reagent-render home-render
                          :component-did-mount home-did-mount}))
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

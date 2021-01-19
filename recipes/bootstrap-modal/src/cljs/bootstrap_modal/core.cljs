@@ -1,6 +1,8 @@
 (ns bootstrap-modal.core
-  (:require [reagent.core :as reagent]
-            [reagent-modals.modals :as reagent-modals]))
+  (:require
+    [reagent.dom :as rdom]
+    [reagent.core :as reagent]
+    [reagent-modals.modals :as reagent-modals]))
 
 (defn modal-window-button []
   [:div.btn.btn-primary 
@@ -10,12 +12,12 @@
 (defn home []
   [:div
    [reagent-modals/modal-window]
-   ;; ATTNETION \/
+   ;; ATTENTION \/
    [modal-window-button]
    ;; ATTENTION /\
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 

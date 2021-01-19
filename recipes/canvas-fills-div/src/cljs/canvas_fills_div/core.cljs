@@ -1,5 +1,7 @@
 (ns canvas-fills-div.core
-    (:require [reagent.core :as reagent]))
+    (:require
+     [reagent.dom :as rdom]
+     [reagent.core :as reagent]))
 
 (def window-width (reagent/atom nil))
 
@@ -23,7 +25,7 @@
 
       :component-did-mount
       (fn [ this ]
-        (reset! dom-node (reagent/dom-node this)))
+        (reset! dom-node (rdom/dom-node this)))
 
       :reagent-render
       (fn [ ]
@@ -40,7 +42,7 @@
   (reset! window-width (.-innerWidth js/window)))
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app"))
   (.addEventListener js/window "resize" on-window-resize))
 

@@ -1,5 +1,7 @@
 (ns droppable.core
-    (:require [reagent.core :as reagent]))
+    (:require
+      [reagent.dom :as rdom]
+      [reagent.core :as reagent]))
 
 (def app-state (reagent/atom {:drop-area {:class "ui-widget-header"
                                           :text "Drop here"}}))
@@ -13,7 +15,7 @@
    [:p "Drag me to my target"]])
 
 (defn draggable-did-mount [this]
-  (.draggable (js/$ (reagent/dom-node this))))
+  (.draggable (js/$ (rdom/dom-node this))))
 
 (defn draggable []
   (reagent/create-class {:reagent-render draggable-render
@@ -31,7 +33,7 @@
      [:p text]]))
 
 (defn drop-area-did-mount [this]
-  (.droppable (js/$ (reagent/dom-node this))
+  (.droppable (js/$ (rdom/dom-node this))
               #js {:drop (fn []
                            (swap! app-state assoc-in [:drop-area :class] "ui-widget-header ui-state-highlight")
                            (swap! app-state assoc-in [:drop-area :text] "Dropped!"))}))
@@ -46,6 +48,6 @@
    [drop-area]])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

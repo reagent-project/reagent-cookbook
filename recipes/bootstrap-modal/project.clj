@@ -1,12 +1,12 @@
 (defproject bootstrap-modal "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.122"]
-                 [reagent "0.5.1"]
-                 [org.clojars.frozenlock/reagent-modals "0.2.3"]]
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 [org.clojure/clojurescript "1.10.773"]
+                 [reagent "1.0.0"]
+                 [org.clojars.frozenlock/reagent-modals "0.2.8"]]
 
   :source-paths ["src/clj"]
 
-  :plugins [[lein-cljsbuild "1.0.6"]]
+  :plugins [[lein-cljsbuild "1.1.8"]]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
 

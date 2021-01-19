@@ -1,5 +1,6 @@
 (ns typeahead.core
   (:require [reagent.core :as reagent]
+            [reagent.dom :as rdom]
             [clojure.string :as s]))
 
 (def states
@@ -21,7 +22,7 @@
          (callback))))
 
 (defn typeahead-mounted [this]
-  (.typeahead (js/$ (reagent/dom-node this))
+  (.typeahead (js/$ (rdom/dom-node this))
               (clj->js {:hint true
                         :highlight true
                         :minLength 1})
@@ -46,6 +47,8 @@
    [:p "selected state: " @typeahead-value]
    [typeahead]])
 
-(reagent/render [home] (.getElementById js/document "app"))
+(defn ^:export main []
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 
 

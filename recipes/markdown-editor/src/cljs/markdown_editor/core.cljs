@@ -1,5 +1,6 @@
 (ns markdown-editor.core
-  (:require [reagent.core :as reagent]))
+  (:require [reagent.dom :as rdom]
+            [reagent.core :as reagent]))
 
 
 (defn editor [content]
@@ -20,7 +21,7 @@
          {:__html (-> content str js/marked)}}])
 
 (defn markdown-did-mount [this]
-  (let [node (reagent/dom-node this)]
+  (let [node (rdom/dom-node this)]
     (highlight-code node)))
 
 (defn markdown-component [content]
@@ -50,5 +51,5 @@
          ]]])))
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))

@@ -1,5 +1,6 @@
 (ns local-storage.core
     (:require [reagent.core :as reagent]
+              [reagent.dom :as rdom]
               [alandipert.storage-atom :refer [local-storage]]))
 
 (def app-state (local-storage 
@@ -13,6 +14,6 @@
     "Increment"]])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 

@@ -114,8 +114,8 @@ Navigate to `src/cljs/component_level_state/core.cljs` and make it look like thi
    ])
 
 (defn ^:export main []
-  (reagent/render [home]
-                  (.getElementById js/document "app")))
+  (rdom/render [home]
+               (.getElementById js/document "app")))
 ```
 
 Compile cljs files.

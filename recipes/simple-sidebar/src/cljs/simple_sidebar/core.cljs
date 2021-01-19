@@ -1,5 +1,6 @@
 (ns simple-sidebar.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.dom :as rdom]
+              [reagent.core :as reagent]))
 
 (defn sidebar []
   [:div#sidebar-wrapper
@@ -13,7 +14,7 @@
   [:div.btn.btn-default "Toggle Menu"])
 
 (defn menu-toggle-did-mount [this]
-  (.click (js/$ (reagent/dom-node this))
+  (.click (js/$ (rdom/dom-node this))
           (fn [e]
             (.preventDefault e)
             (.toggleClass (js/$ "#wrapper") "toggled") ;#wrapper will be the id of a div in our home component
@@ -30,6 +31,6 @@
     [menu-toggle]]])
 
 (defn ^:export main []
-  (reagent/render [home]
+  (rdom/render [home]
                   (.getElementById js/document "app")))
 
