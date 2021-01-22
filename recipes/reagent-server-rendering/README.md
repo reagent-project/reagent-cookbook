@@ -136,7 +136,8 @@ We'll now define routes for `/` and `/about` pages. Each route will pass a uniqu
 ```clojure
 
 (ns reagent-server-rendering.core
-    (:require [reagent.core :as reagent]))
+    (:require [reagent.core :as reagent]
+              [reagent.dom.server :as reagent-server]))
 
 (defn home-page []
   [:div [:h2 "Welcome to reagent-server-rendering"]
@@ -151,7 +152,7 @@ We'll now define routes for `/` and `/about` pages. Each route will pass a uniqu
    "about" about-page})
 
 (defn ^:export render-page [page-id]
-  (reagent/render-to-string [(get pages page-id)]))
+  (reagent-server/render-to-string [(get pages page-id)]))
 
 (defn ^:export main [page-id]
   (reagent/render [(get pages page-id)] (.getElementById js/document "app")))
