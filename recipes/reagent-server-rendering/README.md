@@ -134,9 +134,9 @@ We'll now define routes for `/` and `/about` pages. Each route will pass a uniqu
 ### Step 7: Modify the ClojureScript namespace to provide functions to render the pages on the server and the client
 
 ```clojure
-
 (ns reagent-server-rendering.core
     (:require [reagent.core :as reagent]
+              [reagent.dom :as rdom]
               [reagent.dom.server :as reagent-server]))
 
 (defn home-page []
@@ -155,7 +155,7 @@ We'll now define routes for `/` and `/about` pages. Each route will pass a uniqu
   (reagent-server/render-to-string [(get pages page-id)]))
 
 (defn ^:export main [page-id]
-  (reagent/render [(get pages page-id)] (.getElementById js/document "app")))
+  (rdom/render [(get pages page-id)] (.getElementById js/document "app")))
 ```
 
 The `render-page` function will render the HTML string given the page id that will be served from the server. The `main` function will render Reagent components at runtime when ClojureScript is loaded in the browser.
