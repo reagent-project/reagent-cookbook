@@ -1,6 +1,5 @@
 (ns test-example.core
-  (:require [reagent.core :as reagent]
-            [reagent.dom :as rdom]))
+  (:require [reagent.core :as reagent]))
 
 (defonce app-state (reagent/atom {:count 0}))
 
@@ -18,5 +17,5 @@
    ])
 
 (defn ^:export main []
-  (rdom/render [home]
+  (reagent/render [home]
                   (.getElementById js/document "app")))
