@@ -52,7 +52,8 @@ Navigate to `src/cljs/basic_component/core.cljs` and make it look like this.
 
 ```clojure
 (ns basic-component.core
-  (:require [reagent.core :as reagent]))
+  (:require [reagent.core :as reagent]
+            [reagent.dom :as rdom]))
 
 ;; Form-3 Component
 (defn foo []
